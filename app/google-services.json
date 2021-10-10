@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "156174194286",
+    "firebase_url": "https://free-chat-online-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "free-chat-online",
+    "storage_bucket": "free-chat-online.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156174194286:android:dfed846bfebf131766787f",
+        "android_client_info": {
+          "package_name": "free.chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "156174194286-d6l242t6avc589bcsc4ht5dg8f0ij7rs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZm1wxUEHt1hni_EKUtL1I75zse9A4e5g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "156174194286-d6l242t6avc589bcsc4ht5dg8f0ij7rs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
