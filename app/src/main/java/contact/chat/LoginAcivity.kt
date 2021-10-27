@@ -16,8 +16,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.login_acivity.*
-
-class LoginAcivity : AppCompatActivity() {
+class LoginAcivity : AppCompatActivity() { // eliminar sha y sha 1 de ordenador envenedado
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
     lateinit var resultLauncher: ActivityResultLauncher<Intent>
@@ -71,7 +70,7 @@ class LoginAcivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val currentUser = auth.currentUser
-        Toast.makeText(this, "You are registered " + auth.currentUser?.uid , Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "You are registered onStart() " + auth.currentUser?.uid , Toast.LENGTH_LONG).show()
     }
 
     private fun updateUI(user: Any?){
