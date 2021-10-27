@@ -22,8 +22,7 @@
             app:cardElevation="22dp"
             android:layout_margin="66dp"
             android:layout_marginTop="77dp"
-            android:minWidth="310dp"
-            android:maxWidth="410dp"
+            android:minWidth="300dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -35,14 +34,25 @@
                 <TextView
                     android:text="@string/app_name"
                     android:layout_gravity="center"
+                    android:layout_marginBottom="22dp"
                     android:textColor="@color/purple_500"
-                    android:textSize="23sp"
+                    android:textSize="23dp"
                     android:textStyle="bold"
-                    android:layout_marginBottom="44dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/activity_description"
+                    android:layout_gravity="center"
+                    android:textColor="@color/purple_500"
+                    android:textStyle="bold"
+                    android:textSize="19dp"
+                    android:text="@string/register"
+                    android:layout_marginBottom="34dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <EditText
-                    android:hint="@string/email"
+                    android:id="@+id/userNameText"
+                    android:hint="@string/user_name"
                     android:textSize="17sp"
                     android:layout_marginTop="22dp"
                     android:layout_width="match_parent"
@@ -51,12 +61,23 @@
                     android:inputType="text"
                     tools:ignore="LabelFor" />
                 <EditText
+                    android:id="@+id/textEmail"
+                    android:hint="@string/email"
+                    android:textSize="17sp"
+                    android:layout_marginTop="22dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="false"
+                    android:inputType="text"
+                    tools:ignore="LabelFor,TextFields" />
+                <EditText
+                    android:id="@+id/textPassword"
                     android:textSize="17sp"
                     android:hint="@string/password"
                     android:layout_marginTop="22dp"
                     android:autofillHints="false"
                     android:inputType="text"
-                    tools:ignore="LabelFor"
+                    tools:ignore="LabelFor,TextFields"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <LinearLayout
@@ -68,6 +89,7 @@
                     android:layout_height="0dp">
                     <Button
                         android:text="@string/google"
+                        android:id="@+id/btn_google_login"
                         android:backgroundTint="@color/red"
                         android:layout_margin="11dp"
                         android:textAllCaps="false"
@@ -75,7 +97,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content" />
                     <Button
-                        android:id="@+id/btn_login"
+                        android:id="@+id/btn_email_login"
                         android:layout_margin="11dp"
                         android:textAllCaps="false"
                         android:text="@string/login"
