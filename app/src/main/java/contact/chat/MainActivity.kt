@@ -1,16 +1,12 @@
-package free.chat
+package contact.chat
 import android.os.Bundle
-import android.util.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.database.ktx.database
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import free.chat.ui.main.SectionsPagerAdapter
-import free.chat.databinding.ActivityMainBinding
+import contact.chat.ui.main.SectionsPagerAdapter
+import contact.chat.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

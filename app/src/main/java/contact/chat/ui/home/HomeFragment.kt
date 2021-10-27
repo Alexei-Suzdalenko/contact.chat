@@ -1,4 +1,4 @@
-package free.chat.ui.home
+package contact.chat.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import free.chat.R
-import free.chat.databinding.FragmentHomeBinding
+import contact.chat.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 

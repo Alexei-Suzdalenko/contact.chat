@@ -1,4 +1,4 @@
-package free.chat.ui.main
+package contact.chat.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import free.chat.R
-import free.chat.databinding.FragmentMainBinding
+import contact.chat.databinding.FragmentMainBinding
 
 /**
  * A placeholder fragment containing a simple view.

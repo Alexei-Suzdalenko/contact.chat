@@ -1,4 +1,4 @@
-package free.chat.ui.home
+package contact.chat.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

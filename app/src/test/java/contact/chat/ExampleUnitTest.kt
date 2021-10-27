@@ -1,4 +1,4 @@
-package free.chat
+package contact.chat
 
 import org.junit.Test
 

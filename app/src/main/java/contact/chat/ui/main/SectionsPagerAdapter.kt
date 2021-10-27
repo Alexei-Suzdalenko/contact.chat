@@ -1,10 +1,10 @@
-package free.chat.ui.main
+package contact.chat.ui.main
 
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import free.chat.R
+import contact.chat.R
 
 private val TAB_TITLES = arrayOf(
     R.string.tab_text_1,
