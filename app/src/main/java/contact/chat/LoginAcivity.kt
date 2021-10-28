@@ -16,20 +16,17 @@ import contact.chat.util.components.LoginActivity.LoginActivityGoogleComponent
 import contact.chat.util.components.LoginActivity.LoginActivityGoogleComponent.Companion.firebaseAuthWithGoogle
 
 class LoginAcivity : AppCompatActivity() { // eliminar sha y sha 1 de ordenador envenedado
-    lateinit var resultLauncher: ActivityResultLauncher<Intent>
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_acivity)
         supportActionBar?.hide()
 
-        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
                 try {
                     val account = task.getResult(ApiException::class.java)!!
                     firebaseAuthWithGoogle(this, account.idToken!!, this)
-                    Toast.makeText(this, "User registered " + account.idToken, Toast.LENGTH_LONG).show()
                 } catch (e: ApiException) {
                     Toast.makeText(this, "Error resultlauncher comment to Alexei Suzdalenko", Toast.LENGTH_LONG).show()
                 }
@@ -42,14 +39,5 @@ class LoginAcivity : AppCompatActivity() { // eliminar sha y sha 1 de ordenador 
         // estamos pendiente de estado registarse o
         EstateLoginActivityComponent(this, this).initCurrentStateActivity()
 
-      /////  Firebase.auth.signOut()
     }
-
-    override fun onStart() {
-        super.onStart()
-        // val auth: FirebaseAuth = Firebase.auth
-        // val currentUser = auth.currentUser
-        // Toast.makeText(this, "You are registered onStart() " + auth.currentUser?.uid , Toast.LENGTH_LONG).show()
-    }
-
 }

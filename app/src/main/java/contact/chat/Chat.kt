@@ -1,5 +1,6 @@
 package contact.chat
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -8,8 +9,12 @@ import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import contact.chat.ui.main.SectionsPagerAdapter
 import contact.chat.databinding.ActivityChatBinding
+import contact.chat.util.assets.App.Companion.editor
 
 class Chat : AppCompatActivity() {
 
@@ -28,9 +33,15 @@ class Chat : AppCompatActivity() {
         tabs.setupWithViewPager(viewPager)
         val fab: FloatingActionButton = binding.fab
 
+
+
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            Firebase.auth.signOut()
+            val currentUser = Firebase.auth.currentUser
+           // editor.putString("name", "none"); editor.putString("email", "none"); editor.putString("source", "none"); editor.apply()
+            if( currentUser == null ){
+                startActivity(Intent(this, LoginAcivity::class.java)); finish()
+            }
         }
     }
 }

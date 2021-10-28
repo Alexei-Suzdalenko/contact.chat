@@ -6,8 +6,8 @@ import contact.chat.util.assets.App.Companion.editor
 object SaveNewUserRepository {
     data class User(val name: String, val email: String)
 
-    fun saveNewUserInDatabase(id: String, name: String, email: String){
-        editor.putString("name", name); editor.putString("email", email); editor.apply()
+    fun saveNewUserInDatabase(id: String, name: String, email: String, password: String){
+        editor.putString("name", name); editor.putString("email", email); editor.putString("password", password); editor.apply()
 
         Firebase.database.reference
             .child("users")

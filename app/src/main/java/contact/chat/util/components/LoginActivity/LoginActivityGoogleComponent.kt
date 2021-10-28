@@ -37,7 +37,7 @@ class LoginActivityGoogleComponent(val context: Context, val activity: LoginAciv
                 if (task.isSuccessful) {
                     val currentUser = auth.currentUser
                     if( currentUser != null){
-                        saveNewUserInDatabase(currentUser.uid, currentUser.displayName.toString(), currentUser.email.toString())
+                        saveNewUserInDatabase(currentUser.uid, currentUser.displayName.toString(), currentUser.email.toString(), "none")
                         context.startActivity(Intent(context, Chat::class.java)); activity.finish()
                     }
                 } else {
