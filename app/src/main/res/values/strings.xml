@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">CONTACT CHAT</string>
+    <string name="app_name">Contact Messenger</string>
     <string name="login">Login</string>
+    <string name="user_name">User name</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="google">Google</string>
@@ -11,8 +12,7 @@
     <string name="conversation">Conversation</string>
     <string name="search">Search</string>
     <string name="profile">Profile</string>
-    <string name="user_name">User name</string>
     <string name="fill_data_correctly">Fill in data correctly</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading…</string>
     <string name="search_user">Search user by email</string>
 </resources>
