@@ -1,8 +1,6 @@
-package contact.messager.util.components.ChatActivity
+package contact.messager.zConverationSearchProfileFragments
 import android.content.Context
 import android.content.Intent
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.FragmentActivity
@@ -10,9 +8,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import contact.messager.Chat
 import contact.messager.databinding.FragmentProfileBinding
-import contact.messager.ui.main.PlaceholderFragment
 import contact.messager.ui.main.PlaceholderFragment.Companion.typeUserImagePlaceholderFragment
 import contact.messager.util.assets.App
 import contact.messager.util.assets.App.Companion.editor

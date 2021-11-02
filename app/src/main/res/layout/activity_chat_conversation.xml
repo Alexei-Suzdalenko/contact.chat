@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChatConversation">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarAlexei"
+
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewMessages"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+
+        android:background="@color/purple_700"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_marginTop="3dp"
+                android:id="@+id/userImageConverationAct"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/user"
+                />
+            <LinearLayout
+                android:orientation="vertical"
+                android:padding="4dp"
+                android:layout_marginStart="11dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/emailChatUser"
+                    android:textSize="17dp"
+                    android:maxLines="1"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name" />
+                <TextView
+                    android:id="@+id/nameChatUser"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:textSize="17dp"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!--
+      app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+         app:stackFromEnd="false"
+        app:reverseLayout="false"
+
+         app:stackFromEnd="false"
+        app:reverseLayout="false"
+    -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewMessages"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarAlexei"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayoutBottom"
+        app:layout_constraintEnd_toStartOf="parent"
+    />
+    <!--
+        <ListView
+            android:id="@+id/recyclerViewChats"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="11dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintVertical_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarAlexei"
+            app:layout_constraintBottom_toTopOf="@+id/relativeLayoutBottom"
+            app:layout_constraintEnd_toStartOf="parent" />
+    -->
+        <RelativeLayout
+            android:id="@+id/relativeLayoutBottom"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewMessages"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:padding="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/attachImageFileBtn"
+                android:layout_alignParentStart="true"
+                android:background="@drawable/file"
+                android:contentDescription="@string/app_name"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+            <EditText
+                android:id="@+id/inputMessage"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/attachImageFileBtn"
+                android:layout_toStartOf="@+id/messageBtn"
+                android:hint="@string/message"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:autofillHints="false" />
+            <ImageView
+                android:id="@+id/messageBtn"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/sent"
+                android:contentDescription="@string/app_name"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+        </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

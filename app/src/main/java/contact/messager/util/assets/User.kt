@@ -1,8 +1,9 @@
 package contact.messager.util.assets
 
 data class User(
-    val name: String,
-    val email: String,
-    val image: String,
-    val backImage: String
+    var id: String = "",
+    var name: String = "",
+    var email: String = "",
+    var image: String = "",
+    var backImage: String = ""
     )

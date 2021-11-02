@@ -15,4 +15,6 @@
     <string name="fill_data_correctly">Fill in data correctly</string>
     <string name="loading">Loading…</string>
     <string name="search_user">Search user by email</string>
+    <string name="message">Message</string>
+    <string name="dont_have_conversations">Dont have conversations</string>
 </resources>

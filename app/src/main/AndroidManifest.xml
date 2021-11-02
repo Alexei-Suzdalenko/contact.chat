@@ -3,8 +3,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:usesCleartextTraffic="true"
-        android:name="contact.messager.util.assets.App"
+        android:name=".util.assets.App"
         android:allowBackup="true"
         android:description="@string/descrition"
         android:icon="@mipmap/ic_launcher"
@@ -12,9 +11,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Freechat"
+        android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
-            android:name="contact.messager.Chat"
+            android:name=".PerfilConversationUser" android:theme="@style/Theme.Freechat.NoActionBar"
+            android:exported="true" >
+           <!-- <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter> -->
+        </activity>
+        <activity
+            android:name=".ChatConversation"
+            android:exported="true"
+            android:theme="@style/Theme.Freechat.NoActionBar">
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+              -->
+        </activity>
+        <activity
+            android:name=".ConversSearchProfile"
             android:exported="true"
             android:label="@string/title_activity_chat"
             android:theme="@style/Theme.Freechat.NoActionBar">
@@ -26,12 +45,14 @@
             -->
         </activity>
         <activity
-            android:name="contact.messager.LoginAcivity"
+            android:name=".LoginAcivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 

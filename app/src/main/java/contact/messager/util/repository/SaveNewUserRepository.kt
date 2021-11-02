@@ -33,7 +33,7 @@ object SaveNewUserRepository {
         editor.putString("backImage", "https://alexei-suzdalenko.github.io/r-radio/backgorund.png")
         editor.apply()
 
-        Firebase.database.reference.child("users").child(id).setValue( User ( name, email, image, "https://alexei-suzdalenko.github.io/r-radio/backgorund.png" ))
+        Firebase.database.reference.child("users").child(id).setValue( User ( id, name, email, image, "https://alexei-suzdalenko.github.io/r-radio/backgorund.png" ))
     }
 
     // guardar imagen de usuario perfil o de fondo

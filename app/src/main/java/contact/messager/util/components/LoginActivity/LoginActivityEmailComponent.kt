@@ -6,7 +6,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import contact.messager.Chat
+import contact.messager.ConversSearchProfile
 import contact.messager.LoginAcivity
 import contact.messager.R
 import contact.messager.util.repository.SaveNewUserRepository.saveNewUserInDatabase
@@ -36,7 +36,7 @@ class LoginActivityEmailComponent(val context: Context, val activity: LoginAcivi
                 val currentUser = auth.currentUser
                 if( currentUser != null){
                     saveNewUserInDatabase(currentUser.uid, name, email, password, "emai")
-                    context.startActivity(Intent(context, Chat::class.java)); activity.finish()
+                    context.startActivity(Intent(context, ConversSearchProfile::class.java)); activity.finish()
                 }
             } else { Toast.makeText(context, "sign In Email And Password Failed", Toast.LENGTH_SHORT).show() }
         }

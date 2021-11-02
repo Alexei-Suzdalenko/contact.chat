@@ -9,7 +9,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import contact.messager.Chat
+import contact.messager.ConversSearchProfile
 import contact.messager.LoginAcivity
 import contact.messager.R
 import contact.messager.util.repository.SaveNewUserRepository.saveNewUserInDatabase
@@ -38,7 +38,7 @@ class LoginActivityGoogleComponent(val context: Context, val activity: LoginAciv
                     val currentUser = auth.currentUser
                     if( currentUser != null){
                         saveNewUserInDatabase(currentUser.uid, currentUser.displayName.toString(), currentUser.email.toString(), "none", "google")
-                        context.startActivity(Intent(context, Chat::class.java)); activity.finish()
+                        context.startActivity(Intent(context, ConversSearchProfile::class.java)); activity.finish()
                     }
                 } else {
                     Toast.makeText(context, "LoginActivityGoogleComponent failed.", Toast.LENGTH_SHORT).show()

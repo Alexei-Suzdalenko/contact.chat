@@ -13,12 +13,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import contact.messager.ui.main.SectionsPagerAdapter
 import contact.messager.databinding.ActivityChatBinding
+import contact.messager.ui.main.SectionsPagerAdapter
 import contact.messager.util.components.LoginActivity.LoginActivityGoogleComponent
 import contact.messager.util.repository.SaveNewUserRepository
 
-class Chat : AppCompatActivity() {
+class ConversSearchProfile : AppCompatActivity() {
     private lateinit var binding: ActivityChatBinding
   //  private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
@@ -36,7 +36,7 @@ class Chat : AppCompatActivity() {
         val fab: FloatingActionButton = binding.fab
 
 
-
+        /// delete this
         fab.setOnClickListener { view ->
             Firebase.auth.signOut()
             val currentUser = Firebase.auth.currentUser

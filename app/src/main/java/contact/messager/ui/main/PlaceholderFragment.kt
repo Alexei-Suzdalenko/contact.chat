@@ -1,26 +1,19 @@
 package contact.messager.ui.main
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import contact.messager.databinding.FragmentConversationBinding
 import contact.messager.databinding.FragmentProfileBinding
 import contact.messager.databinding.FragmentSearchBinding
-import contact.messager.util.components.ChatActivity.ConversationFragment
-import contact.messager.util.components.ChatActivity.ProfileFragment
-import contact.messager.util.components.ChatActivity.SearchFragment
-import contact.messager.util.repository.SaveNewUserRepository
+import contact.messager.zConverationSearchProfileFragments.ConversationFragment
+import contact.messager.zConverationSearchProfileFragments.ProfileFragment
+import contact.messager.zConverationSearchProfileFragments.SearchFragment
 import contact.messager.util.repository.SaveNewUserRepository.saveImageProfileUser
-
 class PlaceholderFragment : Fragment() {
     private lateinit var pageViewModel: PageViewModel
     private var conversationBinding: FragmentConversationBinding? = null
