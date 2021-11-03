@@ -1,10 +1,12 @@
 package contact.messager.zConverationSearchProfileFragments
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import contact.messager.ChatConversation
 import contact.messager.R
 import contact.messager.databinding.FragmentConversationBinding
 import contact.messager.util.assets.IdConversacionDataUser
@@ -27,9 +29,11 @@ class ConversationFragment(val fragment: FragmentConversationBinding, val contex
                     // Log.d("firebase", listInfo.toString() )
                 }
                getMoreInfoFromUsers(listInfo.asReversed()){ listInfo ->
-                   // click to item in conversation
-                   listviewConversation.setOnItemClickListener { parent, view, position, id ->
-
+                   // click to item in conversation list users
+                   listviewConversation.setOnItemClickListener { _, _, i, _ ->
+                       val user = User( listInfo[i].idUser , listInfo[i].name, listInfo[i].email, listInfo[i].image,  listInfo[i].imgBack )
+                       SearchFragment.userConversation = user
+                       context.startActivity(Intent(context, ChatConversation::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                    }
                }
             } else {
@@ -48,6 +52,7 @@ class ConversationFragment(val fragment: FragmentConversationBinding, val contex
                         listInfo[i].email = currentUser.email
                         listInfo[i].name = currentUser.name
                         listInfo[i].image = currentUser.image
+                        listInfo[i].imgBack = currentUser.backImage
                     listviewConversation.adapter = ListConversationAdapter(context, listInfo)
                 } else { Toast.makeText(context, "ERROR OCURRIED USER DATA, WRITE TO ALEXEI SUZDALENKO", Toast.LENGTH_LONG).show() }
             }

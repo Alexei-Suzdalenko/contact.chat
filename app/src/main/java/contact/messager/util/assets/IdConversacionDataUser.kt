@@ -5,5 +5,6 @@ data  class IdConversacionDataUser (
     var idUser: String = "",
     var email: String = "",
     var name: String = "",
-    var image: String = ""
+    var image: String = "",
+    var imgBack: String = ""
 )
