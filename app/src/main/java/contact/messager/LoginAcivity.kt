@@ -11,22 +11,24 @@ import contact.messager.util.components.LoginActivity.LoginActivityEmailComponen
 import contact.messager.util.components.LoginActivity.LoginActivityGoogleComponent
 import contact.messager.util.components.LoginActivity.LoginActivityGoogleComponent.Companion.firebaseAuthWithGoogle
 
-class LoginAcivity : AppCompatActivity() { // eliminar sha y sha 1 de ordenador envenedado
+class LoginAcivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_acivity)
         supportActionBar?.hide()
 
         val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
+            var jui = result.resultCode
+        //   if (result.resultCode == Activity.RESULT_OK) {                                        Toast.makeText(this, "RESULT_OK" , Toast.LENGTH_LONG).show()
                 val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
                 try {
+                    Toast.makeText(this, "try to log from google " , Toast.LENGTH_LONG).show()
                     val account = task.getResult(ApiException::class.java)!!
                     firebaseAuthWithGoogle(this, account.idToken!!, this)
                 } catch (e: ApiException) {
-                    Toast.makeText(this, "Error resultlauncher comment to Alexei Suzdalenko", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Error " + task.exception , Toast.LENGTH_LONG).show()
                 }
-            }
+         //  } else Toast.makeText(this, "RESULT_NONONO $jui" , Toast.LENGTH_LONG).show()
         }
         // entrar con google
         LoginActivityGoogleComponent(this, this, resultLauncher).instanceGoogleLoginActivity()
@@ -37,3 +39,8 @@ class LoginAcivity : AppCompatActivity() { // eliminar sha y sha 1 de ordenador 
 
     }
 }
+
+//     cd C:\Program Files\Android\Android Studio\jre\bin
+//     C:\_OJO_NEW_ACCOUNT_ANDROID_DEVELOPER\pas_alexeis_alias_key0.jks
+
+//    keytool -list -v -keystore C:\_OJO_NEW_ACCOUNT_ANDROID_DEVELOPER\pas_alexeis_alias_key0.jks -alias key0

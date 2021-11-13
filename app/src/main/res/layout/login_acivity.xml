@@ -81,6 +81,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <LinearLayout
+                    android:layout_gravity="center"
                     android:orientation="horizontal"
                     android:layout_marginTop="44dp"
                     android:layout_marginBottom="44dp"
@@ -88,6 +89,7 @@
                     android:layout_weight="2"
                     android:layout_height="0dp">
                     <Button
+                        android:visibility="gone"
                         android:text="@string/google"
                         android:id="@+id/btn_google_login"
                         android:backgroundTint="@color/red"
@@ -111,13 +113,13 @@
         <TextView
             android:text="@string/descrition"
             android:textStyle="bold"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@color/black"
             android:layout_marginTop="77dp"
             android:layout_marginStart="44dp"
             android:layout_marginEnd="44dp"
+            android:layout_marginBottom="77dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-
         </LinearLayout>
     </ScrollView>
 

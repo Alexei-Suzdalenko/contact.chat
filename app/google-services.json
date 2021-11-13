@@ -1,79 +1,42 @@
 {
   "project_info": {
-    "project_number": "156174194286",
-    "firebase_url": "https://free-chat-online-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "free-chat-online",
-    "storage_bucket": "free-chat-online.appspot.com"
+    "project_number": "364173982561",
+    "firebase_url": "https://contact-messanger-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "contact-messanger",
+    "storage_bucket": "contact-messanger.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:156174194286:android:5883d7b801952bbe66787f",
+        "mobilesdk_app_id": "1:364173982561:android:887741dccd27aa7eed2320",
         "android_client_info": {
           "package_name": "contact.messager"
         }
       },
       "oauth_client": [
         {
-          "client_id": "156174194286-iet8thhv00ff8vgs1mj5k7f33ts71vj0.apps.googleusercontent.com",
+          "client_id": "364173982561-69m0d6l9b4b6o4et11rqdi42k2lu1p21.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "contact.messager",
-            "certificate_hash": "bb63ce392afe12d12811243d02389e922c5cda83"
+            "certificate_hash": "02f06d502b0912e2b9841d137e820dbfa691aa24"
           }
         },
         {
-          "client_id": "156174194286-d6l242t6avc589bcsc4ht5dg8f0ij7rs.apps.googleusercontent.com",
+          "client_id": "364173982561-t4n0mc1kv4pemot4pd1se2l9i0sn73k3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBZm1wxUEHt1hni_EKUtL1I75zse9A4e5g"
+          "current_key": "AIzaSyAtcJnMqFPVcik3yL3fTs3idiL3Be5RRUI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "156174194286-d6l242t6avc589bcsc4ht5dg8f0ij7rs.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:156174194286:android:dfed846bfebf131766787f",
-        "android_client_info": {
-          "package_name": "free.chat"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "156174194286-8118vu3o16jdpvun6ihhej532csqm1qc.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "free.chat",
-            "certificate_hash": "2d53dccd32fdfb5b2931ce6c32080fe0354a0ec2"
-          }
-        },
-        {
-          "client_id": "156174194286-d6l242t6avc589bcsc4ht5dg8f0ij7rs.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBZm1wxUEHt1hni_EKUtL1I75zse9A4e5g"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "156174194286-d6l242t6avc589bcsc4ht5dg8f0ij7rs.apps.googleusercontent.com",
+              "client_id": "364173982561-t4n0mc1kv4pemot4pd1se2l9i0sn73k3.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

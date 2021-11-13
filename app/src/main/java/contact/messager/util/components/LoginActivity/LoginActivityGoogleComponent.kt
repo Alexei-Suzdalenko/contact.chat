@@ -21,8 +21,10 @@ class LoginActivityGoogleComponent(val context: Context, val activity: LoginAciv
         btnGoogleLogin.setOnClickListener {  tryLoginUser() }
     }
 
-    private fun tryLoginUser(){ //                                                                                                             getString(R.string.default_web_client_id)
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken( "156174194286-d6l242t6avc589bcsc4ht5dg8f0ij7rs.apps.googleusercontent.com" ).requestEmail().build()
+    private fun tryLoginUser(){ //                                                                                                             getString(R.string.default_web_client_id) "156174194286-d6l242t6avc589bcsc4ht5dg8f0ij7rs.apps.googleusercontent.com"
+      val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+          .requestIdToken("364173982561-t4n0mc1kv4pemot4pd1se2l9i0sn73k3.apps.googleusercontent.com")
+          .requestEmail().build()
         val googleSignInClient = GoogleSignIn.getClient(activity, gso)
         val signInIntent = googleSignInClient.signInIntent
         resultLauncher.launch(signInIntent)

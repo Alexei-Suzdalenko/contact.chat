@@ -26,7 +26,14 @@ class LoginActivityEmailComponent(val context: Context, val activity: LoginAcivi
             val password =  passwordEdit.text.toString().trim()
             if( name.isEmpty() || email.length < 5 || password.length < 6 ) { Toast.makeText(context, context.getString(R.string.fill_data_correctly), Toast.LENGTH_LONG).show(); return@setOnClickListener }
 
-            auth.createUserWithEmailAndPassword( email, password ).addOnCompleteListener(activity) { signInEmailAndPassword(name, email, password) }
+            auth.createUserWithEmailAndPassword( email, password ).addOnCompleteListener(activity) {  task ->
+                if (task.isSuccessful) {
+                    signInEmailAndPassword(name, email, password)
+                } else {
+                    signInEmailAndPassword(name, email, password)
+                    Toast.makeText(context, "Authentication failed: " + task.exception,  Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
