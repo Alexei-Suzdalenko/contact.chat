@@ -16,3 +16,15 @@ class App: Application() {
         editor = sharedPreferences.edit()
     }
 }
+
+
+/*
+firebase loj.rus@gmail.com
+https://console.firebase.google.com/u/0/project/contact-messanger/overview?hl=es-419
+
+password: alexeis
+key : key0
+
+quiero subir a google play desarrollador.web.cantabria.penagos@gmail.com
+
+ */
