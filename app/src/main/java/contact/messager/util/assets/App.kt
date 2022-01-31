@@ -7,6 +7,7 @@ class App: Application() {
     companion object{
         lateinit var sharedPreferences: SharedPreferences
         lateinit var editor: SharedPreferences.Editor
+        var userConversation: User? = null
     }
 
     @SuppressLint("CommitPrefEdits")

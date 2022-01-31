@@ -12,10 +12,11 @@ import contact.messager.util.assets.MessageFirestoreAdapter
 import kotlinx.android.synthetic.main.activity_chat_conversation.*
 
 import androidx.recyclerview.widget.LinearLayoutManager
+import contact.messager.util.assets.App.Companion.userConversation
 
 import contact.messager.zConverationSearchProfileFragments.SearchFragment
 import contact.messager.util.repository.DeleteOldMessages
-class ChatConversation : AppCompatActivity() {
+class ChatConversationActivity : AppCompatActivity() {
     lateinit var messageFirestoreAdapter: MessageFirestoreAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +34,7 @@ class ChatConversation : AppCompatActivity() {
         SaveNewMessageFuncionality(this, this).initChatConversationActivity()
 
         // create conversation if no exsist and set realChannelId FIREBASE DATABASE
-        CreateChatChannelFirebase(this).createOrGetChatChannle(SearchFragment.userConversation?.id!!){ channelId ->
+        CreateChatChannelFirebase(this).createOrGetChatChannle(userConversation?.id!!){ channelId ->
 
             realChannelId = channelId
 

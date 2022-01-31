@@ -1,16 +1,16 @@
 package contact.messager.zConverationSearchProfileFragments;
 import android.content.Context;
 import android.content.Intent
-import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import contact.messager.ChatConversation
+import contact.messager.ChatConversationActivity
 import contact.messager.databinding.FragmentSearchBinding
 import contact.messager.util.assets.App
+import contact.messager.util.assets.App.Companion.userConversation
 import contact.messager.util.assets.SearchedUsersAdapter
 import contact.messager.util.assets.User
 
@@ -37,7 +37,7 @@ class SearchFragment (val fragment: FragmentSearchBinding, val context:Context){
                 }
                 listSearched.adapter = SearchedUsersAdapter(context, listUsers)
             }
-            override fun onCancelled(databaseError: DatabaseError) { Toast.makeText(context, "ERROR USERS LOADER", Toast.LENGTH_LONG).show()}
+            override fun onCancelled(databaseError: DatabaseError) {}
         }
 
         // la hora de introducir un email en editText traemos 111 emails
@@ -56,11 +56,8 @@ class SearchFragment (val fragment: FragmentSearchBinding, val context:Context){
 
         listSearched.setOnItemClickListener { _, _, position, _ ->
             userConversation = listUsers[position]
-            context.startActivity(Intent(context, ChatConversation::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            context.startActivity(Intent(context, ChatConversationActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
         }
 
-    }
-    companion object{
-        var userConversation: User? = null
     }
 }

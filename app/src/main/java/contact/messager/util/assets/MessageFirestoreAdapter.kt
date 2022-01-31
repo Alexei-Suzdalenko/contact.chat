@@ -12,12 +12,12 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestoreException
-import contact.messager.ChatConversation
+import contact.messager.ChatConversationActivity
 import contact.messager.R
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MessageFirestoreAdapter(val options: FirestoreRecyclerOptions<Message>, val activity: ChatConversation, val recyclerViewMessages: RecyclerView): FirestoreRecyclerAdapter<Message, MessageFirestoreAdapter.viewInner>(options) {
+class MessageFirestoreAdapter(val options: FirestoreRecyclerOptions<Message>, val activity: ChatConversationActivity, val recyclerViewMessages: RecyclerView): FirestoreRecyclerAdapter<Message, MessageFirestoreAdapter.viewInner>(options) {
     val miUserUID = FirebaseAuth.getInstance().currentUser?.uid.toString()
     var listMessages : MutableList<Message> = mutableListOf()
 

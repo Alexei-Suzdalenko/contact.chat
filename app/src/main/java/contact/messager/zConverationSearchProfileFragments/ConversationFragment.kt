@@ -1,14 +1,14 @@
 package contact.messager.zConverationSearchProfileFragments
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import contact.messager.ChatConversation
+import contact.messager.ChatConversationActivity
 import contact.messager.R
 import contact.messager.databinding.FragmentConversationBinding
+import contact.messager.util.assets.App.Companion.userConversation
 import contact.messager.util.assets.IdConversacionDataUser
 import contact.messager.util.assets.ListConversationAdapter
 import contact.messager.util.assets.User
@@ -32,14 +32,14 @@ class ConversationFragment(val fragment: FragmentConversationBinding, val contex
                    // click to item in conversation list users
                    listviewConversation.setOnItemClickListener { _, _, i, _ ->
                        val user = User( listInfo[i].idUser , listInfo[i].name, listInfo[i].email, listInfo[i].image,  listInfo[i].imgBack )
-                       SearchFragment.userConversation = user
-                       context.startActivity(Intent(context, ChatConversation::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                      userConversation = user
+                       context.startActivity(Intent(context, ChatConversationActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                    }
                }
             } else {
                 Toast.makeText(context, context.getString(R.string.dont_have_conversations), Toast.LENGTH_LONG).show()
             }
-        }.addOnFailureListener{ Toast.makeText(context, "ERROR OCURRIED CONVERSION FRAGMENT, WRITE TO ALEXEI SUZDALENKO", Toast.LENGTH_LONG).show() }
+        }
     }
 
     // get more info from user with  user id
@@ -54,7 +54,7 @@ class ConversationFragment(val fragment: FragmentConversationBinding, val contex
                         listInfo[i].image = currentUser.image
                         listInfo[i].imgBack = currentUser.backImage
                     listviewConversation.adapter = ListConversationAdapter(context, listInfo)
-                } else { Toast.makeText(context, "ERROR OCURRIED USER DATA, WRITE TO ALEXEI SUZDALENKO", Toast.LENGTH_LONG).show() }
+                } else {  }
             }
         }
         onComplete(listInfo)

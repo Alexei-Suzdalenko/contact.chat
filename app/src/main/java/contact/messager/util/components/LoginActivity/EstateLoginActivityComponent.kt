@@ -1,22 +1,20 @@
 package contact.messager.util.components.LoginActivity
 import android.content.Context
 import android.content.Intent
-import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import contact.messager.ConversSearchProfile
+import contact.messager.ConversSearchProfileActivity
 import contact.messager.LoginAcivity
-import contact.messager.R
-import contact.messager.util.assets.App
 
 class EstateLoginActivityComponent(val context: Context, val activity: LoginAcivity) {
 
     fun initCurrentStateActivity(){
         val auth: FirebaseAuth = Firebase.auth
         val currentUser = auth.currentUser
-        if( currentUser != null ){ context.startActivity(Intent(context, ConversSearchProfile::class.java)); activity.finish() }
+        if( currentUser != null ){ context.startActivity(Intent(context, ConversSearchProfileActivity::class.java)); activity.finish() }
 
+        /*
         val userNameRegisred = App.sharedPreferences.getString("name", "none").toString()
         val emailRegitered = App.sharedPreferences.getString("email", "none").toString()
         val password = App.sharedPreferences.getString("password", "none").toString()
@@ -28,6 +26,8 @@ class EstateLoginActivityComponent(val context: Context, val activity: LoginAciv
             activity.findViewById<TextView>(R.id.textPassword).setText( password )
             activity.findViewById<TextView>(R.id.btn_email_login).text = context.getString(R.string.enter)
         }
+
+         */
 
     }
 }

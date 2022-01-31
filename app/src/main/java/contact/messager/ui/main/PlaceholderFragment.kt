@@ -26,7 +26,8 @@ class PlaceholderFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val index = arguments?.getInt(ARG_SECTION_NUMBER) ?: 1
+         val index = arguments?.getInt(ARG_SECTION_NUMBER) ?: 1
+      //  val index = 3
         when( index ){
             2 -> { searchBuinding = FragmentSearchBinding.inflate(inflater, container, false)
                     SearchFragment(searchBuinding!!, requireActivity().applicationContext).initSearchFragment()

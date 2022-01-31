@@ -22,7 +22,7 @@
             app:cardElevation="22dp"
             android:layout_margin="66dp"
             android:layout_marginTop="77dp"
-            android:minWidth="300dp"
+            android:minWidth="320dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -34,9 +34,9 @@
                 <TextView
                     android:text="@string/app_name"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="22dp"
+                    android:layout_marginBottom="52dp"
                     android:textColor="@color/purple_500"
-                    android:textSize="23dp"
+                    android:textSize="33dp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -50,16 +50,6 @@
                     android:layout_marginBottom="34dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <EditText
-                    android:id="@+id/userNameText"
-                    android:hint="@string/user_name"
-                    android:textSize="17sp"
-                    android:layout_marginTop="22dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="false"
-                    android:inputType="text"
-                    tools:ignore="LabelFor" />
                 <EditText
                     android:id="@+id/textEmail"
                     android:hint="@string/email"

@@ -25,10 +25,7 @@ object SaveNewUserRepository {
         editor.putString("name", name)
         editor.putString("email", email)
         editor.putString("password", password)
-
-        val image = if ( source == "google" ){ Firebase.auth.currentUser?.photoUrl.toString()
-        } else { "https://alexei-suzdalenko.github.io/r-radio/user.png" }
-
+        val image = "https://alexei-suzdalenko.github.io/r-radio/user.png"
         editor.putString("image", image)
         editor.putString("backImage", "https://alexei-suzdalenko.github.io/r-radio/backgorund.png")
         editor.apply()
