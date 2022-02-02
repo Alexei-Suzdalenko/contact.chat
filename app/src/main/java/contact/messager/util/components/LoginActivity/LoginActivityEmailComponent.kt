@@ -9,7 +9,7 @@ import com.google.firebase.ktx.Firebase
 import contact.messager.ConversSearchProfileActivity
 import contact.messager.LoginAcivity
 import contact.messager.R
-import contact.messager.util.repository.SaveNewUserRepository.saveNewUserInDatabase
+
 
 class LoginActivityEmailComponent(val context: Context, val activity: LoginAcivity) {
     val auth = Firebase.auth
@@ -39,7 +39,6 @@ class LoginActivityEmailComponent(val context: Context, val activity: LoginAcivi
             if (task.isSuccessful) {
                 val currentUser = auth.currentUser
                 if( currentUser != null){
-                    saveNewUserInDatabase(currentUser.uid, "", email, password, "emai")
                     context.startActivity(Intent(context, ConversSearchProfileActivity::class.java)); activity.finish()
                 }
             }

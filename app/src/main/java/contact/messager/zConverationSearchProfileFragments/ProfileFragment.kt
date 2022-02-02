@@ -21,26 +21,26 @@ class ProfileFragment(val fragment: FragmentProfileBinding, val context: Context
 
     // inits states in profile activity
     fun initProfileFragment(){
-            textViewEmail.text = App.sharedPreferences.getString("email", "").toString()
-            editTextName.setText( App.sharedPreferences.getString("name", "").toString())
-            val image = App.sharedPreferences.getString("image", "").toString()
-        Glide.with( context ).load( image).into( userImageProfile )
-            val imageBack = App.sharedPreferences.getString("backImage", "").toString()
-        Glide.with( context ).load( imageBack).into( imageBackground )
+    //       textViewEmail.text = App.sharedPreferences.getString("email", "").toString()
+    //       editTextName.setText( App.sharedPreferences.getString("name", "").toString())
+    //       val image = App.sharedPreferences.getString("image", "").toString()
+    //   Glide.with( context ).load( image).into( userImageProfile )
+    //       val imageBack = App.sharedPreferences.getString("backImage", "").toString()
+    //   Glide.with( context ).load( imageBack).into( imageBackground )
 
-        // save user images profile image and background image
-        imageBackground.setOnClickListener { typeUserImagePlaceholderFragment = "backImage"; prepareIntentLauncher() }
-        userImageProfile.setOnClickListener { typeUserImagePlaceholderFragment = "image"; prepareIntentLauncher() }
+    //   // save user images profile image and background image
+    //   imageBackground.setOnClickListener { typeUserImagePlaceholderFragment = "backImage"; prepareIntentLauncher() }
+    //   userImageProfile.setOnClickListener { typeUserImagePlaceholderFragment = "image"; prepareIntentLauncher() }
 
-        // save new name if changed name in profile activity
-        editTextName.addTextChangedListener {
-            val newUserName = editTextName.text.toString()
-            if ( newUserName.isEmpty()) return@addTextChangedListener
-            val map = HashMap<String, Any>()
-            map["name"] = newUserName
-            Firebase.database.reference.child("users").child(Firebase.auth.currentUser!!.uid).updateChildren(map).addOnCompleteListener {
-                if( it.isSuccessful ){ editor.putString("name", newUserName); editor.apply() }}
-        }
+    //   // save new name if changed name in profile activity
+    //   editTextName.addTextChangedListener {
+    //       val newUserName = editTextName.text.toString()
+    //       if ( newUserName.isEmpty()) return@addTextChangedListener
+    //       val map = HashMap<String, Any>()
+    //       map["name"] = newUserName
+    //       Firebase.database.reference.child("users").child(Firebase.auth.currentUser!!.uid).updateChildren(map).addOnCompleteListener {
+    //           if( it.isSuccessful ){ editor.putString("name", newUserName); editor.apply() }}
+    //   }
     }
 
 

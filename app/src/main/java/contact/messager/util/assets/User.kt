@@ -3,12 +3,8 @@ package contact.messager.util.assets
 data class User(
     var id: String = "",
     var name: String = "",
-    var email: String = "",
     var image: String = "",
-    var backImage: String = "",
-
-    var city: String = "",
-    var sex: String = "",
-    var search: String  = "",
-    var age: String = ""
+    var age: Int = 0,
+    var latitude: Double = 0.0,
+    val longitude: Double = 0.0
     )

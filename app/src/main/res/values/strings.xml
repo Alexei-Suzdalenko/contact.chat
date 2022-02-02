@@ -17,4 +17,5 @@
     <string name="search_user">Search user by email</string>
     <string name="message">Message</string>
     <string name="dont_have_conversations">Dont have conversations</string>
+    <string name="fillThePrefil">Fill in the prefil</string>
 </resources>

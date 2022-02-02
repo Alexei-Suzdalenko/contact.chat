@@ -35,8 +35,7 @@ class ConversSearchProfileActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
             Firebase.auth.signOut()
             val currentUser = Firebase.auth.currentUser
-            // editor.putString("name", "none"); editor.putString("email", "none"); editor.putString("source", "none"); editor.apply()
-            if (currentUser == null) {
+            if (currentUser == null) { App.editor.putString("name", "").apply()
                 startActivity(Intent(this, LoginAcivity::class.java)); finish()
             }
         }
@@ -47,9 +46,8 @@ class ConversSearchProfileActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val userName = App.sharedPreferences.getString("name", "").toString()
-        if(userName.isEmpty()) {
-            viewPager.currentItem = 2
-        }
+        Toast.makeText(this, resources.getString(R.string.fillThePrefil), Toast.LENGTH_LONG).show()
+        if(userName.isEmpty()) { viewPager.currentItem = 2; }
     }
 
 }

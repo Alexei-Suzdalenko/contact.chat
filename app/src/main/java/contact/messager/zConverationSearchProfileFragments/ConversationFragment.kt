@@ -31,7 +31,7 @@ class ConversationFragment(val fragment: FragmentConversationBinding, val contex
                getMoreInfoFromUsers(listInfo.asReversed()){ listInfo ->
                    // click to item in conversation list users
                    listviewConversation.setOnItemClickListener { _, _, i, _ ->
-                       val user = User( listInfo[i].idUser , listInfo[i].name, listInfo[i].email, listInfo[i].image,  listInfo[i].imgBack )
+                       val user = User( listInfo[i].idUser , listInfo[i].name,  listInfo[i].image)
                       userConversation = user
                        context.startActivity(Intent(context, ChatConversationActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                    }
@@ -49,12 +49,10 @@ class ConversationFragment(val fragment: FragmentConversationBinding, val contex
             Firebase.database.reference.child( "users/" + listInfo[i].idUser ).get().addOnSuccessListener {
                 if (it.exists()){
                     currentUser = it.getValue(User::class.java)!!
-                        listInfo[i].email = currentUser.email
                         listInfo[i].name = currentUser.name
                         listInfo[i].image = currentUser.image
-                        listInfo[i].imgBack = currentUser.backImage
                     listviewConversation.adapter = ListConversationAdapter(context, listInfo)
-                } else {  }
+                }
             }
         }
         onComplete(listInfo)

@@ -6,15 +6,15 @@ import contact.messager.util.assets.App.Companion.userConversation
 
 import kotlinx.android.synthetic.main.perfil_conversation_user.*
 
-class PerfilUserActivity : AppCompatActivity() {
+class VisitOthrerUserPerfilActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.perfil_conversation_user)
 
-        Glide.with(this).load(userConversation?.backImage).into(backImageConversationUser)
+   //    Glide.with(this).load(userConversation?.backImage).into(backImageConversationUser)
         Glide.with(this).load(userConversation?.image).into(perfilImageConversationUser)
 
-       emailProfileConversationUser.text = userConversation?.email
+   //    emailProfileConversationUser.text = userConversation?.email
        userNameConversationUser.text = userConversation?.name
 
     }

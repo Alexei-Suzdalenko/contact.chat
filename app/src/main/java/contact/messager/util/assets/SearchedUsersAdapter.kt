@@ -22,7 +22,7 @@ class SearchedUsersAdapter(val context: Context, val searchedUsers: MutableList<
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val layoutView = LayoutInflater.from(context).inflate(R.layout.searched_item  , parent, false)
 
-        layoutView.findViewById<TextView>(R.id.searchNameUser).text = searchedUsers[position].email
+        // layoutView.findViewById<TextView>(R.id.searchNameUser).text = searchedUsers[position].email
         Glide.with(context)
             .load(searchedUsers[position].image)
             .into(layoutView.findViewById<CircleImageView>(R.id.userImageProfile))

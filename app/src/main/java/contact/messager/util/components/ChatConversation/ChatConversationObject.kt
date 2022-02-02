@@ -4,7 +4,7 @@ import android.content.Intent
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import contact.messager.ChatConversationActivity
-import contact.messager.PerfilUserActivity
+import contact.messager.VisitOthrerUserPerfilActivity
 import contact.messager.R
 import contact.messager.util.assets.App.Companion.userConversation
 import de.hdodenhof.circleimageview.CircleImageView
@@ -15,10 +15,10 @@ class ChatConversationObject(val context: Context, val activity: ChatConversatio
     val userImage = activity.findViewById<CircleImageView>(R.id.userImageConverationAct)
 
     fun initChatConversationFunction(){
-        emailChatUser.text = userConversation?.email
+      //  emailChatUser.text = userConversation?.email
         nameChatUser.text = userConversation?.name
         Glide.with( context ).load( userConversation?.image ).into( userImage )
 
-        userImage.setOnClickListener { context.startActivity(Intent(context, PerfilUserActivity::class.java)) }
+        userImage.setOnClickListener { context.startActivity(Intent(context, VisitOthrerUserPerfilActivity::class.java)) }
     }
 }

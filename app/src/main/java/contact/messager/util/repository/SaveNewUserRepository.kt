@@ -19,19 +19,15 @@ import kotlin.collections.HashMap
 
 object SaveNewUserRepository {
 
-    // guardar datos de usuarion nuevo
-    fun saveNewUserInDatabase(id: String, name: String, email: String, password: String, source: String) {
+    /*
+    fun saveNewUserInDatabase(id: String) {
         editor.putString("id", id)
-        editor.putString("name", name)
-        editor.putString("email", email)
-        editor.putString("password", password)
-        val image = "https://alexei-suzdalenko.github.io/r-radio/user.png"
-        editor.putString("image", image)
+        editor.putString("name", "")
+        editor.putString("image",  "https://alexei-suzdalenko.github.io/r-radio/user.png")
         editor.putString("backImage", "https://alexei-suzdalenko.github.io/r-radio/backgorund.png")
         editor.apply()
-
-        Firebase.database.reference.child("users").child(id).setValue( User ( id, name, email, image, "https://alexei-suzdalenko.github.io/r-radio/backgorund.png" ))
     }
+     */
 
     // guardar imagen de usuario perfil o de fondo
     fun saveImageProfileUser(imageUri: Uri?, context: Context, fragment: FragmentProfileBinding) {

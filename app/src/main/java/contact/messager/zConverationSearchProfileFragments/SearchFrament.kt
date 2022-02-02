@@ -30,10 +30,10 @@ class SearchFragment (val fragment: FragmentSearchBinding, val context:Context){
                 listUsers.clear()
                 for (ds in dataSnapshot.children) {
                     userSearched = ds.getValue(User::class.java)
-                    if( userSearched?.email != "none" && miEmail != userSearched?.email ){
-                        listUsers.add(userSearched!!)
-                    //  if( userSearched!!.email.contains( inputEditTextString, true )){ listUsers.add(userSearched!!) }
-                    }
+             //      if( userSearched?.email != "none" && miEmail != userSearched?.email ){
+             //          listUsers.add(userSearched!!)
+             //      //  if( userSearched!!.email.contains( inputEditTextString, true )){ listUsers.add(userSearched!!) }
+             //      }
                 }
                 listSearched.adapter = SearchedUsersAdapter(context, listUsers)
             }

@@ -29,20 +29,21 @@ class PlaceholderFragment : Fragment() {
          val index = arguments?.getInt(ARG_SECTION_NUMBER) ?: 1
       //  val index = 3
         when( index ){
-            2 -> { searchBuinding = FragmentSearchBinding.inflate(inflater, container, false)
+            2 -> {
+                searchBuinding = FragmentSearchBinding.inflate(inflater, container, false)
                     SearchFragment(searchBuinding!!, requireActivity().applicationContext).initSearchFragment()
                     return searchBuinding!!.root
             }
-            3 -> { profileBuinding = FragmentProfileBinding.inflate(inflater, container, false)
+            3 -> {
+                profileBuinding = FragmentProfileBinding.inflate(inflater, container, false)
                     val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                        if (result.resultCode == Activity.RESULT_OK) {
-                            saveImageProfileUser(result.data!!.data, requireContext(), profileBuinding!!)
-                        }
+                        if (result.resultCode == Activity.RESULT_OK) { saveImageProfileUser(result.data!!.data, requireContext(), profileBuinding!!); }
                     }
                      ProfileFragment(profileBuinding!!, requireContext().applicationContext, requireActivity(), resultLauncher ).initProfileFragment()
                      return profileBuinding!!.root
             }
-            else -> { conversationBinding = FragmentConversationBinding.inflate(inflater, container, false)
+            else -> {
+                conversationBinding = FragmentConversationBinding.inflate(inflater, container, false)
                          ConversationFragment(conversationBinding!!, requireActivity().applicationContext).initConversationFragment()
                          return conversationBinding!!.root
             }
