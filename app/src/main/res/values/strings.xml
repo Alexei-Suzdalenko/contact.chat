@@ -18,4 +18,11 @@
     <string name="message">Message</string>
     <string name="dont_have_conversations">Dont have conversations</string>
     <string name="fillThePrefil">Fill in the prefil</string>
+    <string name="cityTown">City</string>
+    <string name="userAge">Age</string>
+    <string name="userStatus">Status</string>
+    <string name="save">Save</string>
+    <string name="deleteUserProfile">Delete user profile (in development)</string>
+    <string name="writeYourComment">Write your comment</string>
+    <string name="thisAppNeedLocation">This application needs to enable localization</string>
 </resources>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "575108884414",
+    "firebase_url": "https://gay-chat-messager-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "gay-chat-messager",
+    "storage_bucket": "gay-chat-messager.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575108884414:android:675f3041e18bfb042f7bef",
+        "android_client_info": {
+          "package_name": "contact.messager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "575108884414-75r1sc1ke3ppern5c2bqstlddh7mnokg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "contact.messager",
+            "certificate_hash": "e44e1a7f7c00ddcad2e2a70fa743e24260bfe8f7"
+          }
+        },
+        {
+          "client_id": "575108884414-v6ks9u4ditga48fqukehf63v0nnnjkga.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDBSHOWEZnOY-eZrE2yo2QWx7PR5PBLVk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "575108884414-v6ks9u4ditga48fqukehf63v0nnnjkga.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

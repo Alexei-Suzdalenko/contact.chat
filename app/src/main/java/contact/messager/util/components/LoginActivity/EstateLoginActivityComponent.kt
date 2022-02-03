@@ -4,8 +4,8 @@ import android.content.Intent
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import contact.messager.ConversSearchProfileActivity
-import contact.messager.LoginAcivity
+import contact.messager.activity.ConversSearchProfileActivity
+import contact.messager.activity.LoginAcivity
 
 class EstateLoginActivityComponent(val context: Context, val activity: LoginAcivity) {
 

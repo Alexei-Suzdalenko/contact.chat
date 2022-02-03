@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" package="contact.messager">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission. ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".util.assets.App"
+        android:name=".util.class.App"
         android:allowBackup="true"
         android:description="@string/descrition"
         android:icon="@mipmap/ic_launcher"
@@ -14,10 +15,10 @@
         android:theme="@style/Theme.Freechat"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".VisitOthrerUserPerfilActivity" android:theme="@style/Theme.Freechat.NoActionBar"  android:parentActivityName=".ConversSearchProfileActivity" />
-        <activity android:name=".ChatConversationActivity" android:theme="@style/Theme.Freechat.NoActionBar" />
-        <activity android:name=".ConversSearchProfileActivity" android:label="@string/title_activity_chat" android:theme="@style/Theme.Freechat.NoActionBar" />
-        <activity android:name=".LoginAcivity" android:exported="true">
+        <activity android:name=".activity.VisitOthrerUserPerfilActivity" android:theme="@style/Theme.Freechat.NoActionBar"  android:parentActivityName=".activity.ConversSearchProfileActivity" />
+        <activity android:name=".activity.ChatConversationActivity" android:theme="@style/Theme.Freechat.NoActionBar" />
+        <activity android:name=".activity.ConversSearchProfileActivity" android:label="@string/title_activity_chat" android:theme="@style/Theme.Freechat.NoActionBar" />
+        <activity android:name=".activity.LoginAcivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
