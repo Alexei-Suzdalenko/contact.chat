@@ -11,13 +11,13 @@ object AddNewMessageFirestore {
     fun addNewMessageFirestore(textMessage: String, typeMessage: String, activity: ChatConversationActivity){
 
         if(typeMessage == "text"){
-            FirebaseFirestore.getInstance()
-                .collection("conversation")
-                .document("conversation")
-                .collection(ChatConversationActivity.realChannelId!!)
-                .document()
-                .set(Message(System.currentTimeMillis().toString(), textMessage, "", ChatConversationActivity.miUID, userConversation?.id!!))
-                .addOnCompleteListener { if(it.isSuccessful) activity.inputMessage.setText("") }
+        //   FirebaseFirestore.getInstance()
+        //       .collection("conversation")
+        //       .document("conversation")
+        //       .collection(ChatConversationActivity.realChannelId!!)
+        //       .document()
+        //       .set(Message(System.currentTimeMillis().toString(), textMessage, "", ChatConversationActivity.miUID, userConversation?.id!!))
+        //       .addOnCompleteListener { if(it.isSuccessful) activity.inputMessage.setText("") }
         }
     }
 }

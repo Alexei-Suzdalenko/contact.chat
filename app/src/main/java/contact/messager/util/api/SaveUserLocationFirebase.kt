@@ -32,7 +32,7 @@ class SaveUserLocationFirebase {
         try {
             val tm = activity.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
             val countryCodeValue = tm.networkCountryIso
-            dataUser["country"] = countryCodeValue.toString(); App.editor.putString("country", countryCodeValue.toString())
+            dataUser["country"] = countryCodeValue.toString();                                                             App.editor.putString("country", countryCodeValue.toString())
         } catch (e: Exception){}
 
      if (ContextCompat.checkSelfPermission(activity.applicationContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -48,7 +48,7 @@ class SaveUserLocationFirebase {
           val geocoder = Geocoder(activity.applicationContext, Locale.getDefault())
           val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
 
-          dataUserInfo["locality"] = addresses[0].locality.toString(); refUserInfo.setValue(dataUserInfo); App.editor.putString("locality", addresses[0].locality.toString());
+          dataUserInfo["locality"] = addresses[0].locality.toString(); refUserInfo.updateChildren(dataUserInfo); App.editor.putString("locality", addresses[0].locality.toString());
           dataUser["postal"] = addresses[0].postalCode.toString().lowercase(Locale.getDefault())         ; App.editor.putString("postal", addresses[0].postalCode.toString().lowercase(Locale.getDefault()));
 
       } else {
@@ -56,6 +56,6 @@ class SaveUserLocationFirebase {
       }
 
         App.editor.apply()
-        refUser.setValue(dataUser)
+        refUser.updateChildren(dataUser)
     }
 }

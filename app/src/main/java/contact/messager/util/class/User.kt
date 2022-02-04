@@ -4,7 +4,7 @@ data class User(
     var id: String = "",
     var name: String = "",
     var image: String = "",
-    var age: Int = 0,
-    var postal: Int = 0,
+    var age: String = "",
+    var postal: String = "",
     var country: String = ""
     )

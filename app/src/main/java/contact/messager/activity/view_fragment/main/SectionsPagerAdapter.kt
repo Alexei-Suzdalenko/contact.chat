@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import contact.messager.R.*
-private val TAB_TITLES = arrayOf(string.conversation, string.search, string.profile)
+private val TAB_TITLES = arrayOf(string.search, string.conversation, string.profile)
 
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 

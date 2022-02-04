@@ -1,63 +1,57 @@
 package contact.messager.activity.view_fragment;
 import android.content.Context;
+import android.content.DialogInterface
 import android.content.Intent
-import androidx.core.widget.addTextChangedListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import androidx.appcompat.app.AlertDialog
+import contact.messager.R
 import contact.messager.activity.ChatConversationActivity
+import contact.messager.activity.ConversSearchProfileActivity
+import contact.messager.activity.VisitOthrerUserPerfilActivity
 import contact.messager.databinding.FragmentSearchBinding
-import contact.messager.util.`class`.App
 import contact.messager.util.`class`.App.Companion.userConversation
 import contact.messager.util.adapter.SearchedUsersAdapter
 import contact.messager.util.`class`.User
+import contact.messager.util.api.SaveDataImageUser.GetListUsers
 
-class SearchFragment (val fragment: FragmentSearchBinding, val context:Context){
-    val emailSearch = fragment.emailSearch
-    val listSearched = fragment.listviewSearch
-    lateinit var listUsers: MutableList<User>
-    var inputEditTextString = ""
-    val miEmail = App.sharedPreferences.getString("email", "none").toString()
-    var userSearched: User? = null
+class SearchFragment (val fr: FragmentSearchBinding, val context: Context, val activity: ConversSearchProfileActivity){
+    lateinit var usersSearched: MutableList<User>
 
     fun initSearchFragment(){
-        listUsers = mutableListOf()
-        // listado de usuarios buscando por email en edit text
-        val valueEventListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                listUsers.clear()
-                for (ds in dataSnapshot.children) {
-                    userSearched = ds.getValue(User::class.java)
-             //      if( userSearched?.email != "none" && miEmail != userSearched?.email ){
-             //          listUsers.add(userSearched!!)
-             //      //  if( userSearched!!.email.contains( inputEditTextString, true )){ listUsers.add(userSearched!!) }
-             //      }
-                }
-                listSearched.adapter = SearchedUsersAdapter(context, listUsers)
+        GetListUsers{ it ->
+            usersSearched = it
+            /* listado de usuarios en searched tab */
+            fr.listviewSearch.adapter = SearchedUsersAdapter(context, usersSearched)
+
+            /* click en algun user buscado en el tab searched */
+            fr.listviewSearch.setOnItemClickListener { _, _, position, _ ->
+                userConversation = usersSearched[position]
+
+                val dialogBuilder = AlertDialog.Builder(activity)
+                    .setMessage(activity.resources.getString(R.string.areYouSure))
+                    .setNegativeButton(context.resources.getString(R.string.writeMessageChat)) { dialog, id ->
+                        context.startActivity(Intent(context, ChatConversationActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                        dialog.dismiss() }
+                    .setPositiveButton(context.resources.getString(R.string.profile)) { dialog, id ->
+                        context.startActivity(Intent(context, VisitOthrerUserPerfilActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                        dialog.dismiss() }
+                val alert = dialogBuilder.create()
+                alert.setTitle(usersSearched[position].name)
+                alert.show()
             }
-            override fun onCancelled(databaseError: DatabaseError) {}
         }
 
-        // la hora de introducir un email en editText traemos 111 emails
-        emailSearch.addTextChangedListener{
-            inputEditTextString = emailSearch.text.toString().trim()
-            if(inputEditTextString.isEmpty() || inputEditTextString.isBlank()) return@addTextChangedListener
-
-            Firebase.database.reference
-                .child("users")
-                .startAt(inputEditTextString)
-                .orderByChild("email")
-                .limitToFirst(11)
-                .addListenerForSingleValueEvent(valueEventListener)
-        }
+       //     Firebase.database.reference
+       //         .child("user")
+       //         // .startAt(inputEditTextString)
+       //        // .orderByChild("email")
+       //       //  .limitToFirst(11)
+       //         .addListenerForSingleValueEvent(valueEventListener)
 
 
-        listSearched.setOnItemClickListener { _, _, position, _ ->
-            userConversation = listUsers[position]
-            context.startActivity(Intent(context, ChatConversationActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
-        }
+    //    listSearched.setOnItemClickListener { _, _, position, _ ->
+    //        userConversation = listUsersSearched[position]
+    //        context.startActivity(Intent(context, ChatConversationActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+    //    }
 
     }
 }

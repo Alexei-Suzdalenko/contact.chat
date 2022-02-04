@@ -24,16 +24,16 @@ class ConversationFragment(val fragment: FragmentConversationBinding, val contex
         Firebase.database.reference.child("enganchedChannels/$miId").orderByKey().get().addOnSuccessListener {
             if(it.exists()){
                 for(doc in it.children){
-                    val info = IdConversacionDataUser(doc.child("channelId").value.toString(), doc.key.toString(), "", "", "")
+                    val info = IdConversacionDataUser(doc.child("channelId").value.toString(), doc.key.toString(), "1", "2", "1")
                     listInfo.add(info)
                     // Log.d("firebase", listInfo.toString() )
                 }
                getMoreInfoFromUsers(listInfo.asReversed()){ listInfo ->
                    // click to item in conversation list users
                    listviewConversation.setOnItemClickListener { _, _, i, _ ->
-                       val user = User( listInfo[i].idUser , listInfo[i].name,  listInfo[i].image)
-                      userConversation = user
-                       context.startActivity(Intent(context, ChatConversationActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                   // val user = User( listInfo[i].idUser , listInfo[i].name,  listInfo[i].image)
+                   //userConversation = user
+                   // context.startActivity(Intent(context, ChatConversationActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                    }
                }
             } else {

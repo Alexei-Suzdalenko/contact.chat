@@ -25,39 +25,39 @@ class ChatConversationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_chat_conversation)
 
         // set other user image, email, name
-        ChatConversationObject(this, this).initChatConversationFunction()
-
-        // create conversation if no exsist and set realChannelId FIREBASE FIRESTORE, no lo uso, uso el firebase !!!
-        // ShowMeMessageFromThisConversation(this, this).showMeMessages()
-
-        // guardamos nuevo mensage
-        SaveNewMessageFuncionality(this, this).initChatConversationActivity()
+     //   ChatConversationObject(this, this).initChatConversationFunction()
+//
+     //   // create conversation if no exsist and set realChannelId FIREBASE FIRESTORE, no lo uso, uso el firebase !!!
+     //   // ShowMeMessageFromThisConversation(this, this).showMeMessages()
+//
+     //   // guardamos nuevo mensage
+     //   SaveNewMessageFuncionality(this, this).initChatConversationActivity()
 
         // create conversation if no exsist and set realChannelId FIREBASE DATABASE
-        CreateChatChannelFirebase(this).createOrGetChatChannle(userConversation?.id!!){ channelId ->
+    //   CreateChatChannelFirebase(this).createOrGetChatChannle(userConversation?.id!!){ channelId ->
 
-            realChannelId = channelId
+    //       realChannelId = channelId
 
-            val query: Query = FirebaseFirestore.getInstance()
-                .collection("conversation")
-                .document("conversation")
-                .collection(realChannelId!!)
-                .orderBy("time", Query.Direction.DESCENDING)
-                .limit(limitMessages)
+    //       val query: Query = FirebaseFirestore.getInstance()
+    //           .collection("conversation")
+    //           .document("conversation")
+    //           .collection(realChannelId!!)
+    //           .orderBy("time", Query.Direction.DESCENDING)
+    //           .limit(limitMessages)
 
-            val options: FirestoreRecyclerOptions<Message> = FirestoreRecyclerOptions.Builder<Message>().setQuery(query, Message::class.java).build()
+    //       val options: FirestoreRecyclerOptions<Message> = FirestoreRecyclerOptions.Builder<Message>().setQuery(query, Message::class.java).build()
 
-            val lM = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,true)
-            recyclerViewMessages.setHasFixedSize(true)
-            lM.stackFromEnd = true
-            recyclerViewMessages.layoutManager = lM
-            messageFirestoreAdapter =  MessageFirestoreAdapter(options, this, recyclerViewMessages)
-            messageFirestoreAdapter.startListening()
-            recyclerViewMessages.adapter = messageFirestoreAdapter
+    //       val lM = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,true)
+    //       recyclerViewMessages.setHasFixedSize(true)
+    //       lM.stackFromEnd = true
+    //       recyclerViewMessages.layoutManager = lM
+    //       messageFirestoreAdapter =  MessageFirestoreAdapter(options, this, recyclerViewMessages)
+    //       messageFirestoreAdapter.startListening()
+    //       recyclerViewMessages.adapter = messageFirestoreAdapter
 
-            // eliminamos todos los mensages menos  ultimos limitMessages
-            DeleteOldMessages(this).deleteMessagesFromThisConversation(realChannelId!!)
-        }
+    //       // eliminamos todos los mensages menos  ultimos limitMessages
+    //       DeleteOldMessages(this).deleteMessagesFromThisConversation(realChannelId!!)
+    //   }
 
 
     }
@@ -71,6 +71,6 @@ class ChatConversationActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        messageFirestoreAdapter.stopListening()
+       // messageFirestoreAdapter.stopListening()
     }
 }

@@ -9,12 +9,13 @@
         <entry key="..\:/_OJO_NEW_ACCOUNT_ANDROID_DEVELOPER/contact.chat/app/src/main/res/layout/activity_chat.xml" value="0.32666666666666666" />
         <entry key="..\:/_OJO_NEW_ACCOUNT_ANDROID_DEVELOPER/contact.chat/app/src/main/res/layout/activity_chat_conversation.xml" value="0.32666666666666666" />
         <entry key="..\:/_OJO_NEW_ACCOUNT_ANDROID_DEVELOPER/contact.chat/app/src/main/res/layout/conversation_item.xml" value="0.32666666666666666" />
-        <entry key="..\:/_OJO_NEW_ACCOUNT_ANDROID_DEVELOPER/contact.chat/app/src/main/res/layout/fragment_conversation.xml" value="0.32666666666666666" />
+        <entry key="..\:/_OJO_NEW_ACCOUNT_ANDROID_DEVELOPER/contact.chat/app/src/main/res/layout/fragment_conversation.xml" value="0.25" />
         <entry key="..\:/_OJO_NEW_ACCOUNT_ANDROID_DEVELOPER/contact.chat/app/src/main/res/layout/fragment_profile.xml" value="0.32666666666666666" />
-        <entry key="..\:/_OJO_NEW_ACCOUNT_ANDROID_DEVELOPER/contact.chat/app/src/main/res/layout/fragment_search.xml" value="0.2980072463768116" />
+        <entry key="..\:/_OJO_NEW_ACCOUNT_ANDROID_DEVELOPER/contact.chat/app/src/main/res/layout/fragment_search.xml" value="0.16" />
         <entry key="..\:/_OJO_NEW_ACCOUNT_ANDROID_DEVELOPER/contact.chat/app/src/main/res/layout/login_acivity.xml" value="0.32666666666666666" />
         <entry key="..\:/_OJO_NEW_ACCOUNT_ANDROID_DEVELOPER/contact.chat/app/src/main/res/layout/mes_item.xml" value="0.2980072463768116" />
-        <entry key="..\:/_OJO_NEW_ACCOUNT_ANDROID_DEVELOPER/contact.chat/app/src/main/res/layout/perfil_conversation_user.xml" value="0.2980072463768116" />
+        <entry key="..\:/_OJO_NEW_ACCOUNT_ANDROID_DEVELOPER/contact.chat/app/src/main/res/layout/perfil_conversation_user.xml" value="0.18" />
+        <entry key="..\:/_OJO_NEW_ACCOUNT_ANDROID_DEVELOPER/contact.chat/app/src/main/res/layout/searched_item.xml" value="0.307518115942029" />
         <entry key="..\:/_OJO_NEW_ACCOUNT_ANDROID_DEVELOPER/contact.chat/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.19791666666666666" />
         <entry key="..\:/_OJO_NEW_ACCOUNT_ANDROID_DEVELOPER/free.chat/app/src/main/res/layout/fragment_main.xml" value="0.33177083333333335" />
         <entry key="..\:/__ANDROID_WORK_SUZDALENKO_ALEXEI/contact.chat/app/src/main/res/drawable-v24/background_left.xml" value="0.2890625" />

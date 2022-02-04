@@ -25,4 +25,8 @@
     <string name="deleteUserProfile">Delete user profile (in development)</string>
     <string name="writeYourComment">Write your comment</string>
     <string name="thisAppNeedLocation">This application needs to enable localization</string>
+    <string name="fillUserData">Fill user data</string>
+    <string name="writeMessageChat">Write in the chat</string>
+    <string name="areYouSure">Are you sure?</string>
+    <string name="chat">Chat</string>
 </resources>

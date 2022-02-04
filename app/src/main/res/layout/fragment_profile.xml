@@ -80,6 +80,7 @@
                     android:padding="11dp"
                     android:textSize="16sp"
                     android:layout_marginTop="33dp"
+                    android:textColor="@color/black"
                     android:hint="@string/cityTown"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -87,6 +88,7 @@
                     tools:ignore="LabelFor" />
                 <EditText
                     android:id="@+id/editTextAge"
+                    android:textStyle="bold"
                     android:padding="11dp"
                     android:textSize="16sp"
                     android:layout_marginTop="33dp"

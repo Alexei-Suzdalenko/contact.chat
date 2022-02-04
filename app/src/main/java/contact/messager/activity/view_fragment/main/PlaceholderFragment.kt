@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import contact.messager.activity.ConversSearchProfileActivity
 import contact.messager.databinding.FragmentConversationBinding
 import contact.messager.databinding.FragmentProfileBinding
 import contact.messager.databinding.FragmentSearchBinding
 import contact.messager.activity.view_fragment.ConversationFragment
 import contact.messager.activity.view_fragment.ProfileFragment
 import contact.messager.activity.view_fragment.SearchFragment
-import contact.messager.util.api.SaveNewUserRepository.saveImageProfileUser
+import contact.messager.util.api.SaveDataImageUser.saveImageProfileUser
 class PlaceholderFragment : Fragment() {
     private lateinit var pageViewModel: PageViewModel
     private var conversationBinding: FragmentConversationBinding? = null
@@ -30,11 +31,17 @@ class PlaceholderFragment : Fragment() {
       //  val index = 3
         when( index ){
             2 -> {
-                searchBuinding = FragmentSearchBinding.inflate(inflater, container, false)
-                    SearchFragment(searchBuinding!!, requireActivity().applicationContext).initSearchFragment()
-                    return searchBuinding!!.root
+                /*
+                    conversation tab
+                 */
+                conversationBinding = FragmentConversationBinding.inflate(inflater, container, false)
+                ConversationFragment(conversationBinding!!, requireActivity().applicationContext).initConversationFragment()
+                return conversationBinding!!.root
             }
             3 -> {
+                /*
+                    profile tab
+                 */
                 profileBuinding = FragmentProfileBinding.inflate(inflater, container, false)
                     val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                         if (result.resultCode == Activity.RESULT_OK) { saveImageProfileUser(result.data!!.data, requireContext(), profileBuinding!!); }
@@ -43,9 +50,12 @@ class PlaceholderFragment : Fragment() {
                      return profileBuinding!!.root
             }
             else -> {
-                conversationBinding = FragmentConversationBinding.inflate(inflater, container, false)
-                         ConversationFragment(conversationBinding!!, requireActivity().applicationContext).initConversationFragment()
-                         return conversationBinding!!.root
+                /*
+                    search user tab
+                 */
+                searchBuinding = FragmentSearchBinding.inflate(inflater, container, false)
+                SearchFragment(searchBuinding!!, requireActivity().applicationContext, requireActivity() as ConversSearchProfileActivity).initSearchFragment()
+                return searchBuinding!!.root
             }
         } ///  pageViewModel.text.observeForever { it -> Toast.makeText(requireContext(), "===> $it", Toast.LENGTH_LONG).show() }
     }
