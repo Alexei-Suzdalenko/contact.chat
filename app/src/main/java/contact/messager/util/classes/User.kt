@@ -1,6 +1,7 @@
 package contact.messager.util.classes
 
 data class User(
+
     var id: String = "",
     var name: String = "",
     var image: String = "",
@@ -8,4 +9,5 @@ data class User(
     var postal: String = "",
     var country: String = "",
     var token: String = ""
-    )
+
+)
