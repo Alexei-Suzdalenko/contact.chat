@@ -1,24 +1,19 @@
 package contact.messager.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
-import contact.messager.util.`class`.Message
 import contact.messager.util.components.ChatConversationActivity.ChatConversationObject
-import contact.messager.util.components.ChatConversationActivity.SaveNewMessageFuncionality
 import contact.messager.util.api.CreateChatChannelFirebase
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import contact.messager.util.adapter.MessageFirestoreAdapter
 import kotlinx.android.synthetic.main.activity_chat_conversation.*
 
-import androidx.recyclerview.widget.LinearLayoutManager
 import contact.messager.R
-import contact.messager.util.`class`.App
 import contact.messager.util.`class`.App.Companion.realChannelId
 import contact.messager.util.`class`.App.Companion.userConversation
 import contact.messager.util.api.AddNewMessageFirestore
 
-import contact.messager.util.api.DeleteOldMessages
 class ChatConversationActivity : AppCompatActivity() {
     lateinit var messageFirestoreAdapter: MessageFirestoreAdapter
 
@@ -27,18 +22,23 @@ class ChatConversationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_chat_conversation)
         realChannelId = null
 
-
         // set other user image, age, name
         ChatConversationObject(this, this).initChatConversationFunction()
 
-        messageBtn.setOnClickListener {
+        messageBtnChat.setOnClickListener {
             val textMessage = inputMessage.text.toString()
-            if (textMessage.isNotBlank() && textMessage.isNotEmpty()) {
+            if (textMessage.isNotBlank() && textMessage.isNotEmpty()) {           Log.d("realChannelId", "realChannelId" + textMessage)
                 if(realChannelId == null ){
                     // create or get channel id from current users conversation
                     CreateChatChannelFirebase(this).createOrGetChatChannle(userConversation?.id!!){ id ->
                         realChannelId = id
-                        AddNewMessageFirestore.addNewMessageFirestore(textMessage, this)
+                        AddNewMessageFirestore.addNewMessageFirestore(textMessage, this){
+                            if(it == "ok")  inputMessage.setText("")
+                        }
+                    }
+                } else {
+                    AddNewMessageFirestore.addNewMessageFirestore(textMessage, this){
+                        if(it == "ok")  inputMessage.setText("")
                     }
                 }
             }
@@ -47,11 +47,10 @@ class ChatConversationActivity : AppCompatActivity() {
      //   // create conversation if no exsist and set realChannelId  FIRESTORE, no lo uso, uso el firebase !!!
      //   // ShowMeMessageFromThisConversation(this, this).showMeMessages()
 //
-     //   // guardamos nuevo mensage
-       SaveNewMessageFuncionality(this, this).initChatConversationActivity()
+
 
         // create conversation if no exsist and set realChannelId FIREBASE DATABASE
-       CreateChatChannelFirebase(this).createOrGetChatChannle(userConversation?.id!!){ channelId ->
+    //   CreateChatChannelFirebase(this).createOrGetChatChannle(userConversation?.id!!){ channelId ->
 
     //       realChannelId = channelId
 
@@ -74,7 +73,7 @@ class ChatConversationActivity : AppCompatActivity() {
 
     //       // eliminamos todos los mensages menos  ultimos limitMessages
     //       DeleteOldMessages(this).deleteMessagesFromThisConversation(realChannelId!!)
-      }
+   //   }
 
 
     }

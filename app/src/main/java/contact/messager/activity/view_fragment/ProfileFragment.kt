@@ -6,7 +6,6 @@ import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.net.Uri
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
 import contact.messager.R
@@ -16,7 +15,7 @@ import contact.messager.util.`class`.App
 import contact.messager.util.`class`.App.Companion.editor
 import contact.messager.util.`class`.App.Companion.sharedPreferences
 import contact.messager.util.`class`.App.Companion.typeUserImagePlaceholderFragment
-import contact.messager.util.api.SaveDataImageUser.SaveUserInfo
+import contact.messager.util.api.SaveDataImageUserFirebase.SaveUserInfo
 
 class ProfileFragment(private val fr: FragmentProfileBinding, val context: Context, val activity: FragmentActivity, val resultLauncher: ActivityResultLauncher<Intent>) {
     /*

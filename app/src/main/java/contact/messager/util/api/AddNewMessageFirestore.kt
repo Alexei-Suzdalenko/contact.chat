@@ -13,16 +13,15 @@ object AddNewMessageFirestore {
     val miId = FirebaseAuth.getInstance().currentUser!!.uid.toString()
 
     @SuppressLint("SimpleDateFormat")
-    fun addNewMessageFirestore(textMessage: String, activity: ChatConversationActivity){
-
-           Toast.makeText(activity, App.realChannelId.toString(), Toast.LENGTH_LONG).show()
+    fun addNewMessageFirestore(textMessage: String, activity: ChatConversationActivity, onComplete: (res: String) -> Unit){
 
            FirebaseFirestore.getInstance()
                .collection("conversation")
                .document("conversation")
                .collection(App.realChannelId!!)
                .document()
-               .set(Message(System.currentTimeMillis().toString(), textMessage, "", miId))
-               .addOnCompleteListener { if(it.isSuccessful) activity.inputMessage.setText("") }
+               .set(Message(System.currentTimeMillis().toString(), textMessage, "", miId)).addOnCompleteListener {
+                   if(it.isSuccessful) onComplete("ok")
+               }
     }
 }

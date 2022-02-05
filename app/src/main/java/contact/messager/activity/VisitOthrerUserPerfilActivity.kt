@@ -3,11 +3,10 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.bumptech.glide.Glide
 import contact.messager.R
 import contact.messager.util.`class`.App.Companion.userConversation
-import contact.messager.util.api.SaveDataImageUser.GetVisitProfileData
+import contact.messager.util.api.SaveDataImageUserFirebase.GetVisitProfileData
 
 import kotlinx.android.synthetic.main.perfil_conversation_user.*
 

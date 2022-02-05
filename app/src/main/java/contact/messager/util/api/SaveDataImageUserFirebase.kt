@@ -22,7 +22,7 @@ import contact.messager.util.`class`.UserInfo
 import contact.messager.util.adapter.SearchedUsersAdapter
 import kotlin.collections.HashMap
 
-object SaveDataImageUser {
+object SaveDataImageUserFirebase {
     /*
     fun saveNewUserInDatabase(id: String) {
         editor.putString("id", id)
@@ -62,6 +62,8 @@ object SaveDataImageUser {
                         val user: User? = ds.getValue(User::class.java)
                         if (user != null && miId != ds.key.toString()) {
                             user.id = ds.key.toString()
+                            if(user.image.length < 11) user.image = "https://alexei-suzdalenko.github.io/r-radio/user.png"
+                            if(user.age.toInt() < 1) user.age = "..."
                             listUsersSearched.add(user)
                         }
                     }

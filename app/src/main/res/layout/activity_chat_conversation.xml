@@ -116,7 +116,7 @@
                 android:layout_marginEnd="6dp"
                 android:layout_centerVertical="true"
                 android:layout_toEndOf="@+id/attachImageFileBtn"
-                android:layout_toStartOf="@+id/messageBtn"
+                android:layout_toStartOf="@+id/messageBtnChat"
                 android:hint="@string/message"
                 android:background="@android:color/transparent"
                 android:layout_width="match_parent"
@@ -124,7 +124,7 @@
                 android:inputType="text"
                 android:autofillHints="false" />
             <ImageView
-                android:id="@+id/messageBtn"
+                android:id="@+id/messageBtnChat"
                 android:layout_alignParentEnd="true"
                 android:background="@drawable/sent"
                 android:contentDescription="@string/app_name"

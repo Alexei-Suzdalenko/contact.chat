@@ -14,7 +14,7 @@ import contact.messager.databinding.FragmentSearchBinding
 import contact.messager.activity.view_fragment.ConversationFragment
 import contact.messager.activity.view_fragment.ProfileFragment
 import contact.messager.activity.view_fragment.SearchFragment
-import contact.messager.util.api.SaveDataImageUser.saveImageProfileUser
+import contact.messager.util.api.SaveDataImageUserFirebase.saveImageProfileUser
 class PlaceholderFragment : Fragment() {
     private lateinit var pageViewModel: PageViewModel
     private var conversationBinding: FragmentConversationBinding? = null
