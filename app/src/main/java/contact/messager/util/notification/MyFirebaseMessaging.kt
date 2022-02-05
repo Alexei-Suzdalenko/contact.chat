@@ -30,6 +30,7 @@ class MyFirebaseMessaging: FirebaseMessagingService() {
     var userName: String = ""
     var message:   String = ""
     var image:       String = ""
+    var age:           String = ""
     lateinit var intent: Intent
     var firebaseUser: FirebaseUser? = null
 
@@ -44,15 +45,16 @@ class MyFirebaseMessaging: FirebaseMessagingService() {
         userName = remoteMessage.data["userName"].toString()
         image = remoteMessage.data["image"].toString()
         message = remoteMessage.data["message"].toString()
+        age = remoteMessage.data["age"].toString()
 
         intent.putExtra("chatId", chatId)
         intent.putExtra("sender", sender)
         intent.putExtra("receiver", receiver)
         intent.putExtra("userName", userName)
         intent.putExtra("image", image)
+        intent.putExtra("age", age)
 
         notId = App.getIdNoification(sender)
-        Log.d("datadatadata", "data " + remoteMessage.data.toString() )
 
         if( firebaseUser != null && sender == firebaseUser!!.uid){
                 if( Build.VERSION.SDK_INT > Build.VERSION_CODES.O) sendOreoNotificatioin(remoteMessage)

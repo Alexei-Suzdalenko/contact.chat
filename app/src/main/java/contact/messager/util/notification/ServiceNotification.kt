@@ -7,9 +7,9 @@ import retrofit2.Response
 class ServiceNotification {
 
     @SuppressLint("RestrictedApi")
-    fun sentNotification( chatId: String, sender: String,  receiver: String, userName: String,  message: String, image: String, token: String){
+    fun sentNotification( chatId: String, sender: String,  receiver: String, userName: String,  message: String, image: String, token: String, age: String){
         val apiService = Client.getClient("https://fcm.googleapis.com/")!!.create(APIService::class.java)
-        val data = Data(chatId, sender,  receiver, userName,  message , image)
+        val data = Data(chatId, sender,  receiver, userName,  message , image, age)
         val senderA = Sender(data, token)
 
         apiService

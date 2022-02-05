@@ -24,6 +24,19 @@ class ChatConversationActivity : AppCompatActivity() {
         realChannelId = null
         listenerDatabaseChagesActivated = "no"
 
+        if(intent.getStringExtra("chatId").toString().length > 7){
+            realChannelId = intent.getStringExtra("chatId").toString()
+            userConversation!!.id = intent.getStringExtra("receiver").toString()
+            userConversation!!.name = intent.getStringExtra("userName").toString()
+            userConversation!!.name = intent.getStringExtra("image").toString()
+            userConversation!!.age = intent.getStringExtra("age").toString()
+        }
+      // intent.getExtra("chatId", chatId)
+      // intent.getExtra("sender", sender)
+      // intent.getExtra("receiver", receiver)
+      // intent.getExtra("userName", userName)
+      // intent.getExtra("image", image)
+
         // set other user image, age, name
         ChatConversationObject(this, this).initChatConversationFunction()
 
@@ -72,14 +85,15 @@ class ChatConversationActivity : AppCompatActivity() {
     private fun sendNotification(textMessage: String){
         ServiceNotification().sentNotification(
             realChannelId!!,
-            firebaseUserId,
             userConversation!!.id,
+            firebaseUserId,
             userConversation!!.name,
             textMessage,
             userConversation!!.image,
-            userConversation!!.token
+            userConversation!!.token,
+            userConversation!!.age
         )
     }
-// "c5Vi15dARxCBJ4w2KxUCy-:APA91bH-hz_n7ei3zYAqPbJcvOshvDniZRUswpOijictHLoJf5q9l5leJr05e5bCWz-dIZXtDmVdenuCsBQHSz9fkKZ9ZZGx8rVXC0iglUcrNMbzZOM2cQ7MOqDqy8a2YSbiG_979so9"
+
 
 }

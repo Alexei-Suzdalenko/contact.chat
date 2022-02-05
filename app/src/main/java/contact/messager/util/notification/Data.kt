@@ -5,5 +5,6 @@ data class Data (
     var receiver: String = "",
     var userName: String = "",
     var message: String = "",
-    var image: String = ""
+    var image: String = "",
+    var age: String = ""
 )
