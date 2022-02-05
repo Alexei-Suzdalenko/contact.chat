@@ -4,8 +4,8 @@ import android.content.Context
 import android.widget.EditText
 import android.widget.ImageView
 import contact.messager.activity.ChatConversationActivity
-import contact.messager.activity.ChatConversationActivity.Companion.realChannelId
 import contact.messager.R
+import contact.messager.util.`class`.App.Companion.realChannelId
 import contact.messager.util.api.AddNewMessageFirestore.addNewMessageFirestore
 
 class SaveNewMessageFuncionality(val context: Context, val activity: ChatConversationActivity) {
@@ -17,9 +17,11 @@ class SaveNewMessageFuncionality(val context: Context, val activity: ChatConvers
     fun initChatConversationActivity() {
 
         sentMessage.setOnClickListener {
+
+
             val textMessage = editTextConvers.text.toString()
             if (realChannelId != null && textMessage.isNotBlank() && textMessage.isNotEmpty()) {
-                addNewMessageFirestore(textMessage, "text", activity)
+                addNewMessageFirestore(textMessage, activity)
             }
         }
 

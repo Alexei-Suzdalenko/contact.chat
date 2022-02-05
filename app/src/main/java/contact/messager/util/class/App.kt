@@ -9,6 +9,7 @@ class App: Application() {
         lateinit var editor: SharedPreferences.Editor
         var userConversation: User? = null
         var typeUserImagePlaceholderFragment = ""
+        var realChannelId: String? = null
     }
 
     @SuppressLint("CommitPrefEdits")

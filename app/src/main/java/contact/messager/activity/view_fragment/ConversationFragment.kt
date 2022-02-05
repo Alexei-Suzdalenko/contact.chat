@@ -1,21 +1,18 @@
 package contact.messager.activity.view_fragment
 import android.content.Context
-import android.content.Intent
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import contact.messager.activity.ChatConversationActivity
 import contact.messager.R
 import contact.messager.databinding.FragmentConversationBinding
-import contact.messager.util.`class`.App.Companion.userConversation
-import contact.messager.util.`class`.IdConversacionDataUser
+import contact.messager.util.`class`.ConversationUser
 import contact.messager.util.adapter.ListConversationAdapter
 import contact.messager.util.`class`.User
 
 class ConversationFragment(val fragment: FragmentConversationBinding, val context: Context) {
     val listviewConversation = fragment.listviewConversation
-    var listInfo: MutableList<IdConversacionDataUser> = mutableListOf()
+    var listInfo: MutableList<ConversationUser> = mutableListOf()
     val miId = FirebaseAuth.getInstance().currentUser?.uid.toString()
 
     // get mi converacion with users
@@ -24,7 +21,7 @@ class ConversationFragment(val fragment: FragmentConversationBinding, val contex
         Firebase.database.reference.child("enganchedChannels/$miId").orderByKey().get().addOnSuccessListener {
             if(it.exists()){
                 for(doc in it.children){
-                    val info = IdConversacionDataUser(doc.child("channelId").value.toString(), doc.key.toString(), "1", "2", "1")
+                    val info = ConversationUser(doc.child("channelId").value.toString(), doc.key.toString(), "1", "2", "1")
                     listInfo.add(info)
                     // Log.d("firebase", listInfo.toString() )
                 }
@@ -43,7 +40,7 @@ class ConversationFragment(val fragment: FragmentConversationBinding, val contex
     }
 
     // get more info from user with  user id
-    private fun getMoreInfoFromUsers(listInfo: MutableList<IdConversacionDataUser>, onComplete: (listInfo: MutableList<IdConversacionDataUser>) -> Unit){
+    private fun getMoreInfoFromUsers(listInfo: MutableList<ConversationUser>, onComplete: (listInfo: MutableList<ConversationUser>) -> Unit){
         var currentUser : User
         for(i in 0 until listInfo.size){
             Firebase.database.reference.child( "users/" + listInfo[i].idUser ).get().addOnSuccessListener {

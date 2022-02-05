@@ -4,6 +4,5 @@ data class Message(
     var time: String = "",
     var text: String = "",
     var url: String = "",
-    var sender: String = "",
-    var receiver: String = ""
+    var sender: String = ""
 )

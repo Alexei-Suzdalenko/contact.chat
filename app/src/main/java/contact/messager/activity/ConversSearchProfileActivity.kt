@@ -14,6 +14,8 @@ import contact.messager.R
 import contact.messager.activity.view_fragment.main.SectionsPagerAdapter
 import contact.messager.databinding.ActivityChatBinding
 import contact.messager.util.`class`.App
+import contact.messager.util.`class`.App.Companion.realChannelId
+import contact.messager.util.`class`.App.Companion.userConversation
 import contact.messager.util.api.SaveUserLocationFirebase
 import java.util.*
 
@@ -24,9 +26,10 @@ class ConversSearchProfileActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        userConversation = null
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
         viewPager = binding.viewPager

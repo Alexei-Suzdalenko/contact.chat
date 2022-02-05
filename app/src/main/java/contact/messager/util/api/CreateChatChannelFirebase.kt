@@ -10,9 +10,9 @@ class CreateChatChannelFirebase(val context: Context) {
 
     fun createOrGetChatChannle(otherUserId: String, onComplete: (channelId: String) -> Unit) {
 
-        firebaseReference.child("enganchedChannels/$miId/$otherUserId").get().addOnSuccessListener  {
+        firebaseReference.child("enganched_chat/$miId/$otherUserId").get().addOnSuccessListener  {
             if(it.exists()) {
-                val idChat = it.child("channelId").value.toString()
+                val idChat = it.child("id").value.toString()
                 onComplete( idChat )
                 return@addOnSuccessListener
             } else {
@@ -21,10 +21,10 @@ class CreateChatChannelFirebase(val context: Context) {
                 // firebaseReference.child("chats/$newChatId").setValue(ChatChannel(mutableListOf(miId, otherUserId)))
 
                 // 2. save channel Id en mi user and in other user
-                firebaseReference.child("enganchedChannels/$miId/$otherUserId").setValue(mapOf("channelId" to newChatId))
-                firebaseReference.child("enganchedChannels/$otherUserId/$miId").setValue(mapOf("channelId" to newChatId))
-
-                onComplete(newChatId)
+                firebaseReference.child("enganched_chat/$miId/$otherUserId").setValue(mapOf("id" to newChatId))
+                firebaseReference.child("enganched_chat/$otherUserId/$miId").setValue(mapOf("id" to newChatId)).addOnCompleteListener {
+                    if(it.isSuccessful)  onComplete(newChatId)
+                }
             }
         }
     }

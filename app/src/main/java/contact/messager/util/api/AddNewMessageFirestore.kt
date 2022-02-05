@@ -1,23 +1,28 @@
 package contact.messager.util.api
 import android.annotation.SuppressLint
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import contact.messager.activity.ChatConversationActivity
+import contact.messager.util.`class`.App
 import contact.messager.util.`class`.App.Companion.userConversation
 import contact.messager.util.`class`.Message
 import kotlinx.android.synthetic.main.activity_chat_conversation.*
 
 object AddNewMessageFirestore {
-    @SuppressLint("SimpleDateFormat")
-    fun addNewMessageFirestore(textMessage: String, typeMessage: String, activity: ChatConversationActivity){
+    val miId = FirebaseAuth.getInstance().currentUser!!.uid.toString()
 
-        if(typeMessage == "text"){
-        //   FirebaseFirestore.getInstance()
-        //       .collection("conversation")
-        //       .document("conversation")
-        //       .collection(ChatConversationActivity.realChannelId!!)
-        //       .document()
-        //       .set(Message(System.currentTimeMillis().toString(), textMessage, "", ChatConversationActivity.miUID, userConversation?.id!!))
-        //       .addOnCompleteListener { if(it.isSuccessful) activity.inputMessage.setText("") }
-        }
+    @SuppressLint("SimpleDateFormat")
+    fun addNewMessageFirestore(textMessage: String, activity: ChatConversationActivity){
+
+           Toast.makeText(activity, App.realChannelId.toString(), Toast.LENGTH_LONG).show()
+
+           FirebaseFirestore.getInstance()
+               .collection("conversation")
+               .document("conversation")
+               .collection(App.realChannelId!!)
+               .document()
+               .set(Message(System.currentTimeMillis().toString(), textMessage, "", miId))
+               .addOnCompleteListener { if(it.isSuccessful) activity.inputMessage.setText("") }
     }
 }

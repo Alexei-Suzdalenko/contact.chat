@@ -1,6 +1,6 @@
 package contact.messager.util.`class`
 
-data  class IdConversacionDataUser (
+data  class ConversationUser (
     var idConversation: String = "",
     var idUser: String = "",
     var email: String = "",

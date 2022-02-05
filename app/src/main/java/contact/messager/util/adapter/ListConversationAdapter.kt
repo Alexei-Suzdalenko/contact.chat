@@ -8,10 +8,10 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import contact.messager.R
-import contact.messager.util.`class`.IdConversacionDataUser
+import contact.messager.util.`class`.ConversationUser
 import de.hdodenhof.circleimageview.CircleImageView
 
-class ListConversationAdapter(val context: Context, val listInfo: MutableList<IdConversacionDataUser>): BaseAdapter() {
+class ListConversationAdapter(val context: Context, val listInfo: MutableList<ConversationUser>): BaseAdapter() {
     override fun getCount(): Int = listInfo.size
     override fun getItem(position: Int): Any = listInfo[position]
     override fun getItemId(position: Int): Long = position.toLong()
