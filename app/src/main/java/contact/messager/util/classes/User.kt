@@ -6,5 +6,6 @@ data class User(
     var image: String = "",
     var age: String = "",
     var postal: String = "",
-    var country: String = ""
+    var country: String = "",
+    var token: String = ""
     )

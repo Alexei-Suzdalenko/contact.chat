@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import contact.messager.R
@@ -47,21 +48,19 @@ class ConversSearchProfileActivity : AppCompatActivity() {
             }
         }
         SaveUserLocationFirebase().saveUserLocation(this)
-        NotificationWork().saveUserToken()
 
         /*
         ServiceNotification().sentNotification(sender, receiver, token, messageText, image, name)
-
-        asdfasdf
-         asdfasdf
-         asdf
-*/
-    //    ServiceNotification().sentNotification("sender",
-    //        "zud208LtrQWvCkj03RVhSmnuyqG2",
-    //        "fT1efkbLQUy7cSv8kz-ZMP:APA91bEoXfa1L63LlCR-SmetcJ4r5oeiSpTji1H-U_TM54xkgaNXY2XvYccNixnmn5Ku7Poa0TL3XgRYKRwW9POvpA7JyGPXdthaEwVkSOK0msobmF0ujNAHSqKvYW4_Hj1MmEhEJL81",
-    //        "messageText",
-    //        "image",
-    //        "name")
+        */
+        ServiceNotification().sentNotification(
+            "",
+            "ZVSY0mlq6CNiTHI3j3Pd662zzm33",
+            "",
+            "user ",
+            "message",
+            "",
+              "c5Vi15dARxCBJ4w2KxUCy-:APA91bH-hz_n7ei3zYAqPbJcvOshvDniZRUswpOijictHLoJf5q9l5leJr05e5bCWz-dIZXtDmVdenuCsBQHSz9fkKZ9ZZGx8rVXC0iglUcrNMbzZOM2cQ7MOqDqy8a2YSbiG_979so9"
+            )
     }
 
     override fun onStart() {
@@ -71,15 +70,10 @@ class ConversSearchProfileActivity : AppCompatActivity() {
             viewPager.currentItem = 2
             Toast.makeText(this, resources.getString(R.string.fillThePrefil), Toast.LENGTH_LONG).show()
         }
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if(currentUser != null) { NotificationWork().saveUserToken(); }
+
     }
 
-    fun showUsersOptions(userName: String, onComplete: (result: String) -> Unit) {
-       val alert = AlertDialog.Builder(this)
-            .setTitle(userName)
-            .setMessage("Are you sure?")
-            .setPositiveButton(resources.getString(R.string.writeMessageChat)) { _, _-> onComplete("chat") }
-            .setNegativeButton(resources.getString(R.string.profile)) { _, _ -> onComplete("perfil") }
-       alert.show()
-    }
 
 }

@@ -9,6 +9,7 @@ import android.content.ContextWrapper
 import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.core.app.NotificationCompat
 import contact.messager.R
 
 class Oreonotification(base: Context?): ContextWrapper(base) {
@@ -23,8 +24,8 @@ class Oreonotification(base: Context?): ContextWrapper(base) {
     @TargetApi(Build.VERSION_CODES.O)
     private fun createChannel() {
         val channel = NotificationChannel("channel_id", "channel_name", NotificationManager.IMPORTANCE_HIGH )
-            channel.enableLights(false)
-            channel.enableVibration(false)
+            channel.enableLights(true)
+            channel.enableVibration(true)
             channel.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
         getManager!!.createNotificationChannel(channel)
     }
@@ -37,11 +38,12 @@ class Oreonotification(base: Context?): ContextWrapper(base) {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun getOreoNotification(title: String?, body: String?, pendingIntent: PendingIntent?, soundUri: Uri?, icon: String?): Notification.Builder {
+    fun getOreoNotification(userName: String, message: String, pendingIntent: PendingIntent?): Notification.Builder {
         return Notification.Builder(applicationContext, "channel_id")
+                .setSmallIcon(R.drawable.message_icon)
                 .setContentIntent(pendingIntent)
-                .setContentTitle(title)
-                .setContentText(body)
+                .setContentTitle(userName)
+                .setContentText(message)
                 .setAutoCancel(true)
     }
 

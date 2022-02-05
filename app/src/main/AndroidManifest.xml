@@ -14,7 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Freechat"
         android:usesCleartextTraffic="true">
-
         <activity android:name=".activity.VisitOthrerUserPerfilActivity" android:theme="@style/Theme.Freechat.NoActionBar"  android:parentActivityName=".activity.ConversSearchProfileActivity" />
         <activity android:name=".activity.ChatConversationActivity" android:theme="@style/Theme.Freechat.NoActionBar" />
         <activity android:name=".activity.ConversSearchProfileActivity" android:label="@string/title_activity_chat" android:theme="@style/Theme.Freechat.NoActionBar" />
@@ -24,6 +23,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".util.notification.MyFirebaseMessaging"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/message_icon" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@android:color/holo_red_light" />
+
     </application>
 
 </manifest>
