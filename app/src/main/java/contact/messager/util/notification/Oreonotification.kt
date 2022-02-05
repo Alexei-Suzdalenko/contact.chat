@@ -23,7 +23,7 @@ class Oreonotification(base: Context?): ContextWrapper(base) {
 
     @TargetApi(Build.VERSION_CODES.O)
     private fun createChannel() {
-        val channel = NotificationChannel("channel_id", "channel_name", NotificationManager.IMPORTANCE_HIGH )
+        val channel = NotificationChannel("channel_id", "Gay Chat Free App", NotificationManager.IMPORTANCE_HIGH )
             channel.enableLights(true)
             channel.enableVibration(true)
             channel.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
