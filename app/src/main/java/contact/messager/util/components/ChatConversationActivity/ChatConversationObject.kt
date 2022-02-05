@@ -10,13 +10,14 @@ import contact.messager.util.`class`.App.Companion.userConversation
 import de.hdodenhof.circleimageview.CircleImageView
 
 class ChatConversationObject(val context: Context, val activity: ChatConversationActivity) {
-    val emailChatUser = activity.findViewById<TextView>(R.id.emailChatUser)
     val nameChatUser = activity.findViewById<TextView>(R.id.nameChatUser)
+    val ageChatUser = activity.findViewById<TextView>(R.id.ageChatUser)
     val userImage = activity.findViewById<CircleImageView>(R.id.userImageConverationAct)
 
     fun initChatConversationFunction(){
-      //  emailChatUser.text = userConversation?.email
+
         nameChatUser.text = userConversation?.name
+        ageChatUser.text = userConversation?.age
         Glide.with( context ).load( userConversation?.image ).into( userImage )
 
         userImage.setOnClickListener { context.startActivity(Intent(context, VisitOthrerUserPerfilActivity::class.java)) }

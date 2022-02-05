@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Kotlin/contact.chat/app/src/main/res/layout/activity_chat_conversation.xml" value="0.17572463768115942" />
+        <entry key="..\:/Kotlin/contact.chat/app/src/main/res/layout/perfil_conversation_user.xml" value="0.1879432624113475" />
         <entry key="..\:/OJO_ANDROID_NEW_ACCOUNT/free.chat/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/OJO_ANDROID_NEW_ACCOUNT/free.chat/app/src/main/res/layout/login_acivity.xml" value="0.1" />
         <entry key="..\:/_OJO_NEW_ACCOUNT_ANDROID_DEVELOPER/contact.chat/app/src/main/res/drawable-v24/background_left.xml" value="0.206" />
@@ -40,7 +42,7 @@
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -47,9 +47,10 @@ class ProfileFragment(private val fr: FragmentProfileBinding, val context: Conte
             val userName = fr.editTextName.text.toString()
             val userAge = fr.editTextAge.text.toString()
             val userStatus = fr.editTextStatus.text.toString()
+
             if(userName.length > 3 && userAge.isNotEmpty() && userStatus.length > 3){
                 SaveUserInfo(userName, userAge, userStatus){ result ->
-                    if(result == "ok") editor.putString("name", userName); editor.putString("age", userAge); editor.putString("status",  userStatus); editor.apply()
+                    if(result == "ok"){ editor.putString("name", userName); editor.putString("age", userAge); editor.putString("status",  userStatus); editor.apply(); }
                     context.startActivity(Intent(context, ConversSearchProfileActivity::class.java).setFlags(FLAG_ACTIVITY_NEW_TASK)); activity.finish()
                 }
             } else Toast.makeText(context, activity.resources.getString(R.string.fillUserData), Toast.LENGTH_LONG).show()
@@ -63,29 +64,6 @@ class ProfileFragment(private val fr: FragmentProfileBinding, val context: Conte
 
         }
 
-     // Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
-        //startActivity(browserIntent);
-
-    //       textViewEmail.text = App.sharedPreferences.getString("email", "").toString()
-    //       editTextName.setText( App.sharedPreferences.getString("name", "").toString())
-    //       val image = App.sharedPreferences.getString("image", "").toString()
-    //   Glide.with( context ).load( image).into( userImageProfile )
-    //       val imageBack = App.sharedPreferences.getString("backImage", "").toString()
-    //   Glide.with( context ).load( imageBack).into( imageBackground )
-
-    //   // save user images profile image and background image
-    //   imageBackground.setOnClickListener { typeUserImagePlaceholderFragment = "backImage"; prepareIntentLauncher() }
-    //   userImageProfile.setOnClickListener { typeUserImagePlaceholderFragment = "image"; prepareIntentLauncher() }
-
-    //   // save new name if changed name in profile activity
-    //   editTextName.addTextChangedListener {
-    //       val newUserName = editTextName.text.toString()
-    //       if ( newUserName.isEmpty()) return@addTextChangedListener
-    //       val map = HashMap<String, Any>()
-    //       map["name"] = newUserName
-    //       Firebase.database.reference.child("users").child(Firebase.auth.currentUser!!.uid).updateChildren(map).addOnCompleteListener {
-    //           if( it.isSuccessful ){ editor.putString("name", newUserName); editor.apply() }}
-    //   }
     }
 
 

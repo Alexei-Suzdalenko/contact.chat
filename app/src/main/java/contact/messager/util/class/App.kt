@@ -26,6 +26,6 @@ play console: saron.alexei@gmail.com
 password:      alexeis
 key :              key0
 
-
+https://medium.com/new-story mi accoutn medium loj.rus@gmail.com
 
  */

@@ -18,6 +18,7 @@ import contact.messager.util.`class`.App.Companion.editor
 import contact.messager.util.`class`.App.Companion.sharedPreferences
 import contact.messager.util.`class`.App.Companion.typeUserImagePlaceholderFragment
 import contact.messager.util.`class`.User
+import contact.messager.util.`class`.UserInfo
 import contact.messager.util.adapter.SearchedUsersAdapter
 import kotlin.collections.HashMap
 
@@ -31,6 +32,17 @@ object SaveDataImageUser {
         editor.apply()
     }
      */
+
+    fun GetVisitProfileData(idVisitUser: String, onComplete:(userInfo: UserInfo) -> Unit){
+         FirebaseDatabase.getInstance().reference.child("userInfo").child(idVisitUser)
+             .addListenerForSingleValueEvent(object: ValueEventListener{
+                 override fun onDataChange(snapshot: DataSnapshot) {
+                         val userInfo: UserInfo? = snapshot.getValue(UserInfo::class.java)
+                         if (userInfo != null) onComplete(userInfo)
+                 }
+                 override fun onCancelled(error: DatabaseError) {}
+             })
+    }
 
     fun GetListUsers(onComplete:(listSearchedUsers: ArrayList<User>) -> Unit){
         val country = sharedPreferences.getString("country", "").toString()

@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/emailChatUser"
+                    android:id="@+id/nameChatUser"
                     android:textSize="17dp"
                     android:maxLines="1"
                     android:textColor="@color/white"
@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/app_name" />
                 <TextView
-                    android:id="@+id/nameChatUser"
+                    android:id="@+id/ageChatUser"
                     android:textStyle="bold"
                     android:maxLines="1"
                     android:textSize="17dp"

@@ -29,4 +29,5 @@
     <string name="writeMessageChat">Write in the chat</string>
     <string name="areYouSure">Are you sure?</string>
     <string name="chat">Chat</string>
+    <string name="myprofile">My profile</string>
 </resources>

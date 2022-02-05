@@ -21,12 +21,11 @@ class ChatConversationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // https://medium.com/new-story mi accoutn medium loj.rus@gmail.com
         setContentView(R.layout.activity_chat_conversation)
 
-        // set other user image, email, name
-     //   ChatConversationObject(this, this).initChatConversationFunction()
-//
+        // set other user image, age, name
+         ChatConversationObject(this, this).initChatConversationFunction()
+
      //   // create conversation if no exsist and set realChannelId FIREBASE FIRESTORE, no lo uso, uso el firebase !!!
      //   // ShowMeMessageFromThisConversation(this, this).showMeMessages()
 //

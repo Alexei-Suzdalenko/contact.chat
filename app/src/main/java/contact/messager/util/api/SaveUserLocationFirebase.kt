@@ -47,10 +47,10 @@ class SaveUserLocationFirebase {
           val latitude: Double = location.latitude
           val geocoder = Geocoder(activity.applicationContext, Locale.getDefault())
           val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
-
-          dataUserInfo["locality"] = addresses[0].locality.toString(); refUserInfo.updateChildren(dataUserInfo); App.editor.putString("locality", addresses[0].locality.toString());
-          dataUser["postal"] = addresses[0].postalCode.toString().lowercase(Locale.getDefault())         ; App.editor.putString("postal", addresses[0].postalCode.toString().lowercase(Locale.getDefault()));
-
+          if(addresses.isNotEmpty()) {
+              dataUserInfo["locality"] = addresses[0].locality.toString(); refUserInfo.updateChildren(dataUserInfo); App.editor.putString("locality", addresses[0].locality.toString())
+              dataUser["postal"] = addresses[0].postalCode.toString().lowercase(Locale.getDefault()); App.editor.putString("postal", addresses[0].postalCode.toString().lowercase(Locale.getDefault()))
+          }
       } else {
           Toast.makeText(activity.applicationContext, activity.resources.getString(R.string.thisAppNeedLocation), Toast.LENGTH_LONG).show()
       }

@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import contact.messager.R.*
-private val TAB_TITLES = arrayOf(string.search, string.conversation, string.profile)
+private val TAB_TITLES = arrayOf(string.search, string.conversation, string.myprofile)
 
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
@@ -16,7 +16,6 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) : 
         return context.resources.getString(TAB_TITLES[position])
     }
 
-    override fun getCount(): Int {
-        return TAB_TITLES.size
-    }
+    override fun getCount(): Int = TAB_TITLES.size
+
 }
