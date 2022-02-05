@@ -1,16 +1,19 @@
 package contact.messager.util.api
 import android.annotation.SuppressLint
-import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import contact.messager.activity.ChatConversationActivity
-import contact.messager.util.`class`.App
-import contact.messager.util.`class`.App.Companion.userConversation
-import contact.messager.util.`class`.Message
+import contact.messager.util.classes.App
+import contact.messager.util.classes.Message
+import contact.messager.util.adapter.MessageFirestoreAdapter
 import kotlinx.android.synthetic.main.activity_chat_conversation.*
 
 object AddNewMessageFirestore {
     val miId = FirebaseAuth.getInstance().currentUser!!.uid.toString()
+    lateinit var messageFirestoreAdapter: MessageFirestoreAdapter
 
     @SuppressLint("SimpleDateFormat")
     fun addNewMessageFirestore(textMessage: String, activity: ChatConversationActivity, onComplete: (res: String) -> Unit){
@@ -23,5 +26,28 @@ object AddNewMessageFirestore {
                .set(Message(System.currentTimeMillis().toString(), textMessage, "", miId)).addOnCompleteListener {
                    if(it.isSuccessful) onComplete("ok")
                }
+    }
+
+
+    fun initializaceFirestoreListenerMessager(channelId: String, activity: ChatConversationActivity){
+        val query: Query = FirebaseFirestore.getInstance()
+            .collection("conversation")
+            .document("conversation")
+            .collection(channelId)
+            .orderBy("time", Query.Direction.DESCENDING)
+            .limit(111)
+
+        val options = FirestoreRecyclerOptions.Builder<Message>().setQuery(query, Message::class.java).build()
+
+        val lM = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, true)
+        activity.recyclerViewMessages.setHasFixedSize(true)
+        lM.stackFromEnd = true
+        activity.recyclerViewMessages.layoutManager = lM
+        messageFirestoreAdapter = MessageFirestoreAdapter(options, activity, activity.recyclerViewMessages)
+        activity.recyclerViewMessages.adapter = messageFirestoreAdapter
+        messageFirestoreAdapter.startListening()
+
+        // eliminamos todos los mensages menos  ultimos limitMessages
+        DeleteOldMessages(activity).deleteMessagesFromThisConversation(channelId)
     }
 }

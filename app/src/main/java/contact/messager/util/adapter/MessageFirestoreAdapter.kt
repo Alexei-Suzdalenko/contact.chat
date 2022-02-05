@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestoreException
 import contact.messager.activity.ChatConversationActivity
 import contact.messager.R
-import contact.messager.util.`class`.Message
+import contact.messager.util.classes.Message
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -31,7 +31,6 @@ class MessageFirestoreAdapter(val options: FirestoreRecyclerOptions<Message>, va
     class viewInner(view: View) : RecyclerView.ViewHolder(view) {
         val textViewM = view.findViewById<TextView>(R.id.textView_message_text)
         val textViewT = view.findViewById<TextView>(R.id.textView_message_time)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, i: Int): viewInner {

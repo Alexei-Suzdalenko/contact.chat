@@ -6,7 +6,7 @@ import com.bumptech.glide.Glide
 import contact.messager.activity.ChatConversationActivity
 import contact.messager.activity.VisitOthrerUserPerfilActivity
 import contact.messager.R
-import contact.messager.util.`class`.App.Companion.userConversation
+import contact.messager.util.classes.App.Companion.userConversation
 import de.hdodenhof.circleimageview.CircleImageView
 
 class ChatConversationObject(val context: Context, val activity: ChatConversationActivity) {
@@ -18,8 +18,9 @@ class ChatConversationObject(val context: Context, val activity: ChatConversatio
 
         nameChatUser.text = userConversation?.name
         ageChatUser.text = userConversation?.age
+        if(userConversation?.image.toString().length < 22) userConversation!!.image = "https://alexei-suzdalenko.github.io/r-radio/user.png"
         Glide.with( context ).load( userConversation?.image ).into( userImage )
 
-        userImage.setOnClickListener { context.startActivity(Intent(context, VisitOthrerUserPerfilActivity::class.java)) }
+        userImage.setOnClickListener { context.startActivity(Intent(context, VisitOthrerUserPerfilActivity::class.java)); activity.finish() }
     }
 }

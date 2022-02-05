@@ -7,17 +7,15 @@ import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
 import android.telephony.TelephonyManager
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
 import contact.messager.R
 import contact.messager.activity.ConversSearchProfileActivity
-import contact.messager.util.`class`.App
+import contact.messager.util.classes.App
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -46,11 +44,13 @@ class SaveUserLocationFirebase {
           val longitude: Double = location!!.longitude
           val latitude: Double = location.latitude
           val geocoder = Geocoder(activity.applicationContext, Locale.getDefault())
-          val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
-          if(addresses.isNotEmpty()) {
-              dataUserInfo["locality"] = addresses[0].locality.toString(); refUserInfo.updateChildren(dataUserInfo); App.editor.putString("locality", addresses[0].locality.toString())
-              dataUser["postal"] = addresses[0].postalCode.toString().lowercase(Locale.getDefault()); App.editor.putString("postal", addresses[0].postalCode.toString().lowercase(Locale.getDefault()))
-          }
+          try {
+              val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
+              if (addresses.isNotEmpty()) {
+                  dataUserInfo["locality"] = addresses[0].locality.toString(); refUserInfo.updateChildren(dataUserInfo); App.editor.putString("locality", addresses[0].locality.toString())
+                  dataUser["postal"] = addresses[0].postalCode.toString().lowercase(Locale.getDefault()); App.editor.putString("postal", addresses[0].postalCode.toString().lowercase(Locale.getDefault()))
+              }
+          } catch (e: Exception){}
       } else {
           Toast.makeText(activity.applicationContext, activity.resources.getString(R.string.thisAppNeedLocation), Toast.LENGTH_LONG).show()
       }

@@ -4,7 +4,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-class CreateChatChannelFirebase(val context: Context) {
+class CreateChatChannelFirebase() {
     private val firebaseReference: DatabaseReference by lazy { FirebaseDatabase.getInstance().reference }
     private val miId = FirebaseAuth.getInstance().currentUser?.uid.toString()
 
@@ -23,6 +23,18 @@ class CreateChatChannelFirebase(val context: Context) {
                 firebaseReference.child("enganched_chat/$miId/$otherUserId").setValue(mapOf("id" to newChatId))
                 firebaseReference.child("enganched_chat/$otherUserId/$miId").setValue(mapOf("id" to newChatId))
                 onComplete(newChatId)
+            }
+        }
+    }
+
+
+    fun getChannelId(otherUserId: String, onComplete: (channelId: String?) -> Unit){
+        firebaseReference.child("enganched_chat/$miId/$otherUserId").get().addOnSuccessListener {
+            if (it.exists()) {
+                val idChat = it.child("id").value.toString()
+                onComplete(idChat)
+            } else {
+                onComplete(null)
             }
         }
     }

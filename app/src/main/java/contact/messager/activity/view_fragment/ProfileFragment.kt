@@ -11,10 +11,10 @@ import com.bumptech.glide.Glide
 import contact.messager.R
 import contact.messager.activity.ConversSearchProfileActivity
 import contact.messager.databinding.FragmentProfileBinding
-import contact.messager.util.`class`.App
-import contact.messager.util.`class`.App.Companion.editor
-import contact.messager.util.`class`.App.Companion.sharedPreferences
-import contact.messager.util.`class`.App.Companion.typeUserImagePlaceholderFragment
+import contact.messager.util.classes.App
+import contact.messager.util.classes.App.Companion.editor
+import contact.messager.util.classes.App.Companion.sharedPreferences
+import contact.messager.util.classes.App.Companion.typeUserImagePlaceholderFragment
 import contact.messager.util.api.SaveDataImageUserFirebase.SaveUserInfo
 
 class ProfileFragment(private val fr: FragmentProfileBinding, val context: Context, val activity: FragmentActivity, val resultLauncher: ActivityResultLauncher<Intent>) {

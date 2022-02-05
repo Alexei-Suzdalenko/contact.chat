@@ -1,4 +1,4 @@
-package contact.messager.util.`class`
+package contact.messager.util.classes
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
@@ -10,6 +10,7 @@ class App: Application() {
         var userConversation: User? = null
         var typeUserImagePlaceholderFragment = ""
         var realChannelId: String? = null
+        var listenerDatabaseChagesActivated = "no"
     }
 
     @SuppressLint("CommitPrefEdits")

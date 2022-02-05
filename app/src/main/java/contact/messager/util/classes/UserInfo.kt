@@ -1,4 +1,4 @@
-package contact.messager.util.`class`
+package contact.messager.util.classes
 
 data class UserInfo(
     var backImage: String = "",

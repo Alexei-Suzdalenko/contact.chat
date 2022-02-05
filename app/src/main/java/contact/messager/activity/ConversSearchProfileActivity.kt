@@ -1,5 +1,4 @@
 package contact.messager.activity
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -13,11 +12,9 @@ import com.google.firebase.ktx.Firebase
 import contact.messager.R
 import contact.messager.activity.view_fragment.main.SectionsPagerAdapter
 import contact.messager.databinding.ActivityChatBinding
-import contact.messager.util.`class`.App
-import contact.messager.util.`class`.App.Companion.realChannelId
-import contact.messager.util.`class`.App.Companion.userConversation
+import contact.messager.util.classes.App
+import contact.messager.util.classes.App.Companion.userConversation
 import contact.messager.util.api.SaveUserLocationFirebase
-import java.util.*
 
 
 class ConversSearchProfileActivity : AppCompatActivity() {

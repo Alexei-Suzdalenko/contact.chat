@@ -13,13 +13,12 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import contact.messager.databinding.FragmentProfileBinding
-import contact.messager.util.`class`.App
-import contact.messager.util.`class`.App.Companion.editor
-import contact.messager.util.`class`.App.Companion.sharedPreferences
-import contact.messager.util.`class`.App.Companion.typeUserImagePlaceholderFragment
-import contact.messager.util.`class`.User
-import contact.messager.util.`class`.UserInfo
-import contact.messager.util.adapter.SearchedUsersAdapter
+import contact.messager.util.classes.App
+import contact.messager.util.classes.App.Companion.editor
+import contact.messager.util.classes.App.Companion.sharedPreferences
+import contact.messager.util.classes.App.Companion.typeUserImagePlaceholderFragment
+import contact.messager.util.classes.User
+import contact.messager.util.classes.UserInfo
 import kotlin.collections.HashMap
 
 object SaveDataImageUserFirebase {

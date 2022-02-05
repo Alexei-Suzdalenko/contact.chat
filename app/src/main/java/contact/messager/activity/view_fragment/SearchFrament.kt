@@ -7,9 +7,9 @@ import contact.messager.activity.ChatConversationActivity
 import contact.messager.activity.ConversSearchProfileActivity
 import contact.messager.activity.VisitOthrerUserPerfilActivity
 import contact.messager.databinding.FragmentSearchBinding
-import contact.messager.util.`class`.App.Companion.userConversation
+import contact.messager.util.classes.App.Companion.userConversation
 import contact.messager.util.adapter.SearchedUsersAdapter
-import contact.messager.util.`class`.User
+import contact.messager.util.classes.User
 import contact.messager.util.api.SaveDataImageUserFirebase.GetListUsers
 
 class SearchFragment (val fr: FragmentSearchBinding, val context: Context, val activity: ConversSearchProfileActivity){

@@ -1,13 +1,13 @@
 package contact.messager.util.api
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import contact.messager.util.`class`.ChatChannel
 
 object CreateChatChannelFirestore {
-  // private val firestoreInstance: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
-  // private val currentUserDocRef: DocumentReference get() = firestoreInstance.document("users/" + FirebaseAuth.getInstance().currentUser?.uid )
+    // private val firestoreInstance: FirebaseFirestore by lazy { FirebaseFirestore.getInstance() }
+    // private val currentUserDocRef: DocumentReference get() = firestoreInstance.document("users/" + FirebaseAuth.getInstance().currentUser?.uid )
 
     fun getOrCreateChatChannel(otherUserId: String, onComplete: (channelId: String) -> Unit) {
+        /*
         // recojemos conversacion ID de mi y otro usuarion si exsiste
         FirebaseFirestore.getInstance()
             .document("users/" + FirebaseAuth.getInstance().currentUser?.uid )
@@ -36,5 +36,8 @@ object CreateChatChannelFirestore {
 
                 onComplete(newChannel.id)
             }
+    }
+
+         */
     }
 }

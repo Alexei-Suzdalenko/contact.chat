@@ -8,7 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import contact.messager.R
-import contact.messager.util.`class`.User
+import contact.messager.util.classes.User
 import de.hdodenhof.circleimageview.CircleImageView
 class SearchedUsersAdapter(val context: Context, val searchedUsers: MutableList<User>): BaseAdapter() {
     override fun getCount(): Int = searchedUsers.size
