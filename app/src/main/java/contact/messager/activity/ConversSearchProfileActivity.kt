@@ -15,6 +15,8 @@ import contact.messager.databinding.ActivityChatBinding
 import contact.messager.util.classes.App
 import contact.messager.util.classes.App.Companion.userConversation
 import contact.messager.util.api.SaveUserLocationFirebase
+import contact.messager.util.notification.NotificationWork
+import contact.messager.util.notification.ServiceNotification
 
 
 class ConversSearchProfileActivity : AppCompatActivity() {
@@ -45,6 +47,17 @@ class ConversSearchProfileActivity : AppCompatActivity() {
             }
         }
         SaveUserLocationFirebase().saveUserLocation(this)
+        NotificationWork().saveUserToken()
+
+        /*
+        ServiceNotification().sentNotification(sender, receiver, token, messageText, image, name)
+*/
+    //    ServiceNotification().sentNotification("sender",
+    //        "zud208LtrQWvCkj03RVhSmnuyqG2",
+    //        "fT1efkbLQUy7cSv8kz-ZMP:APA91bEoXfa1L63LlCR-SmetcJ4r5oeiSpTji1H-U_TM54xkgaNXY2XvYccNixnmn5Ku7Poa0TL3XgRYKRwW9POvpA7JyGPXdthaEwVkSOK0msobmF0ujNAHSqKvYW4_Hj1MmEhEJL81",
+    //        "messageText",
+    //        "image",
+    //        "name")
     }
 
     override fun onStart() {
