@@ -14,9 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Freechat"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.VisitOthrerUserPerfilActivity" android:theme="@style/Theme.Freechat.NoActionBar"  android:parentActivityName=".activity.ConversSearchProfileActivity" />
+        <activity android:name=".activity.VisitOthrerUserPerfilActivity" android:theme="@style/Theme.Freechat.NoActionBar"  android:parentActivityName=".activity.MianActivity" />
         <activity android:name=".activity.ChatConversationActivity" android:theme="@style/Theme.Freechat.NoActionBar" />
-        <activity android:name=".activity.ConversSearchProfileActivity" android:label="@string/title_activity_chat" android:theme="@style/Theme.Freechat.NoActionBar" />
+        <activity android:name=".activity.MianActivity" android:label="@string/title_activity_chat" android:theme="@style/Theme.Freechat.NoActionBar" />
         <activity android:name=".activity.LoginAcivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

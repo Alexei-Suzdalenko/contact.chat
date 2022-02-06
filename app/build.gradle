@@ -7,10 +7,10 @@ android {
     compileSdk 30
     defaultConfig {
         applicationId "contact.messager"
-        minSdk 23
+        minSdk 21
         targetSdk 30
         versionCode 6
-        versionName "0.0.6"
+        versionName "0.0.7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

@@ -30,4 +30,6 @@
     <string name="areYouSure">Are you sure?</string>
     <string name="chat">Chat</string>
     <string name="myprofile">My profile</string>
+    <string name="uploadingImage">Uploading image</string>
+    <string name="imageUploaded">Image uploaded</string>
 </resources>

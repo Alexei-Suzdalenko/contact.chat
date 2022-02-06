@@ -16,11 +16,12 @@ import contact.messager.databinding.ActivityChatBinding
 import contact.messager.util.classes.App
 import contact.messager.util.classes.App.Companion.userConversation
 import contact.messager.util.api.SaveUserLocationFirebase
+import contact.messager.util.api.SaveUserTime
 import contact.messager.util.notification.NotificationWork
 import contact.messager.util.notification.ServiceNotification
 
 
-class ConversSearchProfileActivity : AppCompatActivity() {
+class MianActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChatBinding
    private lateinit var viewPager: ViewPager
 
@@ -36,10 +37,10 @@ class ConversSearchProfileActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
-        val fab: FloatingActionButton = binding.fab
-
 
         /// delete this
+        /*
+        val fab: FloatingActionButton = binding.fab
         fab.setOnClickListener { view ->
             Firebase.auth.signOut()
             val currentUser = Firebase.auth.currentUser
@@ -47,6 +48,7 @@ class ConversSearchProfileActivity : AppCompatActivity() {
                 startActivity(Intent(this, LoginAcivity::class.java)); finish()
             }
         }
+         */
         SaveUserLocationFirebase().saveUserLocation(this)
 
         /*
@@ -73,7 +75,10 @@ class ConversSearchProfileActivity : AppCompatActivity() {
             Toast.makeText(this, resources.getString(R.string.fillThePrefil), Toast.LENGTH_LONG).show()
         }
         val currentUser = FirebaseAuth.getInstance().currentUser
-        if(currentUser != null) { NotificationWork().saveUserToken(); }
+        if(currentUser != null) {
+            NotificationWork().saveUserToken()
+            SaveUserTime().saveUserTimeOnline()
+        }
 
     }
 

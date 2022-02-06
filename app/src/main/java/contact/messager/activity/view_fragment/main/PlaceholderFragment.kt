@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import contact.messager.activity.ConversSearchProfileActivity
+import contact.messager.activity.MianActivity
 import contact.messager.databinding.FragmentConversationBinding
 import contact.messager.databinding.FragmentProfileBinding
 import contact.messager.databinding.FragmentSearchBinding
@@ -54,7 +54,7 @@ class PlaceholderFragment : Fragment() {
                     search user tab
                  */
                 searchBuinding = FragmentSearchBinding.inflate(inflater, container, false)
-                SearchFragment(searchBuinding!!, requireActivity().applicationContext, requireActivity() as ConversSearchProfileActivity).initSearchFragment()
+                SearchFragment(searchBuinding!!, requireActivity().applicationContext, requireActivity() as MianActivity).initSearchFragment()
                 return searchBuinding!!.root
             }
         } ///  pageViewModel.text.observeForever { it -> Toast.makeText(requireContext(), "===> $it", Toast.LENGTH_LONG).show() }

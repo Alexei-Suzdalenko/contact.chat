@@ -45,6 +45,14 @@
                     android:text="@string/app_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+                <ProgressBar
+                    android:id="@+id/progressBarProfile"
+                    android:visibility="gone"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:layout_below="@+id/userNameProfile"
+                    android:layout_centerHorizontal="true"
+                    />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 

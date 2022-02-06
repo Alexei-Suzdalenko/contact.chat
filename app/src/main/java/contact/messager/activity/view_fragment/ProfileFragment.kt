@@ -4,12 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.net.Uri
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.Glide
 import contact.messager.R
-import contact.messager.activity.ConversSearchProfileActivity
+import contact.messager.activity.MianActivity
 import contact.messager.databinding.FragmentProfileBinding
 import contact.messager.util.classes.App
 import contact.messager.util.classes.App.Companion.editor
@@ -50,7 +51,7 @@ class ProfileFragment(private val fr: FragmentProfileBinding, val context: Conte
             if(userName.length > 3 && userAge.isNotEmpty() && userStatus.length > 3){
                 SaveUserInfo(userName, userAge, userStatus){ result ->
                     if(result == "ok"){ editor.putString("name", userName); editor.putString("age", userAge); editor.putString("status",  userStatus); editor.apply(); }
-                    context.startActivity(Intent(context, ConversSearchProfileActivity::class.java).setFlags(FLAG_ACTIVITY_NEW_TASK)); activity.finish()
+                    context.startActivity(Intent(context, MianActivity::class.java).setFlags(FLAG_ACTIVITY_NEW_TASK)); activity.finish()
                 }
             } else Toast.makeText(context, activity.resources.getString(R.string.fillUserData), Toast.LENGTH_LONG).show()
         }

@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import contact.messager.R
-import contact.messager.activity.ConversSearchProfileActivity
+import contact.messager.activity.MianActivity
 import contact.messager.util.classes.App
 import java.util.*
 import kotlin.collections.HashMap
@@ -26,7 +26,7 @@ class SaveUserLocationFirebase {
     val dataUser = HashMap<String, Any>()
     val dataUserInfo = HashMap<String, Any>()
 
-    fun saveUserLocation(activity: ConversSearchProfileActivity){
+    fun saveUserLocation(activity: MianActivity){
         try {
             val tm = activity.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
             val countryCodeValue = tm.networkCountryIso
