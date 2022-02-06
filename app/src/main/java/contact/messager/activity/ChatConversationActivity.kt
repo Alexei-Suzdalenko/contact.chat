@@ -13,6 +13,7 @@ import contact.messager.util.classes.App.Companion.realChannelId
 import contact.messager.util.classes.App.Companion.userConversation
 import contact.messager.util.api.AddNewMessageFirestore
 import contact.messager.util.api.AddNewMessageFirestore.initializaceFirestoreListenerMessager
+import contact.messager.util.classes.User
 import contact.messager.util.notification.ServiceNotification
 
 class ChatConversationActivity : AppCompatActivity() {
@@ -26,16 +27,13 @@ class ChatConversationActivity : AppCompatActivity() {
 
         if(intent.getStringExtra("chatId").toString().length > 7){
             realChannelId = intent.getStringExtra("chatId").toString()
-            userConversation!!.id = intent.getStringExtra("receiver").toString()
-            userConversation!!.name = intent.getStringExtra("userName").toString()
-            userConversation!!.name = intent.getStringExtra("image").toString()
-            userConversation!!.age = intent.getStringExtra("age").toString()
+            val user = User(
+                intent.getStringExtra("receiver").toString(),
+                intent.getStringExtra("userName").toString(),
+                intent.getStringExtra("image").toString(),
+                intent.getStringExtra("age").toString())
+            userConversation = user
         }
-      // intent.getExtra("chatId", chatId)
-      // intent.getExtra("sender", sender)
-      // intent.getExtra("receiver", receiver)
-      // intent.getExtra("userName", userName)
-      // intent.getExtra("image", image)
 
         // set other user image, age, name
         ChatConversationObject(this, this).initChatConversationFunction()
