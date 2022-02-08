@@ -1,24 +1,18 @@
 package contact.messager.activity
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import contact.messager.R
 import contact.messager.activity.view_fragment.main.SectionsPagerAdapter
 import contact.messager.databinding.ActivityChatBinding
 import contact.messager.util.classes.App
 import contact.messager.util.classes.App.Companion.userConversation
-import contact.messager.util.api.SaveUserLocationFirebase
+import contact.messager.util.api.SaveUserLocationFirestore
 import contact.messager.util.api.SaveUserTime
 import contact.messager.util.notification.NotificationWork
-import contact.messager.util.notification.ServiceNotification
 
 
 class MianActivity : AppCompatActivity() {
@@ -49,7 +43,6 @@ class MianActivity : AppCompatActivity() {
             }
         }
          */
-        SaveUserLocationFirebase().saveUserLocation(this)
 
         /*
         ServiceNotification().sentNotification(sender, receiver, token, messageText, image, name)
@@ -76,6 +69,7 @@ class MianActivity : AppCompatActivity() {
         }
         val currentUser = FirebaseAuth.getInstance().currentUser
         if(currentUser != null) {
+            SaveUserLocationFirestore().saveUserLocation(this)
             NotificationWork().saveUserToken()
             SaveUserTime().saveUserTimeOnline()
         }

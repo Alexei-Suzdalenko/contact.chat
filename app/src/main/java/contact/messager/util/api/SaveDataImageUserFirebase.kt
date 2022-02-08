@@ -92,7 +92,7 @@ object SaveDataImageUserFirebase {
 
     // guardar imagen de usuario perfil o de fondo
     fun saveImageProfileUser(imageUri: Uri?, context: Context, fragment: FragmentProfileBinding) {
-        val partOfTheWay = System.currentTimeMillis().toString()
+        val partOfTheWay = sharedPreferences.getString("email", System.currentTimeMillis().toString()).toString()
         fragment.progressBarProfile.visibility = View.VISIBLE
         var pathString = ""
         if (imageUri != null) {
