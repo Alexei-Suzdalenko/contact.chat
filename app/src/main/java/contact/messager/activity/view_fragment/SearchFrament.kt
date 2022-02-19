@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AlertDialog
 import contact.messager.R
 import contact.messager.activity.ChatConversationActivity
-import contact.messager.activity.MianActivity
+import contact.messager.activity.MainActivity
 import contact.messager.activity.VisitOthrerUserPerfilActivity
 import contact.messager.databinding.FragmentSearchBinding
 import contact.messager.util.classes.App.Companion.userConversation
@@ -12,7 +12,7 @@ import contact.messager.util.adapter.SearchedUsersAdapter
 import contact.messager.util.classes.User
 import contact.messager.util.api.SaveDataImageUserFirebase.GetListUsers
 
-class SearchFragment (val fr: FragmentSearchBinding, val context: Context, val activity: MianActivity){
+class SearchFragment (val fr: FragmentSearchBinding, val context: Context, val activity: MainActivity){
     lateinit var usersSearched: MutableList<User>
 
     fun initSearchFragment(){

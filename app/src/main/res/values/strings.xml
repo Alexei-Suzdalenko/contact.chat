@@ -32,4 +32,5 @@
     <string name="myprofile">My profile</string>
     <string name="uploadingImage">Uploading image</string>
     <string name="imageUploaded">Image uploaded</string>
+    <string name="author">Created by Alexei Suzdalenko</string>
 </resources>

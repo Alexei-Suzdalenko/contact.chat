@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" package="contact.messager">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="contact.messager">
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission. ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,17 +15,34 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Freechat"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".activity.VisitOthrerUserPerfilActivity" android:theme="@style/Theme.Freechat.NoActionBar"  android:parentActivityName=".activity.MianActivity" />
-        <activity android:name=".activity.ChatConversationActivity" android:theme="@style/Theme.Freechat.NoActionBar" />
-        <activity android:name=".activity.MianActivity" android:label="@string/title_activity_chat" android:theme="@style/Theme.Freechat.NoActionBar" />
-        <activity android:name=".activity.LoginAcivity" android:exported="true">
+        android:theme="@style/Theme.Freechat">
+        <activity
+            android:name=".activity.MyProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.LocationPermisionActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.VisitOthrerUserPerfilActivity"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/Theme.Freechat.NoActionBar" />
+        <activity
+            android:name=".activity.ChatConversationActivity"
+            android:theme="@style/Theme.Freechat.NoActionBar" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="@string/title_activity_chat"
+            android:theme="@style/Theme.Freechat.NoActionBar" />
+        <activity
+            android:name=".activity.LoginAcivity"
+            android:exported="true"></activity>
+
         <service
             android:name=".util.notification.MyFirebaseMessaging"
             android:enabled="true"
@@ -38,7 +58,6 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@android:color/holo_red_light" />
-
     </application>
 
 </manifest>

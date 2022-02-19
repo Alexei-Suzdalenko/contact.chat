@@ -1,4 +1,5 @@
 package contact.messager.activity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,7 +16,7 @@ import contact.messager.util.api.SaveUserTime
 import contact.messager.util.notification.NotificationWork
 
 
-class MianActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChatBinding
    private lateinit var viewPager: ViewPager
 
@@ -32,21 +33,9 @@ class MianActivity : AppCompatActivity() {
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
 
-        /// delete this
-        /*
-        val fab: FloatingActionButton = binding.fab
-        fab.setOnClickListener { view ->
-            Firebase.auth.signOut()
-            val currentUser = Firebase.auth.currentUser
-            if (currentUser == null) { App.editor.putString("name", "").apply()
-                startActivity(Intent(this, LoginAcivity::class.java)); finish()
-            }
-        }
-         */
 
         /*
         ServiceNotification().sentNotification(sender, receiver, token, messageText, image, name)
-
         ServiceNotification().sentNotification(
             "",
             "ZVSY0mlq6CNiTHI3j3Pd662zzm33",
@@ -64,16 +53,9 @@ class MianActivity : AppCompatActivity() {
         super.onStart()
         val userName = App.sharedPreferences.getString("name", "").toString()
         if(userName.isEmpty()) {
-            viewPager.currentItem = 2
+            startActivity(Intent(this, MyProfileActivity::class.java)); finish()
             Toast.makeText(this, resources.getString(R.string.fillThePrefil), Toast.LENGTH_LONG).show()
         }
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        if(currentUser != null) {
-            SaveUserLocationFirestore().saveUserLocation(this)
-            NotificationWork().saveUserToken()
-            SaveUserTime().saveUserTimeOnline()
-        }
-
     }
 
 

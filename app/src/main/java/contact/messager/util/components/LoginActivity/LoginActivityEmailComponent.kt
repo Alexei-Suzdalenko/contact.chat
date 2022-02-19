@@ -6,7 +6,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import contact.messager.activity.MianActivity
+import contact.messager.activity.MainActivity
 import contact.messager.activity.LoginAcivity
 import contact.messager.R
 import contact.messager.util.classes.App
@@ -27,12 +27,8 @@ class LoginActivityEmailComponent(val context: Context, val activity: LoginAcivi
 
             App.editor.putString("email", email); App.editor.putString("password", password); App.editor.apply()
 
-            auth.createUserWithEmailAndPassword( email, password ).addOnCompleteListener(activity) {  task ->
-                if (task.isSuccessful) {
+            auth.createUserWithEmailAndPassword( email, password ).addOnCompleteListener(activity) {
                     signInEmailAndPassword(email, password)
-                } else {
-                    signInEmailAndPassword(email, password)
-                }
             }
         }
     }
@@ -42,7 +38,7 @@ class LoginActivityEmailComponent(val context: Context, val activity: LoginAcivi
             if (task.isSuccessful) {
                 val currentUser = auth.currentUser
                 if( currentUser != null){
-                    context.startActivity(Intent(context, MianActivity::class.java)); activity.finish()
+                    context.startActivity(Intent(context, MainActivity::class.java)); activity.finish()
                 }
             }
         }

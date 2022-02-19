@@ -12,25 +12,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import contact.messager.R
-import contact.messager.activity.MianActivity
+import contact.messager.activity.MainActivity
+import contact.messager.activity.MyProfileActivity
 import contact.messager.util.classes.App
 import java.util.*
 import kotlin.collections.HashMap
 
 class SaveUserLocationFirestore {
-    val miId = FirebaseAuth.getInstance().currentUser?.uid.toString()
-    // val refUser = FirebaseDatabase.getInstance().reference.child("user").child(miId)
-    val refUser = Firebase.firestore.collection("user").document(miId)
-   // val refUserInfo = FirebaseDatabase.getInstance().reference.child("userInfo").child(miId)
-    val refUserInfo = Firebase.firestore.collection("userInfo").document(miId)
-    val dataUser = HashMap<String, Any>()
+    val miId           = FirebaseAuth.getInstance().currentUser?.uid.toString()
+    val refUser       = Firebase.firestore.collection("user").document(miId)
+    val refUserInfo  = Firebase.firestore.collection("userInfo").document(miId)
+    val dataUser      = HashMap<String, Any>()
     val dataUserInfo = HashMap<String, Any>()
 
-    fun saveUserLocation(activity: MianActivity){
+    fun saveUserLocation(activity: MyProfileActivity){
         try {
             val tm = activity.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
             val countryCodeValue = tm.networkCountryIso
@@ -52,7 +50,7 @@ class SaveUserLocationFirestore {
               val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
               if (addresses.isNotEmpty()) {
                   dataUserInfo["locality"] = addresses[0].locality.toString(); refUserInfo.update(dataUserInfo); App.editor.putString("locality", addresses[0].locality.toString())
-                  dataUser["postal"] = addresses[0].postalCode.toString().lowercase(Locale.getDefault()); App.editor.putString("postal", addresses[0].postalCode.toString().lowercase(Locale.getDefault()))
+                  dataUser      ["postal"] = addresses[0].postalCode.toString().lowercase(Locale.getDefault()); App.editor.putString("postal", addresses[0].postalCode.toString().lowercase(Locale.getDefault()))
               }
           } catch (e: Exception){}
       } else {
@@ -60,6 +58,6 @@ class SaveUserLocationFirestore {
       }
 
         App.editor.apply()
-        refUser.update(dataUser)
+        refUser.set(dataUser)
     }
 }

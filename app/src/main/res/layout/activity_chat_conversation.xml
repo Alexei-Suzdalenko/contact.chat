@@ -15,7 +15,7 @@
         app:layout_constraintBottom_toTopOf="@+id/recyclerViewMessages"
         app:layout_constraintVertical_chainStyle="spread_inside"
 
-        android:background="@color/purple_700"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -42,7 +42,7 @@
                     android:id="@+id/nameChatUser"
                     android:textSize="17dp"
                     android:maxLines="1"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
                     android:textStyle="bold"
                     android:maxLines="1"
                     android:textSize="17dp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/app_name" />
