@@ -20,11 +20,10 @@
             android:name=".activity.MyProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.LocationPermisionActivity"
+            android:name=".activity.LocationPermisionActivity" android:screenOrientation="fullSensor"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -41,7 +40,7 @@
             android:theme="@style/Theme.Freechat.NoActionBar" />
         <activity
             android:name=".activity.LoginAcivity"
-            android:exported="true"></activity>
+            android:exported="true" />
 
         <service
             android:name=".util.notification.MyFirebaseMessaging"

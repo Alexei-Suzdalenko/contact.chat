@@ -32,5 +32,8 @@
     <string name="myprofile">My profile</string>
     <string name="uploadingImage">Uploading image</string>
     <string name="imageUploaded">Image uploaded</string>
-    <string name="author">Created by Alexei Suzdalenko</string>
+    <string name="author">Web Android Developer Alexei</string>
+    <string name="termAndCond">Terms and conditions</string>
+    <string name="agreeTerminosAndCond">By clicking the start button you agree to the terms and conditions of use of this application</string>
+    <string name="start">Start</string>
 </resources>
