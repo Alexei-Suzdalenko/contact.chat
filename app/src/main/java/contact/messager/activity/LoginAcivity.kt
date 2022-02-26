@@ -1,6 +1,8 @@
 package contact.messager.activity
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.app.ActivityCompat
@@ -8,6 +10,7 @@ import androidx.core.content.ContextCompat
 import contact.messager.R
 import contact.messager.util.components.LoginActivity.EstateLoginActivityComponent
 import contact.messager.util.components.LoginActivity.LoginActivityEmailComponent
+import kotlinx.android.synthetic.main.login_acivity.*
 
 class LoginAcivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +23,9 @@ class LoginAcivity : AppCompatActivity() {
         // estamos pendiente de estado registarse o
         EstateLoginActivityComponent(this, this).initCurrentStateActivity()
 
+        aceptTermCond.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://santa-maria-de-cayon.github.io/contact.messager/terms-and-conditions.html")))
+        }
     }
 }
 

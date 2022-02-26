@@ -24,9 +24,7 @@ import kotlin.collections.HashMap
 class SaveUserLocationFirestore {
     val miId           = FirebaseAuth.getInstance().currentUser?.uid.toString()
     val refUser       = Firebase.firestore.collection("user").document(miId)
-    val refUserInfo  = Firebase.firestore.collection("userInfo").document(miId)
     val dataUser      = HashMap<String, Any>()
-    val dataUserInfo = HashMap<String, Any>()
 
     fun saveUserLocation(activity: MyProfileActivity){
         try {
@@ -43,16 +41,18 @@ class SaveUserLocationFirestore {
           val lm = activity.getSystemService(AppCompatActivity.LOCATION_SERVICE) as LocationManager
           val location: Location? = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER)
 
-          val longitude: Double = location!!.longitude
-          val latitude: Double = location.latitude
-          val geocoder = Geocoder(activity.applicationContext, Locale.getDefault())
           try {
+              val longitude: Double = location!!.longitude
+              val latitude: Double = location.latitude
+              val geocoder = Geocoder(activity.applicationContext, Locale.getDefault())
               val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
               if (addresses.isNotEmpty()) {
-                  dataUserInfo["locality"] = addresses[0].locality.toString(); refUserInfo.update(dataUserInfo); App.editor.putString("locality", addresses[0].locality.toString())
-                  dataUser      ["postal"] = addresses[0].postalCode.toString().lowercase(Locale.getDefault()); App.editor.putString("postal", addresses[0].postalCode.toString().lowercase(Locale.getDefault()))
+                  dataUser["locality"] = addresses[0].locality.toString(); refUser.update(dataUser); App.editor.putString("locality", addresses[0].locality.toString())
+                  dataUser["postal"] = addresses[0].postalCode.toString().lowercase(Locale.getDefault()); App.editor.putString("postal", addresses[0].postalCode.toString().lowercase(Locale.getDefault()))
               }
-          } catch (e: Exception){}
+          } catch (e: Exception){
+              Toast.makeText(activity, "Error " + e.message.toString(), Toast.LENGTH_LONG).show()
+          }
       } else {
           Toast.makeText(activity.applicationContext, activity.resources.getString(R.string.thisAppNeedLocation), Toast.LENGTH_LONG).show()
       }

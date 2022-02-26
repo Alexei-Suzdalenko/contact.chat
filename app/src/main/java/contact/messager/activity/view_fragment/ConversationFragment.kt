@@ -22,9 +22,7 @@ class ConversationFragment(val fr: FragmentConversationBinding, val context: Con
 
         ConversationUserFirebase().getListConversation{
             listInfoUser = it
-            Log.d("initConversationFragment", "initConversationFragment 000 " + it.toString())
             fr.listviewConversation.adapter = ListConversationAdapter(context, it)
-
 
             fr.listviewConversation.setOnItemClickListener { _, _, i, _ ->
                 userConversation = listInfoUser[i]

@@ -1,6 +1,7 @@
 package contact.messager.activity.view_fragment;
 import android.content.Context;
 import android.content.Intent
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import contact.messager.R
 import contact.messager.activity.ChatConversationActivity
@@ -11,6 +12,7 @@ import contact.messager.util.classes.App.Companion.userConversation
 import contact.messager.util.adapter.SearchedUsersAdapter
 import contact.messager.util.classes.User
 import contact.messager.util.api.SaveDataImageUserFirebase.GetListUsers
+import contact.messager.util.classes.App
 
 class SearchFragment (val fr: FragmentSearchBinding, val context: Context, val activity: MainActivity){
     lateinit var usersSearched: MutableList<User>
@@ -34,23 +36,13 @@ class SearchFragment (val fr: FragmentSearchBinding, val context: Context, val a
                         context.startActivity(Intent(context, VisitOthrerUserPerfilActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                         dialog.dismiss() }
                 val alert = dialogBuilder.create()
-                alert.setTitle(usersSearched[position].name)
+                alert.setTitle(App.sharedPreferences.getString("name", "").toString())
                 alert.show()
             }
         }
-
-       //     Firebase.database.reference
-       //         .child("user")
-       //         // .startAt(inputEditTextString)
-       //        // .orderByChild("email")
-       //       //  .limitToFirst(11)
-       //         .addListenerForSingleValueEvent(valueEventListener)
-
-
-    //    listSearched.setOnItemClickListener { _, _, position, _ ->
-    //        userConversation = listUsersSearched[position]
-    //        context.startActivity(Intent(context, ChatConversationActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
-    //    }
-
     }
+
+
+
+
 }

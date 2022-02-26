@@ -1,11 +1,13 @@
 package contact.messager.activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import contact.messager.R
 import contact.messager.activity.view_fragment.main.SectionsPagerAdapter
 import contact.messager.databinding.ActivityChatBinding
@@ -33,6 +35,16 @@ class MainActivity : AppCompatActivity() {
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
 
+/*
+        FirebaseFirestore.getInstance().collection("enganched_chat").document("Ej8rRLCWNkVVZjt3k62SHnnuDOe2").get().addOnSuccessListener { document ->
+            Log.d("newChatId1", "result: " + document.data)
+            Log.d("newChatId1", "result: " + document.data!!.entries.iterator())
+            for( d in document.data!!.entries.iterator()){
+                Log.d("newChatId1", "result: " + d.key.toString()  + " --- "  + d.value.toString())
+            }
+        }
+*/
+
 
         /*
         ServiceNotification().sentNotification(sender, receiver, token, messageText, image, name)
@@ -51,8 +63,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val userName = App.sharedPreferences.getString("name", "").toString()
-        if(userName.isEmpty()) {
+        val name = App.sharedPreferences.getString("name", "").toString()
+        val image = App.sharedPreferences.getString("image", "").toString()
+        if( name.isEmpty() || image.isEmpty() ) {
             startActivity(Intent(this, MyProfileActivity::class.java)); finish()
             Toast.makeText(this, resources.getString(R.string.fillThePrefil), Toast.LENGTH_LONG).show()
         }

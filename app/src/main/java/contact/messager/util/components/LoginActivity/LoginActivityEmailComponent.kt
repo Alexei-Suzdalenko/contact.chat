@@ -27,9 +27,8 @@ class LoginActivityEmailComponent(val context: Context, val activity: LoginAcivi
 
             App.editor.putString("email", email); App.editor.putString("password", password); App.editor.apply()
 
-            auth.createUserWithEmailAndPassword( email, password ).addOnCompleteListener(activity) {
-                    signInEmailAndPassword(email, password)
-            }
+            auth.createUserWithEmailAndPassword( email, password )
+                .addOnCompleteListener(activity) { signInEmailAndPassword(email, password) }
         }
     }
 

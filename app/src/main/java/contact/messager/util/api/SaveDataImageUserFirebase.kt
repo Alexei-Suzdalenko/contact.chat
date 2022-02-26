@@ -1,26 +1,24 @@
 package contact.messager.util.api
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import contact.messager.R
+import contact.messager.activity.MyProfileActivity
 import contact.messager.databinding.FragmentProfileBinding
-import contact.messager.util.classes.App
 import contact.messager.util.classes.App.Companion.editor
 import contact.messager.util.classes.App.Companion.sharedPreferences
 import contact.messager.util.classes.App.Companion.typeUserImagePlaceholderFragment
 import contact.messager.util.classes.User
-import contact.messager.util.classes.UserInfo
+import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlin.collections.HashMap
 
 object SaveDataImageUserFirebase {
@@ -34,67 +32,54 @@ object SaveDataImageUserFirebase {
     }
      */
 
-    fun GetVisitProfileData(idVisitUser: String, onComplete:(userInfo: UserInfo) -> Unit){
-         FirebaseDatabase.getInstance().reference.child("userInfo").child(idVisitUser)
-             .addListenerForSingleValueEvent(object: ValueEventListener{
-                 override fun onDataChange(snapshot: DataSnapshot) {
-                         val userInfo: UserInfo? = snapshot.getValue(UserInfo::class.java)
-                         if (userInfo != null) onComplete(userInfo)
-                 }
-                 override fun onCancelled(error: DatabaseError) {}
-             })
-    }
+  //  fun GetVisitProfileData(idVisitUser: String, onComplete:(userInfo: UserInfo) -> Unit){
+  //       FirebaseDatabase.getInstance().reference.child("userInfo").child(idVisitUser)
+  //           .addListenerForSingleValueEvent(object: ValueEventListener{
+  //               override fun onDataChange(snapshot: DataSnapshot) {
+  //                       val userInfo: UserInfo? = snapshot.getValue(UserInfo::class.java)
+  //                       if (userInfo != null) onComplete(userInfo)
+  //               }
+  //               override fun onCancelled(error: DatabaseError) {}
+  //           })
+  //  }
 
     fun GetListUsers(onComplete:(listSearchedUsers: ArrayList<User>) -> Unit){
-        val country = sharedPreferences.getString("country", "").toString()
+        val country = sharedPreferences.getString("country", "").toString();
         val miId = FirebaseAuth.getInstance().currentUser?.uid.toString()
         val listUsersSearched = ArrayList<User>()
-        Firebase.database.reference.child("user").orderByChild("country").equalTo(country)
-             // select * from user where age < 30
-            // .orderByChild("age").endAt("29")
-            // select * from user where name = "p%"
-            // .orderByChild("name").startAt("p").endAt("p\uf8ff")
-            // .startAt(inputEditTextString)
-            // .orderByChild("email")
-            //  .limitToFirst(11)
-            .addListenerForSingleValueEvent(object : ValueEventListener{
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for (ds in snapshot.children) {
-                        val user: User? = ds.getValue(User::class.java)
-                        if (user != null && miId != ds.key.toString()) {
-                            user.id = ds.key.toString()
-                            if(user.image.length < 11) user.image = "https://alexei-suzdalenko.github.io/r-radio/user.png"
-                            listUsersSearched.add(user)
-                        }
-                    }
-                    onComplete(listUsersSearched)
+        FirebaseFirestore.getInstance().collection("user")
+             .whereEqualTo("country", "es")
+            // .orderBy("online", Query.Direction.DESCENDING)
+            .get()
+            .addOnSuccessListener  {
+            for (d in it) {
+                if(miId != d.id){
+                    val data = d.data
+                    val user = User(d.id, data["age"].toString(),  data["country"].toString(), data["image"].toString(), data["locality"].toString(), data["name"].toString(), data["online"].toString(), data["postal"].toString(), data["status"].toString(), data["token"].toString(), data["backImage"].toString())
+                    Log.d("alexeiSuzdalenko", "user ==> " + user.toString())
+                    listUsersSearched.add(user)
                 }
-                override fun onCancelled(error: DatabaseError) {}
-            })
+            }
+            onComplete(listUsersSearched)
+        }
     }
 
 
     fun SaveUserInfo( name: String,  age: String, status: String, onComlete:(result: String) -> Unit){
         val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
-        val refUser = FirebaseDatabase.getInstance().reference.child("user")
-        val refUserInfo = FirebaseDatabase.getInstance().reference.child("userInfo")
+        val refUser = Firebase.firestore.collection("user").document(userId)
         val user = HashMap<String, Any>()
-              user["name"] = name
-              user["age"] = age
-        val userInfo = HashMap<String, Any>()
-              userInfo["status"] = status
-        refUserInfo.child(userId).updateChildren(userInfo)
-        refUser.child(userId).updateChildren(user).addOnCompleteListener {
-            if(it.isSuccessful) onComlete("ok")
-        }
+              user["name"]  = name
+              user["age"]     = age
+              user["status"] = status
+        refUser.update(user).addOnCompleteListener {  if(it.isSuccessful) onComlete("ok"); }
     }
 
 
     // guardar imagen de usuario perfil o de fondo
-    fun saveImageProfileUser(imageUri: Uri?, context: Context, fragment: FragmentProfileBinding) {
+    fun saveImageProfileUser(imageUri: Uri?, context: Context, fragment: FragmentProfileBinding? = null) {
         val partOfTheWay = sharedPreferences.getString("email", System.currentTimeMillis().toString()).toString()
-        fragment.progressBarProfile.visibility = View.VISIBLE
-        var pathString = ""
+        fragment!!.progressBarProfile.visibility = View.VISIBLE
         if (imageUri != null) {
             Toast.makeText(context, context.resources.getString(R.string.uploadingImage), Toast.LENGTH_LONG).show()
             val fileRef = FirebaseStorage.getInstance().reference.child("perfil").child("$partOfTheWay-$typeUserImagePlaceholderFragment.jpg")
@@ -108,17 +93,16 @@ object SaveDataImageUserFirebase {
                     val downloadUri = task.result.toString()
                     val map = HashMap<String, Any>()
                     if (typeUserImagePlaceholderFragment == "image") {
-                        pathString = "user"
+
                         map["image"] = downloadUri
                         editor.putString("image", downloadUri);  editor.apply()
                         Glide.with( context ).load( downloadUri ).into( fragment.userImageProfile )
                     } else {
-                        pathString = "userInfo"
                         map["backImage"] = downloadUri
                         editor.putString("backImage", downloadUri);  editor.apply()
                         Glide.with( context ).load( downloadUri ).into( fragment.imageBackground )
                     }
-                    Firebase.database.reference.child(pathString).child(Firebase.auth.currentUser!!.uid).updateChildren(map).addOnCompleteListener { it ->
+                    FirebaseFirestore.getInstance().collection("user").document(Firebase.auth.currentUser!!.uid).update(map).addOnCompleteListener { it ->
                         if( it.isSuccessful){
                             Toast.makeText(context, context.resources.getString(R.string.imageUploaded), Toast.LENGTH_LONG).show()
                         } else { Toast.makeText(context, "ERROR", Toast.LENGTH_LONG).show() }
@@ -131,5 +115,43 @@ object SaveDataImageUserFirebase {
             fragment.progressBarProfile.visibility = View.GONE
             Toast.makeText(context, "ERROR IMAGE", Toast.LENGTH_LONG).show() }
        }
+
+    // guardar imagen de usuario perfil o de fondo
+    fun saveImageProfileUserMyProfile(imageUri: Uri?, context: Context, fragment: MyProfileActivity) {
+        val partOfTheWay = sharedPreferences.getString("email", "").toString()
+        fragment.progressBarProfile.visibility = View.VISIBLE
+        if (imageUri != null) {
+            Toast.makeText(context, context.resources.getString(R.string.uploadingImage), Toast.LENGTH_LONG).show()
+            val fileRef = FirebaseStorage.getInstance().reference.child("perfil").child("$partOfTheWay-$typeUserImagePlaceholderFragment.jpg")
+
+            fileRef.putFile(imageUri).continueWithTask { task ->
+                if (!task.isSuccessful) { task.exception?.let {
+                    fragment.progressBarProfile.visibility = View.GONE
+                    Toast.makeText(context, "ERROR FILE UPLOAD", Toast.LENGTH_LONG).show() } }
+                fileRef.downloadUrl }.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val downloadUri = task.result.toString()
+                    val map = HashMap<String, Any>()
+                    if (typeUserImagePlaceholderFragment == "image") {
+                        map["image"] = downloadUri
+                        editor.putString("image", downloadUri);  editor.apply()
+                        Glide.with( context ).load( downloadUri ).into( fragment.userImageProfileMyProfile )
+                    } else {
+                        map["backImage"] = downloadUri
+                        editor.putString("backImage", downloadUri);  editor.apply()
+                        Glide.with( context ).load( downloadUri ).into( fragment.imageBackgroundMyProfile )
+                    }
+                    FirebaseFirestore.getInstance().collection("user").document(Firebase.auth.currentUser!!.uid).update(map).addOnCompleteListener { it ->
+                        if( it.isSuccessful){
+                            Toast.makeText(context, context.resources.getString(R.string.imageUploaded), Toast.LENGTH_LONG).show()
+                        } else { Toast.makeText(context, "ERROR", Toast.LENGTH_LONG).show() }
+                        fragment.progressBarProfile.visibility = View.GONE
+                    }
+                } else { Toast.makeText(context, "ERROR FILE UPLOAD", Toast.LENGTH_LONG).show() }
+            }
+        } else {
+            fragment.progressBarProfile.visibility = View.GONE
+            Toast.makeText(context, "ERROR IMAGE", Toast.LENGTH_LONG).show() }
+    }
 
     }

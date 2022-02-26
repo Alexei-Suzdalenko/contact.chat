@@ -8,12 +8,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import contact.messager.activity.MainActivity
-import contact.messager.databinding.FragmentConversationBinding
-import contact.messager.databinding.FragmentProfileBinding
-import contact.messager.databinding.FragmentSearchBinding
 import contact.messager.activity.view_fragment.ConversationFragment
 import contact.messager.activity.view_fragment.ProfileFragment
 import contact.messager.activity.view_fragment.SearchFragment
+import contact.messager.databinding.FragmentConversationBinding
+import contact.messager.databinding.FragmentProfileBinding
+import contact.messager.databinding.FragmentSearchBinding
 import contact.messager.util.api.SaveDataImageUserFirebase.saveImageProfileUser
 class PlaceholderFragment : Fragment() {
     private lateinit var pageViewModel: PageViewModel

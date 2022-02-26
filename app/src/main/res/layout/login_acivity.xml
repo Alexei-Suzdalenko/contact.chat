@@ -72,30 +72,25 @@
                     android:layout_height="wrap_content" />
                 <LinearLayout
                     android:layout_gravity="center"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_marginTop="44dp"
                     android:layout_marginBottom="44dp"
                     android:layout_width="wrap_content"
-                    android:layout_weight="2"
-                    android:layout_height="0dp">
-                    <Button
-                        android:visibility="gone"
-                        android:text="@string/google"
-                        android:id="@+id/btn_google_login"
-                        android:backgroundTint="@color/red"
-                        android:layout_margin="11dp"
-                        android:textAllCaps="false"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/aceptTermCond"
                         android:layout_width="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@string/agreeTermiCond"
+                        />
                     <Button
                         android:id="@+id/btn_email_login"
-                        android:layout_margin="11dp"
+                        android:layout_marginTop="44dp"
                         android:textAllCaps="false"
                         android:text="@string/register"
                         android:layout_width="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        tools:ignore="ButtonStyle,NestedWeights" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>

@@ -17,7 +17,6 @@ object AddNewMessageFirestore {
 
     @SuppressLint("SimpleDateFormat")
     fun addNewMessageFirestore(textMessage: String, activity: ChatConversationActivity, onComplete: (res: String) -> Unit){
-
            FirebaseFirestore.getInstance()
                .collection("conversation")
                .document("conversation")
@@ -35,7 +34,6 @@ object AddNewMessageFirestore {
             .document("conversation")
             .collection(channelId)
             .orderBy("time", Query.Direction.DESCENDING)
-            .limit(111)
 
         val options = FirestoreRecyclerOptions.Builder<Message>().setQuery(query, Message::class.java).build()
 

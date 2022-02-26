@@ -7,12 +7,12 @@ import com.google.firebase.ktx.Firebase
 
 class SaveUserTime {
     val userid =  FirebaseAuth.getInstance().currentUser!!.uid
-    val refUserInfo = Firebase.firestore.collection("userInfo").document(userid)
+    val refUserInfo = Firebase.firestore.collection("user").document(userid)
 
     fun saveUserTimeOnline(){
         val time = System.currentTimeMillis().toString()
         val savedData = HashMap<String, Any>()
-              savedData["userOnline"] = time
+              savedData["online"] = time
               refUserInfo.update(savedData)
     }
 }

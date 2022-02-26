@@ -17,7 +17,7 @@
     <string name="search_user">Search user by email</string>
     <string name="message">Message</string>
     <string name="dont_have_conversations">Dont have conversations</string>
-    <string name="fillThePrefil">Fill in the prefil</string>
+    <string name="fillThePrefil">Fill in the prefil and upload user profile picture</string>
     <string name="cityTown">City</string>
     <string name="userAge">Age</string>
     <string name="userStatus">Status</string>
@@ -36,4 +36,6 @@
     <string name="termAndCond">Terms and conditions</string>
     <string name="agreeTerminosAndCond">By clicking the start button you agree to the terms and conditions of use of this application</string>
     <string name="start">Start</string>
+    <string name="myProfile">My profile</string>
+    <string name="agreeTermiCond"><![CDATA[Accept terms & conditions]]></string>
 </resources>

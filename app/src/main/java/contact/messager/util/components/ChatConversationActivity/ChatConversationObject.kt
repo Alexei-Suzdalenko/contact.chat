@@ -23,9 +23,7 @@ class ChatConversationObject(val context: Context, val activity: ChatConversatio
             ageChatUser.text = userConversation?.age
             if(userConversation?.image.toString().length < 22) userConversation!!.image = "https://alexei-suzdalenko.github.io/r-radio/user.png"
             Glide.with( context ).load( userConversation?.image ).into( userImage )
-        } catch (e: Exception){
-            Log.d("ChatConversationActivity", e.message.toString())
-        }
+        } catch (e: Exception){ }
 
         userImage.setOnClickListener { context.startActivity(Intent(context, VisitOthrerUserPerfilActivity::class.java)); activity.finish() }
     }
