@@ -58,6 +58,10 @@ class SaveUserLocationFirestore {
       }
 
         App.editor.apply()
-        refUser.set(dataUser)
+        SaveUserTime().intentGetUserDataIfExsistEnDataBase {  user ->
+            if(user != null) refUser.update(dataUser)
+            else refUser.set(dataUser)
+        }
+
     }
 }

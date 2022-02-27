@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -70,17 +71,14 @@ class MyProfileActivity : AppCompatActivity() {
             } else Toast.makeText(this, resources.getString(R.string.fillUserData), Toast.LENGTH_LONG).show()
         }
 
-        writeYourCommentMyProfile.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=contact.messager")))
-        }
+        writeYourCommentMyProfile.setOnClickListener { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=contact.messager"))); }
 
-        deleteUserProfileMyProfile.setOnClickListener {
-
-        }
+        deleteUserProfileMyProfile.setOnClickListener {}
     }
 
     fun prepareIntentLauncher(){ val intent = Intent(); intent.type = "image/"; intent.action = Intent.ACTION_GET_CONTENT; resultLauncher.launch(intent)}
 
+    @SuppressLint("SetTextI18n")
     override fun onStart() {
         super.onStart()
         val currentUser = FirebaseAuth.getInstance().currentUser
@@ -88,6 +86,27 @@ class MyProfileActivity : AppCompatActivity() {
             SaveUserLocationFirestore().saveUserLocation(this)
             NotificationWork().saveUserToken()
             SaveUserTime().saveUserTimeOnline()
+        }
+        /*      si el telefono es nuevo o entra usuarion que tiene datos en la base pero no en el telefono                                           */
+        val userName = App.sharedPreferences.getString("name", "").toString()
+        if(userName.isEmpty() || userName.isBlank()){
+            SaveUserTime().intentGetUserDataIfExsistEnDataBase{ user ->
+                if(user != null ) {
+                    if(user.backImage.length > 22) {
+                        Glide.with(this).load(user.backImage).into(imageBackgroundMyProfile)
+                        App.editor.putString("backImage", user.backImage); App.editor.apply()
+                    }
+                    if(user.image.length > 22) {
+                        Glide.with(this).load(user.image).into(userImageProfileMyProfile)
+                        App.editor.putString("image", user.image); App.editor.apply()
+                    }
+                    if(user.name !=  "null" && user.age != "null") userNameProfileMyProfile.text = user.name + " " + user.age
+                    if(user.name != "null") editTextNameMyProfile.setText(user.name)
+                    if(user.locality != "null") editTextCityMyProfile.text = user.locality
+                    if(user.age != "null") editTextAgeMyProfile.setText(user.age)
+                    if(user.status != "null") editTextStatusMyProfile.setText(user.status)
+                }
+            }
         }
     }
 }

@@ -6,34 +6,47 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 
-class CreateChatChannelFirebase() {
+class CreateChatChannelFirebase {
     private val firestore = FirebaseFirestore.getInstance().collection("enganched_chat")
+    private val firebaseReference = FirebaseDatabase.getInstance().reference
     private val miId = FirebaseAuth.getInstance().currentUser?.uid.toString()
 
+    fun createOrGetChatChannle(otherUserId: String, onComplete: (channelId: String) -> Unit) {
+        firebaseReference.child("enganched_chat/$miId/$otherUserId").get().addOnSuccessListener  {
+            if(it.exists()) {
+                val idChat = it.child("id").value.toString()
+                onComplete( idChat )
+            } else {
+                // 1. create new chatChannel
+                val newChatId = System.currentTimeMillis().toString()
+                // firebaseReference.child("chats/$newChatId").setValue(ChatChannel(mutableListOf(miId, otherUserId)))
 
-    fun createChannel(otherUserId: String, onComplete: (channelId: String) -> Unit){
-            val searchChatId = System.currentTimeMillis().toString()
-            firestore.document(miId).set(mapOf(otherUserId to searchChatId))
-            firestore.document(otherUserId).set(mapOf(miId to searchChatId)).addOnCompleteListener { if(it.isSuccessful) onComplete(searchChatId); }
+                // 2. save channel Id en mi user and in other user
+                firebaseReference.child("enganched_chat/$miId/$otherUserId").setValue(mapOf("id" to newChatId))
+                firebaseReference.child("enganched_chat/$otherUserId/$miId").setValue(mapOf("id" to newChatId))
+                onComplete(newChatId)
+            }
+        }
     }
 
+/*
+    fun createChannel(otherUserId: String, onComplete: (channelId: String) -> Unit){
+        val searchChatId = System.currentTimeMillis().toString()
+        firestore.document(miId).collection(otherUserId).document("id"). set(mapOf("id" to searchChatId))
+        firestore.document(otherUserId).collection(miId).document("id").set(mapOf("id" to searchChatId)).addOnCompleteListener { if(it.isSuccessful) onComplete(searchChatId); }
+    }
 
     fun createOrGetChatChannle(otherUserId: String, onComplete: (channelId: String) -> Unit) {
         var chatId = ""
-        firestore.document(miId).get().addOnSuccessListener { doc ->
-            if(doc.exists()){
-                for(d in doc.data!!.entries.iterator()){
-                    if(otherUserId == d.key) {
-                        chatId = d.value.toString()
-                        onComplete(chatId)
-                    }
-                }
+        firestore.document(miId).collection(otherUserId).document("id").get().addOnSuccessListener { doc ->
+            if(doc.exists()) {
+                chatId = doc["id"].toString().trim()
                 if(chatId.isBlank() || chatId.isEmpty()) createChannel(otherUserId){it-> onComplete(it)}
-            } else {
-                createChannel(otherUserId){it-> onComplete(it)}
-            }
-       }
-
+                else  onComplete(chatId)
+            } else createChannel(otherUserId){it-> onComplete(it)}
+        }
+    }
+*/
 /*
         FirebaseFirestore.getInstance().collection("enganched_chat").document("Ej8rRLCWNkVVZjt3k62SHnnuDOe2").get().addOnSuccessListener { document ->
             Log.d("newChatId1", "result: " + document.data)
@@ -65,6 +78,6 @@ class CreateChatChannelFirebase() {
         }
          */
 
-    }
+
 
 }
