@@ -3,6 +3,7 @@ package contact.messager.util.api
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.Source
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import contact.messager.util.classes.User
@@ -20,7 +21,9 @@ class SaveUserTime {
 
     fun intentGetUserDataIfExsistEnDataBase(onComplete:(user: User? ) -> Unit){
         var user: User? = null
-        refUserInfo.get().addOnSuccessListener {
+        val source = Source.CACHE
+        refUserInfo.get(source)
+            .addOnSuccessListener {
             if(it.exists()){
                 user = User("", it["age"].toString(), it["country"].toString(), it["image"].toString(), it["locality"].toString(), it["name"].toString(), it["online"].toString(), it["postal"].toString(), it["status"].toString(), "", it["backImage"].toString()      )
             }

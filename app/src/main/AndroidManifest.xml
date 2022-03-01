@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="contact.messager">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission. ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name=".util.classes.App"
@@ -17,13 +17,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Freechat">
         <activity
+            android:name=".activity.BlockActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.MyProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.LocationPermisionActivity" android:screenOrientation="fullSensor"
-            android:exported="true">
+            android:name=".activity.LocationPermisionActivity"
+            android:exported="true"
+            android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

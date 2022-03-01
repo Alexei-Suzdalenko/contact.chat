@@ -6,6 +6,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Source
 import contact.messager.util.classes.ChatEnganchedUser
 import contact.messager.util.classes.User
 
@@ -45,8 +46,9 @@ class ConversationUserFirebase {
 
         for(position in 0 until listIdsConvers.size){
             userKey = listIdsConvers[position].key
-
-            FirebaseFirestore.getInstance().collection("user").document(userKey).get().addOnSuccessListener {
+            val source = Source.CACHE
+            FirebaseFirestore.getInstance().collection("user").document(userKey)
+                .get(source).addOnSuccessListener {
                 var user: User? = null
                 if(it.exists()){
                     user = User("", it["age"].toString(), it["country"].toString(), it["image"].toString(), it["locality"].toString(), it["name"].toString(), it["online"].toString(), it["postal"].toString(), it["status"].toString(), "", it["backImage"].toString()      )

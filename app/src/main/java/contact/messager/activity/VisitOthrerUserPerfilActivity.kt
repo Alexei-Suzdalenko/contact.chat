@@ -3,9 +3,11 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.bumptech.glide.Glide
 import contact.messager.R
 import contact.messager.util.classes.App.Companion.userConversation
+import contact.messager.util.components.VisitOtherUserPerfilActivity.VisitOtherUserActivityFunctionalityBlock
 
 
 import kotlinx.android.synthetic.main.perfil_conversation_user.*
@@ -34,5 +36,7 @@ class VisitOthrerUserPerfilActivity : AppCompatActivity() {
         textViewStatus.text                       = userConversation?.status
 
         perfilChatUserInfo.setOnClickListener { startActivity(Intent(this, ChatConversationActivity::class.java)); finish(); }
+
+        VisitOtherUserActivityFunctionalityBlock(this, userConversation?.id.toString()).prepareFunctinality()
     }
 }

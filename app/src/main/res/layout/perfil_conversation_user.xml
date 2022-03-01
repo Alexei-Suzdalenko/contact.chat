@@ -49,6 +49,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/userDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardElevation="5dp"
@@ -116,7 +117,25 @@
                     />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
+        <LinearLayout
+            android:layout_below="@+id/userDescription"
+            android:orientation="vertical"
+            android:layout_margin="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="@string/blockThisUser"
+                android:layout_marginTop="44dp"
+                android:id="@+id/blockThisUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/reportUserBehavior"
+                android:layout_marginTop="44dp"
+                android:text="@string/reportUserBehavior"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </RelativeLayout>
 
 </ScrollView>

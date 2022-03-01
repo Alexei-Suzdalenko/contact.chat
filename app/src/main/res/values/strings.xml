@@ -38,4 +38,10 @@
     <string name="start">Start</string>
     <string name="myProfile">My profile</string>
     <string name="agreeTermiCond"><![CDATA[Accept terms & conditions]]></string>
+    <string name="blockThisUser">Block this user</string>
+    <string name="reportUserBehavior">Report user behavior</string>
+    <string name="writeReason">Write the reason for blocking or reporting user misbehavior</string>
+    <string name="block">Block</string>
+    <string name="report">Report</string>
+    <string name="infoSented">information sent to the developers team, thank you</string>
 </resources>

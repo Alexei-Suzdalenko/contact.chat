@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Source
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -22,35 +23,16 @@ import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlin.collections.HashMap
 
 object SaveDataImageUserFirebase {
-    /*
-    fun saveNewUserInDatabase(id: String) {
-        editor.putString("id", id)
-        editor.putString("name", "")
-        editor.putString("image",  "https://alexei-suzdalenko.github.io/r-radio/user.png")
-        editor.putString("backImage", "https://alexei-suzdalenko.github.io/r-radio/backgorund.png")
-        editor.apply()
-    }
-     */
-
-  //  fun GetVisitProfileData(idVisitUser: String, onComplete:(userInfo: UserInfo) -> Unit){
-  //       FirebaseDatabase.getInstance().reference.child("userInfo").child(idVisitUser)
-  //           .addListenerForSingleValueEvent(object: ValueEventListener{
-  //               override fun onDataChange(snapshot: DataSnapshot) {
-  //                       val userInfo: UserInfo? = snapshot.getValue(UserInfo::class.java)
-  //                       if (userInfo != null) onComplete(userInfo)
-  //               }
-  //               override fun onCancelled(error: DatabaseError) {}
-  //           })
-  //  }
 
     fun GetListUsers(onComplete:(listSearchedUsers: ArrayList<User>) -> Unit){
         val country = sharedPreferences.getString("country", "").toString();
         val miId = FirebaseAuth.getInstance().currentUser?.uid.toString()
         val listUsersSearched = ArrayList<User>()
+        val source = Source.CACHE
         FirebaseFirestore.getInstance().collection("user")
              .whereEqualTo("country", "es")
             // .orderBy("online", Query.Direction.DESCENDING)
-            .get()
+            .get(source)
             .addOnSuccessListener  {
             for (d in it) {
                 if(miId != d.id){
