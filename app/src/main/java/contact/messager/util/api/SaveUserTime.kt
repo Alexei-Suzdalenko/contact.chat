@@ -22,8 +22,7 @@ class SaveUserTime {
     fun intentGetUserDataIfExsistEnDataBase(onComplete:(user: User? ) -> Unit){
         var user: User? = null
         val source = Source.CACHE
-        refUserInfo.get(source)
-            .addOnSuccessListener {
+        refUserInfo.get().addOnSuccessListener {
             if(it.exists()){
                 user = User("", it["age"].toString(), it["country"].toString(), it["image"].toString(), it["locality"].toString(), it["name"].toString(), it["online"].toString(), it["postal"].toString(), it["status"].toString(), "", it["backImage"].toString()      )
             }

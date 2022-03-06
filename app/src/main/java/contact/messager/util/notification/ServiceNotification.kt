@@ -15,9 +15,13 @@ class ServiceNotification {
         apiService
             .sendNotification(senderA)
             .enqueue(object: Callback<MyResponse> {
-                override fun onFailure(call: Call<MyResponse>, t: Throwable) {}
+                override fun onFailure(call: Call<MyResponse>, t: Throwable) {;}
                 override fun onResponse(call: Call<MyResponse>, response: Response<MyResponse>) {
-                    if( response.code() == 200 ){ if( response.body()?.success != 1 ){ } }
+                    if( response.code() == 200 ) {
+                        if ( response.body()?.success != 1 ) {
+
+                        }
+                    }
                 }
         })
     }

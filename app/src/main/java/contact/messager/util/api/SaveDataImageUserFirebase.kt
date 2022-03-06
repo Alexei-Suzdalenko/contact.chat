@@ -15,6 +15,7 @@ import com.google.firebase.storage.FirebaseStorage
 import contact.messager.R
 import contact.messager.activity.MyProfileActivity
 import contact.messager.databinding.FragmentProfileBinding
+import contact.messager.util.classes.App
 import contact.messager.util.classes.App.Companion.editor
 import contact.messager.util.classes.App.Companion.sharedPreferences
 import contact.messager.util.classes.App.Companion.typeUserImagePlaceholderFragment
@@ -23,6 +24,9 @@ import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlin.collections.HashMap
 
 object SaveDataImageUserFirebase {
+    // uso para no mostrarme a mi usuarios que he bloqueado
+    val usersBlocked = App.sharedPreferences.getString("block", "").toString()
+
 
     fun GetListUsers(onComplete:(listSearchedUsers: ArrayList<User>) -> Unit){
         val country = sharedPreferences.getString("country", "").toString();
@@ -30,15 +34,17 @@ object SaveDataImageUserFirebase {
         val listUsersSearched = ArrayList<User>()
         val source = Source.CACHE
         FirebaseFirestore.getInstance().collection("user")
-             .whereEqualTo("country", "es")
+             .whereEqualTo("country", country)
             // .orderBy("online", Query.Direction.DESCENDING)
-            .get(source)
+            .get()
             .addOnSuccessListener  {
             for (d in it) {
-                if(miId != d.id){
+                if(miId != d.id  && ! usersBlocked.contains(d.id, ignoreCase = true) && ( d.data["name"] != null || d.data["image"] != null)){
                     val data = d.data
+                    if(data["name"] == null) data["name"] = ""
+                    if(data["age"] == null) data["age"] = ""
                     val user = User(d.id, data["age"].toString(),  data["country"].toString(), data["image"].toString(), data["locality"].toString(), data["name"].toString(), data["online"].toString(), data["postal"].toString(), data["status"].toString(), data["token"].toString(), data["backImage"].toString())
-                    Log.d("alexeiSuzdalenko", "user ==> " + user.toString())
+
                     listUsersSearched.add(user)
                 }
             }

@@ -20,13 +20,14 @@ class ConversationFragment(val fr: FragmentConversationBinding, val context: Con
     fun initConversationFragment() {
         userConversation = null
 
-        ConversationUserFirebase().getListConversation{
+        ConversationUserFirebase().getListConversation {
             listInfoUser = it
             fr.listviewConversation.adapter = ListConversationAdapter(context, it)
 
             fr.listviewConversation.setOnItemClickListener { _, _, i, _ ->
                 userConversation = listInfoUser[i]
-                context.startActivity(Intent(context, ChatConversationActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                val intent = Intent(context, ChatConversationActivity::class.java)
+                context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
             }
         }
     }

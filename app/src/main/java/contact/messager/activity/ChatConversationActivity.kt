@@ -1,6 +1,7 @@
 package contact.messager.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import contact.messager.util.components.ChatConversationActivity.ChatConversationObject
@@ -51,8 +52,7 @@ class ChatConversationActivity : AppCompatActivity() {
                                 sendNotification(textMessage)
                             }
                         }
-                        if(listenerDatabaseChagesActivated == "no"){
-                            listenerDatabaseChagesActivated = "yes"
+                        if(listenerDatabaseChagesActivated == "no"){ listenerDatabaseChagesActivated = "yes"
                             initializaceFirestoreListenerMessager(realChannelId!!, this)
                         }
                     }
@@ -68,20 +68,29 @@ class ChatConversationActivity : AppCompatActivity() {
         }
 
 
-        CreateChatChannelFirebase().createOrGetChatChannle(userConversation?.id!!) { id ->
-            realChannelId = id
-            if(listenerDatabaseChagesActivated == "no"){
-                listenerDatabaseChagesActivated = "yes"
-                initializaceFirestoreListenerMessager(realChannelId!!, this)
-            }
-        }
+             CreateChatChannelFirebase().createOrGetChatChannle(userConversation?.id!!) { id ->
+                 realChannelId = id
+                 if(listenerDatabaseChagesActivated == "no"){ listenerDatabaseChagesActivated = "yes"
+                     initializaceFirestoreListenerMessager(realChannelId!!, this)
+                 }
+             }
 
-     //   // create conversation if no exsist and set realChannelId  FIRESTORE, no lo uso, uso el firebase !!!
-     //   // ShowMeMessageFromThisConversation(this, this).showMeMessages()
+
     }
 
     private fun sendNotification(textMessage: String){
-        ServiceNotification().sentNotification(
+        Log.d("notification data = ", "mi id " + userConversation!!.id)
+        Log.d("notification data = ", "notification data =  " +
+                realChannelId!! + " " +
+            userConversation!!.id + " " +
+            firebaseUserId + " " +
+            userConversation!!.name + " " +
+            textMessage + " " +
+            userConversation!!.image + " " +
+            userConversation!!.token + " " +
+            userConversation!!.age + " " )
+
+        ServiceNotification().sentNotification (
             realChannelId!!,
             userConversation!!.id,
             firebaseUserId,

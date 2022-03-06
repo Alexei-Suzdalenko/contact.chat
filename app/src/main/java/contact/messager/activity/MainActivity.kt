@@ -11,6 +11,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import contact.messager.R
 import contact.messager.activity.view_fragment.main.SectionsPagerAdapter
 import contact.messager.databinding.ActivityChatBinding
+import contact.messager.util.api.BlockUserFire
 import contact.messager.util.classes.App
 import contact.messager.util.classes.App.Companion.userConversation
 import contact.messager.util.api.SaveUserLocationFirestore
@@ -68,7 +69,12 @@ class MainActivity : AppCompatActivity() {
         if( name.isEmpty() || image.isEmpty() ) {
             startActivity(Intent(this, MyProfileActivity::class.java)); finish()
             Toast.makeText(this, resources.getString(R.string.fillThePrefil), Toast.LENGTH_LONG).show()
+        } else {
+            SaveUserLocationFirestore().saveUserLocation(this)
+            NotificationWork().saveUserToken()
+            SaveUserTime().saveUserTimeOnline()
         }
+        BlockUserFire().getListUsersThenBlockedMe()
     }
 
 

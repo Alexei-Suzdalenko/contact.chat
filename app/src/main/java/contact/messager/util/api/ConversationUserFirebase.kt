@@ -7,6 +7,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Source
+import contact.messager.util.classes.App
 import contact.messager.util.classes.ChatEnganchedUser
 import contact.messager.util.classes.User
 
@@ -14,8 +15,10 @@ class ConversationUserFirebase {
     val miId = FirebaseAuth.getInstance().currentUser!!.uid
     val refConvers = FirebaseDatabase.getInstance().reference.child("enganched_chat/$miId")
     val listIdsConvers = ArrayList<ChatEnganchedUser>()
-    val refUsers = FirebaseDatabase.getInstance().reference.child("user")
     val listDataConvers:  MutableList<User> = mutableListOf()
+
+    // uso para no mostrarme a mi usuarios que he bloqueado
+    val usersBlocked = App.sharedPreferences.getString("block", "").toString()
 
     fun getListConversation(onComplete: (res: MutableList<User>) -> Unit){
         listIdsConvers.clear()
@@ -25,11 +28,11 @@ class ConversationUserFirebase {
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 for (ds in snapshot.children) {
-                        val conversation: ChatEnganchedUser? = ds.getValue(ChatEnganchedUser::class.java)
-                        if (conversation != null ) {
+                    val conversation: ChatEnganchedUser? = ds.getValue(ChatEnganchedUser::class.java)
+                    if (conversation != null && ! usersBlocked.contains(ds.key.toString(), ignoreCase = true)) {
                             conversation.key = ds.key.toString()
                             listIdsConvers.add(conversation)
-                        }
+                    }
                 }
                 if(listIdsConvers.size > 0){
                     getUserInfoFromEnganchedChannels{
@@ -47,11 +50,11 @@ class ConversationUserFirebase {
         for(position in 0 until listIdsConvers.size){
             userKey = listIdsConvers[position].key
             val source = Source.CACHE
-            FirebaseFirestore.getInstance().collection("user").document(userKey)
-                .get(source).addOnSuccessListener {
+            FirebaseFirestore.getInstance().collection("user").document(userKey).get().addOnSuccessListener {
                 var user: User? = null
-                if(it.exists()){
-                    user = User("", it["age"].toString(), it["country"].toString(), it["image"].toString(), it["locality"].toString(), it["name"].toString(), it["online"].toString(), it["postal"].toString(), it["status"].toString(), "", it["backImage"].toString()      )
+                if(it.exists()){ // listIdsConvers[position].id => id
+                    user = User(userKey, it["age"].toString(), it["country"].toString(), it["image"].toString(), it["locality"].toString(), it["name"].toString(), it["online"].toString(), it["postal"].toString(), it["status"].toString(), "", it["backImage"].toString()      )
+                    Log.d("currentUser", "currentUser2" + user.toString())
                     listDataConvers.add(user)
                     onComplete(listDataConvers)
                 }

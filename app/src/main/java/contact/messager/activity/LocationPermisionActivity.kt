@@ -14,6 +14,7 @@ import contact.messager.R
 import kotlinx.android.synthetic.main.activity_location_permision.*
 
 class LocationPermisionActivity : AppCompatActivity() {
+    var locationEnabled = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +32,7 @@ class LocationPermisionActivity : AppCompatActivity() {
         }
         startAppChat.setOnClickListener {
             checkLocationPermission()
+            if(locationEnabled) goToLogin()
         }
         authorApp.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=alexei+suzdalenko+developer")))
@@ -45,7 +47,7 @@ class LocationPermisionActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            goToLogin()
+            startActivity(Intent(this, LoginAcivity::class.java));finish()
         }
     }
 
@@ -75,7 +77,7 @@ class LocationPermisionActivity : AppCompatActivity() {
             MY_PERMISSIONS_REQUEST_LOCATION -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                        goToLogin()
+                        locationEnabled = true
                     }
                 } else {
                     Toast.makeText(this, "Enable location !", Toast.LENGTH_LONG).show()

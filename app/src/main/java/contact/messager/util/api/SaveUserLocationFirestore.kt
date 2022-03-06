@@ -1,5 +1,6 @@
 package contact.messager.util.api
 import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Address
@@ -26,7 +27,7 @@ class SaveUserLocationFirestore {
     val refUser       = Firebase.firestore.collection("user").document(miId)
     val dataUser      = HashMap<String, Any>()
 
-    fun saveUserLocation(activity: MyProfileActivity){
+    fun saveUserLocation(activity: Context){
         try {
             val tm = activity.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
             val countryCodeValue = tm.networkCountryIso
@@ -34,7 +35,7 @@ class SaveUserLocationFirestore {
         } catch (e: Exception){}
 
      if (ContextCompat.checkSelfPermission(activity.applicationContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-          ActivityCompat.requestPermissions(activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 101)
+          ActivityCompat.requestPermissions(activity as Activity, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 101)
       }
 
       if (ContextCompat.checkSelfPermission(activity.applicationContext, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
@@ -47,17 +48,18 @@ class SaveUserLocationFirestore {
               val geocoder = Geocoder(activity.applicationContext, Locale.getDefault())
               val addresses: List<Address> = geocoder.getFromLocation(latitude, longitude, 1)
               if (addresses.isNotEmpty()) {
-                  dataUser["locality"] = addresses[0].locality.toString(); refUser.update(dataUser); App.editor.putString("locality", addresses[0].locality.toString())
-                  dataUser["postal"] = addresses[0].postalCode.toString().lowercase(Locale.getDefault()); App.editor.putString("postal", addresses[0].postalCode.toString().lowercase(Locale.getDefault()))
+                  dataUser["locality"] = addresses[0].locality.toString();
+                  dataUser["postal"] = addresses[0].postalCode.toString().lowercase(Locale.getDefault());
               }
           } catch (e: Exception){
-              Toast.makeText(activity, "Error " + e.message.toString(), Toast.LENGTH_LONG).show()
+              Toast.makeText(activity, "Address don t localizated", Toast.LENGTH_LONG).show()
           }
       } else {
-          Toast.makeText(activity.applicationContext, activity.resources.getString(R.string.thisAppNeedLocation), Toast.LENGTH_LONG).show()
+          Toast.makeText(activity.applicationContext, "error b " + activity.resources.getString(R.string.thisAppNeedLocation), Toast.LENGTH_LONG).show()
       }
 
         App.editor.apply()
+        dataUser["online"] = System.currentTimeMillis().toString()
         SaveUserTime().intentGetUserDataIfExsistEnDataBase {  user ->
             if(user != null) refUser.update(dataUser)
             else refUser.set(dataUser)
