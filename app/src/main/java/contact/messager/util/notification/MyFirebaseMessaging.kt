@@ -31,6 +31,7 @@ class MyFirebaseMessaging: FirebaseMessagingService() {
     var message:   String = ""
     var image:       String = ""
     var age:           String = ""
+    var token:        String = ""
     lateinit var intent: Intent
     var firebaseUser: FirebaseUser? = null
 
@@ -46,6 +47,8 @@ class MyFirebaseMessaging: FirebaseMessagingService() {
         image = remoteMessage.data["image"].toString()
         message = remoteMessage.data["message"].toString()
         age = remoteMessage.data["age"].toString()
+        token =  remoteMessage.data["token"].toString()
+        Log.d("remoteMessageData", "RMD " + remoteMessage.data.toString())
 
         intent.putExtra("chatId", chatId)
         intent.putExtra("sender", sender)
@@ -53,6 +56,7 @@ class MyFirebaseMessaging: FirebaseMessagingService() {
         intent.putExtra("userName", userName)
         intent.putExtra("image", image)
         intent.putExtra("age", age)
+        intent.putExtra("token", token)
 
         notId = App.getIdNoification(sender)
 

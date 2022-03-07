@@ -34,7 +34,7 @@ class ConversationUserFirebase {
                             listIdsConvers.add(conversation)
                     }
                 }
-                if(listIdsConvers.size > 0){
+                if(listIdsConvers.size > 0){                           Log.d("realChannelId", "listIdsConvers="+listIdsConvers.toString())
                     getUserInfoFromEnganchedChannels{
                         onComplete(it)
                     }
@@ -44,17 +44,14 @@ class ConversationUserFirebase {
     }
 
     private fun getUserInfoFromEnganchedChannels(onComplete: (res: MutableList<User>) -> Unit){
-        var userKey = ""
         listDataConvers.clear()
 
         for(position in 0 until listIdsConvers.size){
-            userKey = listIdsConvers[position].key
-            val source = Source.CACHE
-            FirebaseFirestore.getInstance().collection("user").document(userKey).get().addOnSuccessListener {
+            FirebaseFirestore.getInstance().collection("user").document(listIdsConvers[position].key).get().addOnSuccessListener {
                 var user: User? = null
-                if(it.exists()){ // listIdsConvers[position].id => id
-                    user = User(userKey, it["age"].toString(), it["country"].toString(), it["image"].toString(), it["locality"].toString(), it["name"].toString(), it["online"].toString(), it["postal"].toString(), it["status"].toString(), "", it["backImage"].toString()      )
-                    Log.d("currentUser", "currentUser2" + user.toString())
+                if(it.exists()){
+                    user = User(listIdsConvers[position].key, it["age"].toString(), it["country"].toString(), it["image"].toString(), it["locality"].toString(), it["name"].toString(), it["online"].toString(), it["postal"].toString(), it["status"].toString(), it["token"].toString(), it["backImage"].toString()      )
+                    Log.d("realChannelId", "userKey="+listIdsConvers[position].key)
                     listDataConvers.add(user)
                     onComplete(listDataConvers)
                 }

@@ -2,6 +2,7 @@ package contact.messager.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import contact.messager.util.components.ChatConversationActivity.ChatConversationObject
@@ -14,6 +15,7 @@ import contact.messager.util.classes.App.Companion.realChannelId
 import contact.messager.util.classes.App.Companion.userConversation
 import contact.messager.util.api.AddNewMessageFirestore
 import contact.messager.util.api.AddNewMessageFirestore.initializaceFirestoreListenerMessager
+import contact.messager.util.classes.App
 import contact.messager.util.classes.User
 import contact.messager.util.notification.ServiceNotification
 
@@ -30,9 +32,11 @@ class ChatConversationActivity : AppCompatActivity() {
             realChannelId = intent.getStringExtra("chatId").toString()
             val user = User(
                 intent.getStringExtra("receiver").toString(),
-                intent.getStringExtra("userName").toString(),
-                intent.getStringExtra("image").toString(),
-                intent.getStringExtra("age").toString())
+                intent.getStringExtra("age").toString(), "",
+                intent.getStringExtra("image").toString(), "",
+                intent.getStringExtra("userName").toString(), "", "", "",
+                intent.getStringExtra("token").toString(),
+            )
             userConversation = user
         }
 
@@ -79,16 +83,16 @@ class ChatConversationActivity : AppCompatActivity() {
     }
 
     private fun sendNotification(textMessage: String){
-        Log.d("notification data = ", "mi id " + userConversation!!.id)
-        Log.d("notification data = ", "notification data =  " +
-                realChannelId!! + " " +
-            userConversation!!.id + " " +
-            firebaseUserId + " " +
-            userConversation!!.name + " " +
-            textMessage + " " +
-            userConversation!!.image + " " +
-            userConversation!!.token + " " +
-            userConversation!!.age + " " )
+     //   Log.d("notificationSataA",
+     //       "realChannelId=" +realChannelId!! + ", " +
+     //       "userConversation!!.id="+userConversation!!.id + ", " +
+     //       "firebaseUserId="+firebaseUserId + ", " +
+     //       "userConversation!!.name="+userConversation!!.name + ", " +
+     //       "textMessage="+textMessage + ", " +
+     //       "image="+App.sharedPreferences.getString("image", "").toString() + ", " +
+     //       "token="+userConversation!!.token + ", " +
+     //       "age="+userConversation!!.age
+     //   )
 
         ServiceNotification().sentNotification (
             realChannelId!!,
@@ -96,7 +100,7 @@ class ChatConversationActivity : AppCompatActivity() {
             firebaseUserId,
             userConversation!!.name,
             textMessage,
-            userConversation!!.image,
+            App.sharedPreferences.getString("image", "").toString(),
             userConversation!!.token,
             userConversation!!.age
         )
