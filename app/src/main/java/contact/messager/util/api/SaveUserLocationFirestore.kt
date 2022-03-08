@@ -52,7 +52,7 @@ class SaveUserLocationFirestore {
                   dataUser["postal"] = addresses[0].postalCode.toString().lowercase(Locale.getDefault());
               }
           } catch (e: Exception){
-              Toast.makeText(activity, "Address don t localizated", Toast.LENGTH_LONG).show()
+            //  Toast.makeText(activity, "Address don t localizated", Toast.LENGTH_LONG).show()
           }
       } else {
           Toast.makeText(activity.applicationContext, "error b " + activity.resources.getString(R.string.thisAppNeedLocation), Toast.LENGTH_LONG).show()

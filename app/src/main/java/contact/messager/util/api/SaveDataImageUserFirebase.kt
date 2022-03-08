@@ -57,6 +57,7 @@ object SaveDataImageUserFirebase {
         val userId = FirebaseAuth.getInstance().currentUser?.uid.toString()
         val refUser = Firebase.firestore.collection("user").document(userId)
         val user = HashMap<String, Any>()
+              user["email"] = App.sharedPreferences.getString("email", "").toString()
               user["name"]  = name
               user["age"]     = age
               user["status"] = status

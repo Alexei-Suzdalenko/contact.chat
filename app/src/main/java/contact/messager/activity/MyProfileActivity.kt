@@ -61,8 +61,6 @@ class MyProfileActivity : AppCompatActivity() {
             val userAge = editTextAgeMyProfile.text.toString()
             val userStatus = editTextStatusMyProfile.text.toString()
 
-            Log.d("my_perofile", "info " + userName + " " + userStatus)
-
             if(userName.length > 3 && userAge.isNotEmpty() && userStatus.length > 3){
                 SaveDataImageUserFirebase.SaveUserInfo(userName, userAge, userStatus) { result ->
                     if (result == "ok") {
