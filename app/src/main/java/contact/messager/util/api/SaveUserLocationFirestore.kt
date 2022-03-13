@@ -60,6 +60,7 @@ class SaveUserLocationFirestore {
 
         App.editor.apply()
         dataUser["online"] = System.currentTimeMillis().toString()
+        dataUser["email"] = App.sharedPreferences.getString("email", "").toString()
         SaveUserTime().intentGetUserDataIfExsistEnDataBase {  user ->
             if(user != null) refUser.update(dataUser)
             else refUser.set(dataUser)
