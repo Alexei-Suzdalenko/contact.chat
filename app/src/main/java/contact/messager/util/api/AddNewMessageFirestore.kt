@@ -6,8 +6,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import contact.messager.activity.ChatConversationActivity
-import contact.messager.util.classes.App
-import contact.messager.util.classes.Message
+import contact.messager.util.clas.App
+import contact.messager.util.clas.Message
 import contact.messager.util.adapter.MessageFirestoreAdapter
 import kotlinx.android.synthetic.main.activity_chat_conversation.*
 

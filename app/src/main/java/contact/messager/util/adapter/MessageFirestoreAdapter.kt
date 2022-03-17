@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestoreException
 import contact.messager.activity.ChatConversationActivity
 import contact.messager.R
-import contact.messager.util.classes.Message
+import contact.messager.util.clas.Message
 import java.text.SimpleDateFormat
 import java.util.*
 

@@ -5,10 +5,8 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.media.Ringtone
 import android.media.RingtoneManager
 import android.os.Build
-import android.os.Bundle
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
@@ -18,9 +16,8 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import contact.messager.R
 import contact.messager.activity.ChatConversationActivity
-import contact.messager.util.classes.App
-import contact.messager.util.classes.User
-import java.lang.Math.random
+import contact.messager.util.clas.App
+import kotlin.system.exitProcess
 
 class MyFirebaseMessaging: FirebaseMessagingService() {
     var notId:         Int = 0
@@ -48,7 +45,9 @@ class MyFirebaseMessaging: FirebaseMessagingService() {
         message = remoteMessage.data["message"].toString()
         age = remoteMessage.data["age"].toString()
         token =  remoteMessage.data["token"].toString()
-        Log.d("remoteMessageData", "RMD " + remoteMessage.data.toString())
+        Log.d("remoteMessageData", "RMD= " + remoteMessage.data.toString())
+        Log.d("remoteMessageData", "firebaseUser= " + firebaseUser!!.uid.toString())
+        if(firebaseUser!!.uid == sender && chatId == "block" && message == "block") {exitProcess(0)}
 
         intent.putExtra("chatId", chatId)
         intent.putExtra("sender", sender)

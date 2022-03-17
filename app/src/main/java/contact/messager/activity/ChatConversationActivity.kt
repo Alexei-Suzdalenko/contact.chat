@@ -1,22 +1,19 @@
 package contact.messager.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import contact.messager.util.components.ChatConversationActivity.ChatConversationObject
 import contact.messager.util.api.CreateChatChannelFirebase
 import kotlinx.android.synthetic.main.activity_chat_conversation.*
 
 import contact.messager.R
-import contact.messager.util.classes.App.Companion.listenerDatabaseChagesActivated
-import contact.messager.util.classes.App.Companion.realChannelId
-import contact.messager.util.classes.App.Companion.userConversation
+import contact.messager.util.clas.App.Companion.listenerDatabaseChagesActivated
+import contact.messager.util.clas.App.Companion.realChannelId
+import contact.messager.util.clas.App.Companion.userConversation
 import contact.messager.util.api.AddNewMessageFirestore
 import contact.messager.util.api.AddNewMessageFirestore.initializaceFirestoreListenerMessager
-import contact.messager.util.classes.App
-import contact.messager.util.classes.User
+import contact.messager.util.clas.App
+import contact.messager.util.clas.User
 import contact.messager.util.notification.ServiceNotification
 
 class ChatConversationActivity : AppCompatActivity() {

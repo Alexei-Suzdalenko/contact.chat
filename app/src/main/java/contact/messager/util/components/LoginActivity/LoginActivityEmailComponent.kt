@@ -9,7 +9,7 @@ import com.google.firebase.ktx.Firebase
 import contact.messager.activity.MainActivity
 import contact.messager.activity.LoginAcivity
 import contact.messager.R
-import contact.messager.util.classes.App
+import contact.messager.util.clas.App
 
 
 class LoginActivityEmailComponent(val context: Context, val activity: LoginAcivity) {

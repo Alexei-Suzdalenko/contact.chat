@@ -1,12 +1,10 @@
 package contact.messager.util.api
 
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.Source
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import contact.messager.util.classes.User
+import contact.messager.util.clas.User
 
 class SaveUserTime {
     val userid =  FirebaseAuth.getInstance().currentUser!!.uid

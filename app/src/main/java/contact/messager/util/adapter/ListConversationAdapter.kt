@@ -8,8 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import contact.messager.R
-import contact.messager.util.classes.ChatEnganchedUser
-import contact.messager.util.classes.User
+import contact.messager.util.clas.User
 import de.hdodenhof.circleimageview.CircleImageView
 
 class ListConversationAdapter(val context: Context, val listInfo: MutableList<User>): BaseAdapter() {

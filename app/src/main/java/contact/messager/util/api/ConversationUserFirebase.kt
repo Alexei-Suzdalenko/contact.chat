@@ -6,10 +6,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Source
-import contact.messager.util.classes.App
-import contact.messager.util.classes.ChatEnganchedUser
-import contact.messager.util.classes.User
+import contact.messager.util.clas.App
+import contact.messager.util.clas.ChatEnganchedUser
+import contact.messager.util.clas.User
 
 class ConversationUserFirebase {
     val miId = FirebaseAuth.getInstance().currentUser!!.uid

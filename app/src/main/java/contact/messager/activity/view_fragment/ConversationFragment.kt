@@ -1,15 +1,13 @@
 package contact.messager.activity.view_fragment
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import contact.messager.activity.ChatConversationActivity
 import contact.messager.databinding.FragmentConversationBinding
 import contact.messager.util.adapter.ListConversationAdapter
-import contact.messager.util.classes.ChatEnganchedUser
 import contact.messager.util.api.ConversationUserFirebase
-import contact.messager.util.classes.App.Companion.userConversation
-import contact.messager.util.classes.User
+import contact.messager.util.clas.App.Companion.userConversation
+import contact.messager.util.clas.User
 
 class ConversationFragment(val fr: FragmentConversationBinding, val context: Context) {
     var listInfoUser: MutableList<User> = mutableListOf()

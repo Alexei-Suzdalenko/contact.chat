@@ -1,13 +1,12 @@
 package contact.messager.util.components.ChatConversationActivity
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import contact.messager.activity.ChatConversationActivity
 import contact.messager.activity.VisitOthrerUserPerfilActivity
 import contact.messager.R
-import contact.messager.util.classes.App.Companion.userConversation
+import contact.messager.util.clas.App.Companion.userConversation
 import de.hdodenhof.circleimageview.CircleImageView
 import java.lang.Exception
 

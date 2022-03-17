@@ -15,11 +15,11 @@ import com.google.firebase.storage.FirebaseStorage
 import contact.messager.R
 import contact.messager.activity.MyProfileActivity
 import contact.messager.databinding.FragmentProfileBinding
-import contact.messager.util.classes.App
-import contact.messager.util.classes.App.Companion.editor
-import contact.messager.util.classes.App.Companion.sharedPreferences
-import contact.messager.util.classes.App.Companion.typeUserImagePlaceholderFragment
-import contact.messager.util.classes.User
+import contact.messager.util.clas.App
+import contact.messager.util.clas.App.Companion.editor
+import contact.messager.util.clas.App.Companion.sharedPreferences
+import contact.messager.util.clas.App.Companion.typeUserImagePlaceholderFragment
+import contact.messager.util.clas.User
 import kotlinx.android.synthetic.main.activity_my_profile.*
 import kotlin.collections.HashMap
 
@@ -29,12 +29,14 @@ object SaveDataImageUserFirebase {
 
 
     fun GetListUsers(onComplete:(listSearchedUsers: ArrayList<User>) -> Unit){
+        Log.d("snapshot", "usersBlocked="+ usersBlocked.toString())
+
         val country = sharedPreferences.getString("country", "").toString();
         val miId = FirebaseAuth.getInstance().currentUser?.uid.toString()
         val listUsersSearched = ArrayList<User>()
         val source = Source.CACHE
         FirebaseFirestore.getInstance().collection("user")
-             .whereEqualTo("country", country)
+              .whereEqualTo("country", country)
             // .orderBy("online", Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener  {

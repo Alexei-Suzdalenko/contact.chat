@@ -5,19 +5,16 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import contact.messager.R
 import contact.messager.util.api.SaveDataImageUserFirebase
 import contact.messager.util.api.SaveUserLocationFirestore
 import contact.messager.util.api.SaveUserTime
-import contact.messager.util.classes.App
+import contact.messager.util.clas.App
 import contact.messager.util.notification.NotificationWork
 import kotlinx.android.synthetic.main.activity_my_profile.*
 

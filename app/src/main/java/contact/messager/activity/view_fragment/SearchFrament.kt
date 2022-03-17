@@ -8,41 +8,22 @@ import contact.messager.activity.ChatConversationActivity
 import contact.messager.activity.MainActivity
 import contact.messager.activity.VisitOthrerUserPerfilActivity
 import contact.messager.databinding.FragmentSearchBinding
-import contact.messager.util.classes.App.Companion.userConversation
+import contact.messager.util.clas.App.Companion.userConversation
 import contact.messager.util.adapter.SearchedUsersAdapter
-import contact.messager.util.classes.User
+import contact.messager.util.api.BlockUserFire
+import contact.messager.util.clas.User
 import contact.messager.util.api.SaveDataImageUserFirebase.GetListUsers
-import contact.messager.util.classes.App
+import contact.messager.util.clas.App
 
 class SearchFragment (val fr: FragmentSearchBinding, val context: Context, val activity: MainActivity){
-    lateinit var usersSearched: MutableList<User>
 
     fun initSearchFragment(){
+        App.usersSearched.clear()
         GetListUsers{ it ->
-            usersSearched = it
+            App.usersSearched = it
             /* listado de usuarios en searched tab */
-            fr.listviewSearch.adapter = SearchedUsersAdapter(context, usersSearched)
-
-            /* click en algun user buscado en el tab searched */
-            fr.listviewSearch.setOnItemClickListener { _, _, position, _ ->
-                userConversation = usersSearched[position]
-
-                val dialogBuilder = AlertDialog.Builder(activity)
-                    .setMessage(activity.resources.getString(R.string.areYouSure))
-                    .setNegativeButton(context.resources.getString(R.string.writeMessageChat)) { dialog, id ->
-                        context.startActivity(Intent(context, ChatConversationActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
-                        dialog.dismiss() }
-                    .setPositiveButton(context.resources.getString(R.string.profile)) { dialog, id ->
-                        context.startActivity(Intent(context, VisitOthrerUserPerfilActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
-                        dialog.dismiss() }
-                val alert = dialogBuilder.create()
-                alert.setTitle(App.sharedPreferences.getString("name", "").toString())
-                alert.show()
-            }
+            fr.listviewSearch.adapter = SearchedUsersAdapter(context)
         }
     }
-
-
-
 
 }

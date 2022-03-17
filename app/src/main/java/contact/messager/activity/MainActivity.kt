@@ -1,4 +1,5 @@
 package contact.messager.activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,59 +8,53 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import contact.messager.R
 import contact.messager.activity.view_fragment.main.SectionsPagerAdapter
 import contact.messager.databinding.ActivityChatBinding
+import contact.messager.util.adapter.SearchedUsersAdapter
 import contact.messager.util.api.BlockUserFire
-import contact.messager.util.classes.App
-import contact.messager.util.classes.App.Companion.userConversation
+import contact.messager.util.clas.App
+import contact.messager.util.clas.App.Companion.userConversation
 import contact.messager.util.api.SaveUserLocationFirestore
 import contact.messager.util.api.SaveUserTime
+import contact.messager.util.clas.App.Companion.usersSearched
 import contact.messager.util.notification.NotificationWork
-
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChatBinding
-   private lateinit var viewPager: ViewPager
-
+    private lateinit var viewPager: ViewPager
+    lateinit var context: Context
+   var usersBlockedMe = ""; val miId = FirebaseAuth.getInstance().currentUser!!.uid
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        context = this
+                                                                                                                                                                                                                       //  App.editor.putString("block", "").apply()
+        FirebaseDatabase.getInstance().reference.child("block/$miId").addValueEventListener(object: ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {}
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for( snaps in snapshot.children ){ val valueData = snaps.value; usersBlockedMe += ", $valueData" }
+                App.editor.putString("block", usersBlockedMe).apply()
+            }
+        })
+
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         userConversation = null
-
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
         viewPager = binding.viewPager
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
+    }
 
-/*
-        FirebaseFirestore.getInstance().collection("enganched_chat").document("Ej8rRLCWNkVVZjt3k62SHnnuDOe2").get().addOnSuccessListener { document ->
-            Log.d("newChatId1", "result: " + document.data)
-            Log.d("newChatId1", "result: " + document.data!!.entries.iterator())
-            for( d in document.data!!.entries.iterator()){
-                Log.d("newChatId1", "result: " + d.key.toString()  + " --- "  + d.value.toString())
-            }
-        }
-*/
+    override fun onResume() {
+        super.onResume()
 
-
-        /*
-        ServiceNotification().sentNotification(sender, receiver, token, messageText, image, name)
-        ServiceNotification().sentNotification(
-            "",
-            "ZVSY0mlq6CNiTHI3j3Pd662zzm33",
-            "",
-            "user ",
-            "message",
-            "",
-              "c5Vi15dARxCBJ4w2KxUCy-:APA91bH-hz_n7ei3zYAqPbJcvOshvDniZRUswpOijictHLoJf5q9l5leJr05e5bCWz-dIZXtDmVdenuCsBQHSz9fkKZ9ZZGx8rVXC0iglUcrNMbzZOM2cQ7MOqDqy8a2YSbiG_979so9",
-            "9"
-            )
-       */
     }
 
     override fun onStart() {
@@ -74,7 +69,6 @@ class MainActivity : AppCompatActivity() {
             NotificationWork().saveUserToken()
             SaveUserTime().saveUserTimeOnline()
         }
-        BlockUserFire().getListUsersThenBlockedMe()
     }
 
 
