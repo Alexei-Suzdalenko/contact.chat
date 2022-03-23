@@ -13,8 +13,6 @@ class CreateChatChannelFirebase {
     private val miId = FirebaseAuth.getInstance().currentUser?.uid.toString()
 
     fun createOrGetChatChannle(otherUserId: String, onComplete: (channelId: String) -> Unit) {
-        Log.d("realChannelId", "miId="+miId)
-        Log.d("realChannelId", "otherUserId="+otherUserId)
         firebaseReference.child("enganched_chat/$miId/$otherUserId").get().addOnSuccessListener  {
             if(it.exists()) {
                 val idChat = it.child("id").value.toString()

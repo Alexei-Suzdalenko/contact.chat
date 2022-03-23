@@ -33,7 +33,7 @@ class ConversationUserFirebase {
                             listIdsConvers.add(conversation)
                     }
                 }
-                if(listIdsConvers.size > 0){                           Log.d("realChannelId", "listIdsConvers="+listIdsConvers.toString())
+                if(listIdsConvers.size > 0){
                     getUserInfoFromEnganchedChannels{
                         onComplete(it)
                     }
@@ -50,27 +50,10 @@ class ConversationUserFirebase {
                 var user: User? = null
                 if(it.exists()){
                     user = User(listIdsConvers[position].key, it["age"].toString(), it["country"].toString(), it["image"].toString(), it["locality"].toString(), it["name"].toString(), it["online"].toString(), it["postal"].toString(), it["status"].toString(), it["token"].toString(), it["backImage"].toString()      )
-                    Log.d("realChannelId", "userKey="+listIdsConvers[position].key)
                     listDataConvers.add(user)
                     onComplete(listDataConvers)
                 }
             }
-
-            /*
-            refUsers.child(userKey)
-                .addListenerForSingleValueEvent(object: ValueEventListener{
-                    override fun onCancelled(error: DatabaseError) {; }
-                    override fun onDataChange(snapshot: DataSnapshot) {
-
-                        val user: User? = snapshot.getValue(User::class.java)
-                        if(user != null){
-                            user.id = snapshot.key.toString()
-                            listDataConvers.add(user)
-                        }
-                        onComplete(listDataConvers)
-                    }
-            })
-            */
         }
     }
 }

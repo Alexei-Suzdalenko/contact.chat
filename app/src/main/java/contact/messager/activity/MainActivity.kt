@@ -6,6 +6,10 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -33,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         context = this
-                                                                                                                                                                                                                       //  App.editor.putString("block", "").apply()
+         App.editor.putString("block", "").apply()
         FirebaseDatabase.getInstance().reference.child("block/$miId").addValueEventListener(object: ValueEventListener {
             override fun onCancelled(error: DatabaseError) {}
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -50,12 +54,25 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
+
+        Log.d("realChannelId", "start=")
+        val adRequest = AdRequest.Builder().build()
+        InterstitialAd.load(this, "ca-app-pub-7286158310312043/7949035373", adRequest, object : InterstitialAdLoadCallback() {
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                App.mInterstitialAd = interstitialAd
+                Log.d("realChannelId", "onAdLoaded= ")
+                Log.d("realChannelId", "onAdLoaded= " + App.mInterstitialAd.toString())
+                App.mInterstitialAd?.show(context as MainActivity)
+            }
+            override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+                Log.d("realChannelId", "loadAdError.message= " + App.mInterstitialAd.toString())
+                Log.d("realChannelId", "loadAdError.message= " + loadAdError.message)
+            }
+        })
+
+
     }
 
-    override fun onResume() {
-        super.onResume()
-
-    }
 
     override fun onStart() {
         super.onStart()

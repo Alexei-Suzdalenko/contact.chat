@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="contact.messager">
-
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="contact.messager">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
     <application
         android:name=".util.clas.App"
         android:allowBackup="true"
@@ -16,6 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Freechat">
+        <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-7286158310312043~2930806122" />
+        <activity
+            android:name=".activity.ShowImages"
+            android:exported="false" />
         <activity
             android:name=".activity.BlockActivity"
             android:exported="false" />
@@ -50,18 +50,14 @@
         <service
             android:name=".util.notification.MyFirebaseMessaging"
             android:enabled="true"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/message_icon" />
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@android:color/holo_red_light" />
+        <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/message_icon" />
+        <meta-data android:name="com.google.firebase.messaging.default_notification_color" android:resource="@android:color/holo_red_light" />
     </application>
 
 </manifest>

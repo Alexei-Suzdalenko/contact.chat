@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -19,6 +20,7 @@ class App: Application() {
         -time
      */
     companion object{
+        var mInterstitialAd: InterstitialAd? = null
         lateinit var sharedPreferences: SharedPreferences
         lateinit var editor: SharedPreferences.Editor
         var userConversation: User? = null
