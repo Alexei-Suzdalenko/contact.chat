@@ -32,7 +32,7 @@ import kotlin.system.exitProcess
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChatBinding
     private lateinit var viewPager: ViewPager
-    lateinit var context: Context
+    lateinit var context: MainActivity
    var usersBlockedMe = ""; val miId = FirebaseAuth.getInstance().currentUser!!.uid
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,20 +55,7 @@ class MainActivity : AppCompatActivity() {
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
 
-        Log.d("realChannelId", "start=")
-        val adRequest = AdRequest.Builder().build()
-        InterstitialAd.load(this, "ca-app-pub-7286158310312043/7949035373", adRequest, object : InterstitialAdLoadCallback() {
-            override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                App.mInterstitialAd = interstitialAd
-                Log.d("realChannelId", "onAdLoaded= ")
-                Log.d("realChannelId", "onAdLoaded= " + App.mInterstitialAd.toString())
-                App.mInterstitialAd?.show(context as MainActivity)
-            }
-            override fun onAdFailedToLoad(loadAdError: LoadAdError) {
-                Log.d("realChannelId", "loadAdError.message= " + App.mInterstitialAd.toString())
-                Log.d("realChannelId", "loadAdError.message= " + loadAdError.message)
-            }
-        })
+
 
 
     }

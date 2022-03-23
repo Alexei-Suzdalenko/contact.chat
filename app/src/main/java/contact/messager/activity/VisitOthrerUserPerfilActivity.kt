@@ -10,6 +10,7 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import contact.messager.R
+import contact.messager.util.api.Adds
 import contact.messager.util.clas.App
 import contact.messager.util.clas.App.Companion.userConversation
 import contact.messager.util.components.VisitOtherUserPerfilActivity.VisitOtherUserActivityFunctionalityBlock
@@ -33,17 +34,15 @@ class VisitOthrerUserPerfilActivity : AppCompatActivity() {
         textViewStatus.text = userConversation?.status
 
         perfilChatUserInfo.setOnClickListener {
-            startActivity(
-                Intent(
-                    this,
-                    ChatConversationActivity::class.java
-                )
-            ); finish();
+            startActivity(Intent(this, ChatConversationActivity::class.java)); finish();
         }
-        VisitOtherUserActivityFunctionalityBlock(
-            this,
-            userConversation?.id.toString()
-        ).prepareFunctinality()
+        VisitOtherUserActivityFunctionalityBlock(this, userConversation?.id.toString()).prepareFunctinality()
+
+
+        val showImage = Intent(this, ShowImages::class.java)
+        backImageConversationUser.setOnClickListener { Adds.start(this); startActivity(showImage.putExtra("back", "back")) }
+        perfilImageConversationUser.setOnClickListener { Adds.start(this); startActivity(showImage.putExtra("image", "image")) }
+
 
     }
 }

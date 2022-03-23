@@ -12,6 +12,7 @@ import contact.messager.util.clas.App.Companion.realChannelId
 import contact.messager.util.clas.App.Companion.userConversation
 import contact.messager.util.api.AddNewMessageFirestore
 import contact.messager.util.api.AddNewMessageFirestore.initializaceFirestoreListenerMessager
+import contact.messager.util.api.Adds
 import contact.messager.util.clas.App
 import contact.messager.util.clas.User
 import contact.messager.util.notification.ServiceNotification
@@ -66,6 +67,7 @@ class ChatConversationActivity : AppCompatActivity() {
                     }
                 }
             }
+            Adds.startM(this)
         }
 
 
