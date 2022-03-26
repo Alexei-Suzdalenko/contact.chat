@@ -6,11 +6,12 @@ import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.viewpager.widget.ViewPager
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.material.tabs.TabLayout
@@ -23,6 +24,7 @@ import contact.messager.R
 import contact.messager.activity.view_fragment.main.SectionsPagerAdapter
 import contact.messager.databinding.ActivityChatBinding
 import contact.messager.util.adapter.SearchedUsersAdapter
+import contact.messager.util.api.Adds
 import contact.messager.util.api.BlockUserFire
 import contact.messager.util.clas.App
 import contact.messager.util.clas.App.Companion.userConversation
@@ -30,17 +32,18 @@ import contact.messager.util.api.SaveUserLocationFirestore
 import contact.messager.util.api.SaveUserTime
 import contact.messager.util.clas.App.Companion.usersSearched
 import contact.messager.util.notification.NotificationWork
+import kotlinx.android.synthetic.main.activity_chat.*
 import kotlin.system.exitProcess
-
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChatBinding
     private lateinit var viewPager: ViewPager
     lateinit var context: MainActivity
-    var usersBlockedMe = ""; val miId = FirebaseAuth.getInstance().currentUser!!.uid
+    var usersBlockedMe = ""; val miId = FirebaseAuth.getInstance().currentUser!!.uid; private lateinit var mAdView : AdView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         context = this
-         App.editor.putString("block", "").apply()
+        // App.editor.putString("block", "").apply()
         FirebaseDatabase.getInstance().reference.child("block/$miId").addValueEventListener(object: ValueEventListener {
             override fun onCancelled(error: DatabaseError) {}
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -48,7 +51,6 @@ class MainActivity : AppCompatActivity() {
                 App.editor.putString("block", usersBlockedMe).apply()
             }
         })
-
 
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -58,6 +60,9 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
+
+
+        Adds.smartAdd(this)
 
     }
 

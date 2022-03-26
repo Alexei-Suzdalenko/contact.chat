@@ -46,9 +46,7 @@ object SaveDataImageUserFirebase {
                     if(data["name"] == null) data["name"] = ""
                     if(data["age"] == null) data["age"] = ""
                     val user = User(d.id, data["age"].toString(),  data["country"].toString(), data["image"].toString(), data["locality"].toString(), data["name"].toString(), data["online"].toString(), data["postal"].toString(), data["status"].toString(), data["token"].toString(), data["backImage"].toString())
-                    Log.d("listadoUsers", " - - - -  --  - - -- - - - - - - - -")
-                    Log.d("listadoUsers", "listadoUsers=" + data["name"].toString())
-                    Log.d("listadoUsers", "listadoUsers=" + user.toString())
+
                     listUsersSearched.add(user)
                 }
             }
