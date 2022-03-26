@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import contact.messager.R
@@ -23,13 +24,16 @@ import kotlin.collections.HashMap
 class SaveUserLocationFirestore {
     val miId           = FirebaseAuth.getInstance().currentUser?.uid.toString()
     val refUser       = Firebase.firestore.collection("user").document(miId)
-    val dataUser      = HashMap<String, Any>()
+    val dataUser    = HashMap<String, Any>()
+    val refCountry  = FirebaseFirestore.getInstance().collection("country")
 
     fun saveUserLocation(activity: Context){
         try {
             val tm = activity.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
             val countryCodeValue = tm.networkCountryIso
-            dataUser["country"] = countryCodeValue.toString();                                                             App.editor.putString("country", countryCodeValue.toString())
+            val code = countryCodeValue.toString()
+            dataUser["country"] = code;                                                             App.editor.putString("country", code)
+            refCountry.document(code).set(dataUser)
         } catch (e: Exception){}
 
      if (ContextCompat.checkSelfPermission(activity.applicationContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

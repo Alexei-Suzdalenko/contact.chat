@@ -17,8 +17,8 @@ import contact.messager.util.clas.App.Companion.userConversation
 import de.hdodenhof.circleimageview.CircleImageView
 class SearchedUsersAdapter(val context: Context): RecyclerView.Adapter<SearchedUsersAdapter.ViewHolder>() {
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
-        val name: TextView = view.findViewById(R.id.searchNameUser)
-        val status: TextView = view.findViewById(R.id.ageNameUser)
+      // val name: TextView = view.findViewById(R.id.searchNameUser)
+      // val status: TextView = view.findViewById(R.id.ageNameUser)
         val image: CircleImageView = view.findViewById(R.id.userImageProfile)
     }
 
@@ -28,8 +28,8 @@ class SearchedUsersAdapter(val context: Context): RecyclerView.Adapter<SearchedU
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.name.text  = App.usersSearched[position].name
-        holder.status.text = App.usersSearched[position].status
+      // holder.name.text  = App.usersSearched[position].name
+      // holder.status.text = App.usersSearched[position].status
         Glide.with(context).load(App.usersSearched[position].image).into(holder.image)
         holder.image.setOnClickListener {
             userConversation = App.usersSearched[position];

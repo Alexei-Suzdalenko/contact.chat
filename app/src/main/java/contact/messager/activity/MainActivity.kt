@@ -1,7 +1,10 @@
 package contact.messager.activity
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -33,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChatBinding
     private lateinit var viewPager: ViewPager
     lateinit var context: MainActivity
-   var usersBlockedMe = ""; val miId = FirebaseAuth.getInstance().currentUser!!.uid
+    var usersBlockedMe = ""; val miId = FirebaseAuth.getInstance().currentUser!!.uid
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         context = this
@@ -46,6 +49,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
         userConversation = null
@@ -54,9 +58,6 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
-
-
-
 
     }
 
