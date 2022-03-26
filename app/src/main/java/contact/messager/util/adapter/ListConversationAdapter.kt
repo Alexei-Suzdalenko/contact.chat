@@ -1,13 +1,17 @@
 package contact.messager.util.adapter
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import contact.messager.R
+import contact.messager.util.api.ConversationUserFirebase
+import contact.messager.util.api.CreateChatChannelFirebase
 import contact.messager.util.clas.User
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -21,11 +25,17 @@ class ListConversationAdapter(val context: Context, val listInfo: MutableList<Us
         val layoutView = LayoutInflater.from(context).inflate(R.layout.conversation_item, parent, false)
 
         layoutView.findViewById<TextView>(R.id.conversationName).text = listInfo[position].name
-        layoutView.findViewById<TextView>(R.id.conversationEmail).text = listInfo[position].age
+        layoutView.findViewById<TextView>(R.id.conversationEmail).text = listInfo[position].status
+        if(listInfo[position].image.length > 22) { Glide.with(context).load(listInfo[position].image).into(layoutView.findViewById<CircleImageView>(R.id.userImageProfile)) }
 
-        if(listInfo[position].image.length > 22) {
-            Glide.with(context).load(listInfo[position].image).into(layoutView.findViewById<CircleImageView>(R.id.userImageProfile))
+        layoutView.findViewById<ImageView>(R.id.deleteConversation).setOnClickListener {
+            CreateChatChannelFirebase().deleteUserConversation(listInfo[position].id){
+                listInfo.removeAt(position)
+                notifyDataSetChanged()
+            }
         }
         return layoutView
     }
+
+
 }

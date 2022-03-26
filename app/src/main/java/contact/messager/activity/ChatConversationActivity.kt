@@ -71,10 +71,12 @@ class ChatConversationActivity : AppCompatActivity() {
         }
 
 
-             CreateChatChannelFirebase().createOrGetChatChannle(userConversation?.id!!) { id ->
-                 realChannelId = id
-                 if(listenerDatabaseChagesActivated == "no"){ listenerDatabaseChagesActivated = "yes"
-                     initializaceFirestoreListenerMessager(realChannelId!!, this)
+             CreateChatChannelFirebase().getConversationChatChannel(userConversation?.id!!) { id ->
+                 if(id != null){
+                     realChannelId = id
+                     if(listenerDatabaseChagesActivated == "no"){ listenerDatabaseChagesActivated = "yes"
+                         initializaceFirestoreListenerMessager(realChannelId!!, this)
+                     }
                  }
              }
 

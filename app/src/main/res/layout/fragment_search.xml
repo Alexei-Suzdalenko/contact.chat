@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.view_fragment.main.PlaceholderFragment">
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listviewSearch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

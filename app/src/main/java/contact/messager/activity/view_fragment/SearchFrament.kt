@@ -2,7 +2,9 @@ package contact.messager.activity.view_fragment;
 import android.content.Context;
 import android.content.Intent
 import android.util.Log
+import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
 import contact.messager.R
 import contact.messager.activity.ChatConversationActivity
 import contact.messager.activity.MainActivity
@@ -22,6 +24,8 @@ class SearchFragment (val fr: FragmentSearchBinding, val context: Context, val a
         GetListUsers{ it ->
             App.usersSearched = it
             /* listado de usuarios en searched tab */
+            fr.listviewSearch.layoutManager = LinearLayoutManager(context)
+            fr.listviewSearch.setHasFixedSize(true)
             fr.listviewSearch.adapter = SearchedUsersAdapter(context)
         }
     }

@@ -16,7 +16,6 @@ class ChatConversationObject(val context: Context, val activity: ChatConversatio
     val userImage = activity.findViewById<CircleImageView>(R.id.userImageConverationAct)
 
     fun initChatConversationFunction(){
-
         try {
             nameChatUser.text = userConversation?.name
             ageChatUser.text = userConversation?.age

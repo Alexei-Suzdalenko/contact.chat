@@ -44,4 +44,5 @@
     <string name="block">Block</string>
     <string name="report">Report</string>
     <string name="infoSented">information sent to the developers team, thank you</string>
+    <string name="delete">Delete</string>
 </resources>
