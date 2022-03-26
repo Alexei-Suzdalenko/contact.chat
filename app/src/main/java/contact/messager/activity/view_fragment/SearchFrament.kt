@@ -4,6 +4,7 @@ import android.graphics.Point
 import android.os.Build
 import android.util.DisplayMetrics
 import android.util.Log
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,6 +14,7 @@ import contact.messager.util.adapter.SearchedUsersAdapter
 import contact.messager.util.api.PageWidth.GetSizesPageItems
 import contact.messager.util.api.SaveDataImageUserFirebase.GetListUsers
 import contact.messager.util.clas.App
+import kotlinx.android.synthetic.main.fragment_search.*
 
 
 class SearchFragment (val fr: FragmentSearchBinding, val context: Context, val activity: MainActivity){
@@ -22,10 +24,13 @@ class SearchFragment (val fr: FragmentSearchBinding, val context: Context, val a
         GetListUsers{ it ->
             App.usersSearched = it
             /* listado de usuarios en searched tab */
+            activity.loaderSearchProgressbar.visibility = View.GONE
+
             val items = GetSizesPageItems(context)
             fr.listviewSearch.layoutManager = GridLayoutManager(context, items)
             fr.listviewSearch.setHasFixedSize(true)
             fr.listviewSearch.adapter = SearchedUsersAdapter(context)
+
         }
 
 

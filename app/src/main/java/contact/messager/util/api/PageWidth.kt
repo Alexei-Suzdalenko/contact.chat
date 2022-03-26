@@ -22,11 +22,11 @@ object PageWidth {
                  width = b.width() - insetsWidth
                  height = b.height() - insetsHeight
              } else {
-            val size = Point()
-            val display = wm.defaultDisplay // deprecated in API 30
-            display?.getSize(size) // deprecated in API 30
-            width = size.x
-            height = size.y
+                 val size = Point()
+                 val display = wm.defaultDisplay // deprecated in API 30
+                 display?.getSize(size) // deprecated in API 30
+                 width = size.x
+                 height = size.y
          }
         val items: Int =  (width / 250).toInt()
 
