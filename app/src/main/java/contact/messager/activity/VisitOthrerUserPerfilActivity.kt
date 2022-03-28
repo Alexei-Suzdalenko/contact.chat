@@ -40,7 +40,7 @@ class VisitOthrerUserPerfilActivity : AppCompatActivity() {
 
 
         val showImage = Intent(this, ShowImages::class.java)
-        backImageConversationUser.setOnClickListener { Adds.start(this); startActivity(showImage.putExtra("back", "back")) }
+        backImageConversationUser.setOnClickListener { Adds.start(this); startActivity(showImage.putExtra("image", "back")) }
         perfilImageConversationUser.setOnClickListener { Adds.start(this); startActivity(showImage.putExtra("image", "image")) }
 
 

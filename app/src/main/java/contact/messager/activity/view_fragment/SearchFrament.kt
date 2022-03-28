@@ -21,10 +21,12 @@ class SearchFragment (val fr: FragmentSearchBinding, val context: Context, val a
 
     fun initSearchFragment(){
         App.usersSearched.clear()
-        GetListUsers{ it ->
+        fr.loaderSearchProgressbar.visibility = View.VISIBLE
+
+        GetListUsers { it ->
             App.usersSearched = it
 
-            activity.loaderSearchProgressbar.visibility = View.GONE
+            fr.loaderSearchProgressbar.visibility = View.GONE
             /* listado de usuarios en searched tab */
             val items = GetSizesPageItems(context)
             fr.listviewSearch.layoutManager = GridLayoutManager(context, items)

@@ -63,8 +63,9 @@ object Adds {
             override fun onAdLoaded() {
                 var size = 211
                 if( mAdView.height > 15 ) size = mAdView.height
-                params.setMargins(0, 0, 0, size)
+                params.setMargins(0, (size / 1.5).toInt(), 0, size)
                 activity.view_pager.layoutParams = params
+
             }
             override fun onAdFailedToLoad(p0: LoadAdError) {}
         }

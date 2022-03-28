@@ -36,7 +36,8 @@ object SaveDataImageUserFirebase {
         val listUsersSearched = ArrayList<User>()
         val source = Source.CACHE
         FirebaseFirestore.getInstance().collection("user")
-            // .whereEqualTo("country", country)
+             // .whereEqualTo("country", country)
+            // .whereEqualTo("country", "es")
             // .orderBy("online", Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener  {

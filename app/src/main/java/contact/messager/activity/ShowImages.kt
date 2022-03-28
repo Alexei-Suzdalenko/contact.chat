@@ -12,7 +12,7 @@ class ShowImages : AppCompatActivity() {
         setContentView(R.layout.activity_show_images)
         title = App.userConversation?.name.toString()
 
-        if(intent.getStringExtra("back").toString() == "back"){
+        if(intent.getStringExtra("image").toString() == "back"){
             if(App.userConversation?.backImage.toString().length>11) Glide.with(this).load(App.userConversation?.backImage.toString()).into(showImage)
         } else {
             if(App.userConversation?.image.toString().length>11) Glide.with(this).load(App.userConversation?.image.toString()).into(showImage)

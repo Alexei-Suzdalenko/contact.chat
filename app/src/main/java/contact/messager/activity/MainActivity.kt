@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
+import android.view.View
 import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -33,12 +34,13 @@ import contact.messager.util.api.SaveUserTime
 import contact.messager.util.clas.App.Companion.usersSearched
 import contact.messager.util.notification.NotificationWork
 import kotlinx.android.synthetic.main.activity_chat.*
+import kotlinx.android.synthetic.main.fragment_search.*
 import kotlin.system.exitProcess
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChatBinding
     private lateinit var viewPager: ViewPager
     lateinit var context: MainActivity
-    var usersBlockedMe = ""; val miId = FirebaseAuth.getInstance().currentUser!!.uid; private lateinit var mAdView : AdView
+    var usersBlockedMe = ""; val miId = FirebaseAuth.getInstance().currentUser!!.uid
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +54,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
         userConversation = null
@@ -63,7 +66,6 @@ class MainActivity : AppCompatActivity() {
 
 
         Adds.smartAdd(this)
-
     }
 
 
