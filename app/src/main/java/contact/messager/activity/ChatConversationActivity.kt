@@ -33,7 +33,7 @@ class ChatConversationActivity : AppCompatActivity() {
                 intent.getStringExtra("age").toString(), "",
                 intent.getStringExtra("image").toString(), "",
                 intent.getStringExtra("userName").toString(), "", "", "",
-                intent.getStringExtra("token").toString(),
+                intent.getStringExtra("miToken").toString(),
             )
             userConversation = user
         }
@@ -103,7 +103,8 @@ class ChatConversationActivity : AppCompatActivity() {
             textMessage,
             App.sharedPreferences.getString("image", "").toString(),
             userConversation!!.token,
-            userConversation!!.age
+            userConversation!!.age,
+            App.sharedPreferences.getString("token", "").toString()
         )
     }
 

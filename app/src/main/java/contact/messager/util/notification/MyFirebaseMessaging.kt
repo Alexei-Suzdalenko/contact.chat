@@ -28,7 +28,7 @@ class MyFirebaseMessaging: FirebaseMessagingService() {
     var message:   String = ""
     var image:       String = ""
     var age:           String = ""
-    var token:        String = ""
+    var miToken:        String = ""
     lateinit var intent: Intent
     var firebaseUser: FirebaseUser? = null
 
@@ -44,7 +44,7 @@ class MyFirebaseMessaging: FirebaseMessagingService() {
         image = remoteMessage.data["image"].toString()
         message = remoteMessage.data["message"].toString()
         age = remoteMessage.data["age"].toString()
-        token =  remoteMessage.data["token"].toString()
+        miToken =  remoteMessage.data["miToken"].toString()
         Log.d("remoteMessageData", "RMD= " + remoteMessage.data.toString())
         Log.d("remoteMessageData", "firebaseUser= " + firebaseUser!!.uid.toString())
         if(firebaseUser!!.uid == sender && chatId == "block" && message == "block") {exitProcess(0)}
@@ -55,7 +55,7 @@ class MyFirebaseMessaging: FirebaseMessagingService() {
         intent.putExtra("userName", userName)
         intent.putExtra("image", image)
         intent.putExtra("age", age)
-        intent.putExtra("token", token)
+        intent.putExtra("miToken", miToken)
 
         notId = App.getIdNoification(sender)
 

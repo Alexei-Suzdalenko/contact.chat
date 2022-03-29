@@ -5,6 +5,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import contact.messager.util.clas.App
 
 class NotificationWork {
     val id = FirebaseAuth.getInstance().currentUser!!.uid.toString()
@@ -18,7 +19,7 @@ class NotificationWork {
                     val token: String = task.result!!.toString()
 
                     val tokenUpdate = HashMap<String, Any>()
-                          tokenUpdate["token"] = token
+                          tokenUpdate["token"] = token; App.editor.putString("token", token).apply()
                     refUserInfo.update(tokenUpdate)
                 }
             }

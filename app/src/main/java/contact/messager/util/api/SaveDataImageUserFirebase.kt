@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.Source
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -36,7 +37,7 @@ object SaveDataImageUserFirebase {
         val listUsersSearched = ArrayList<User>()
         val source = Source.CACHE
         FirebaseFirestore.getInstance().collection("user")
-             // .whereEqualTo("country", country)
+             .whereEqualTo("country", country)
             // .whereEqualTo("country", "es")
             // .orderBy("online", Query.Direction.DESCENDING)
             .get()

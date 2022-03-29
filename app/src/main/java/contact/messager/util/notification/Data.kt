@@ -6,5 +6,6 @@ data class Data (
     var userName: String = "",
     var message: String = "",
     var image: String = "",
-    var age: String = ""
+    var age: String = "",
+    var miToken: String = ""
 )
