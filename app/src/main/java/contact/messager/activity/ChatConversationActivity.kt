@@ -99,7 +99,7 @@ class ChatConversationActivity : AppCompatActivity() {
             realChannelId!!,
             userConversation!!.id,
             firebaseUserId,
-            userConversation!!.name,
+            App.sharedPreferences.getString("name", "").toString(),
             textMessage,
             App.sharedPreferences.getString("image", "").toString(),
             userConversation!!.token,

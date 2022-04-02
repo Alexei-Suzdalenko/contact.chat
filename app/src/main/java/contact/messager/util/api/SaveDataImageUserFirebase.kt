@@ -30,8 +30,6 @@ object SaveDataImageUserFirebase {
 
 
     fun GetListUsers(onComplete:(listSearchedUsers: ArrayList<User>) -> Unit){
-        Log.d("snapshot", "usersBlocked="+ usersBlocked.toString())
-
         val country = sharedPreferences.getString("country", "").toString();
         val miId = FirebaseAuth.getInstance().currentUser?.uid.toString()
         val listUsersSearched = ArrayList<User>()

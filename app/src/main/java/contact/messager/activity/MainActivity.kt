@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         context = this
-        // App.editor.putString("block", "").apply()
+         App.editor.putString("block", "").apply()
         FirebaseDatabase.getInstance().reference.child("block/$miId").addValueEventListener(object: ValueEventListener {
             override fun onCancelled(error: DatabaseError) {}
             override fun onDataChange(snapshot: DataSnapshot) {

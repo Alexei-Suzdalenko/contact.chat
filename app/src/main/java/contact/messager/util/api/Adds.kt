@@ -35,7 +35,7 @@ object Adds {
         var countMessage = App.sharedPreferences.getInt("count", 0).toInt(); countMessage++
         App.editor.putInt("count", countMessage).apply()
 
-        if(countMessage > 11){
+        if(countMessage > 10){
             val adRequest = AdRequest.Builder().build()
             InterstitialAd.load(context, "ca-app-pub-7286158310312043/7949035373", adRequest, object : InterstitialAdLoadCallback() {
                 override fun onAdLoaded(interstitialAd: InterstitialAd) {
