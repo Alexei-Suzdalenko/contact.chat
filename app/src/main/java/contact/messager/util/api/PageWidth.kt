@@ -2,14 +2,17 @@ package contact.messager.util.api
 import android.content.Context
 import android.graphics.Point
 import android.os.Build
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.WindowInsets
 import android.view.WindowManager
+import contact.messager.activity.MainActivity
+
 
 object PageWidth {
 
-    fun GetSizesPageItems(context: Context): Int{
-        val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+    fun GetSizesPageItems(activity: MainActivity): Int{
+        val wm = activity.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         var height = 0
         var width = 0
          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -22,14 +25,23 @@ object PageWidth {
                  width = b.width() - insetsWidth
                  height = b.height() - insetsHeight
              } else {
-                 val size = Point()
-                 val display = wm.defaultDisplay // deprecated in API 30
-                 display?.getSize(size) // deprecated in API 30
-                 width = size.x
-                 height = size.y
-         }
-        val items: Int =  (width / 160).toInt()
+                 val metrics = DisplayMetrics()
+                 activity.windowManager.defaultDisplay.getMetrics(metrics)
+                 val usableHeight = metrics.widthPixels
+                 Log.d("pageWidth", "usableHeight = " + usableHeight)
 
-        return items
+             val size = Point()
+             val display = wm.defaultDisplay
+             display?.getSize(size)
+             width = size.x
+             height = size.y
+         }
+            if(width > 2000)
+                return (width / 250).toInt()
+             else
+                return 4
+
+
+
     }
 }

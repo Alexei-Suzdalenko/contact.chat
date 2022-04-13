@@ -25,12 +25,9 @@ import contact.messager.R
 import contact.messager.activity.view_fragment.main.SectionsPagerAdapter
 import contact.messager.databinding.ActivityChatBinding
 import contact.messager.util.adapter.SearchedUsersAdapter
-import contact.messager.util.api.Adds
-import contact.messager.util.api.BlockUserFire
+import contact.messager.util.api.*
 import contact.messager.util.clas.App
 import contact.messager.util.clas.App.Companion.userConversation
-import contact.messager.util.api.SaveUserLocationFirestore
-import contact.messager.util.api.SaveUserTime
 import contact.messager.util.clas.App.Companion.usersSearched
 import contact.messager.util.notification.NotificationWork
 import kotlinx.android.synthetic.main.activity_chat.*
@@ -54,7 +51,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
         userConversation = null
@@ -64,8 +60,16 @@ class MainActivity : AppCompatActivity() {
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
 
-
         Adds.smartAdd(this)
+
+
+
+            val metrics = DisplayMetrics()
+            this.getWindowManager().getDefaultDisplay().getMetrics(metrics)
+            val usableHeight = metrics.heightPixels
+            getWindowManager().getDefaultDisplay().getRealMetrics(metrics)
+            val realHeight = metrics.heightPixels
+
     }
 
 

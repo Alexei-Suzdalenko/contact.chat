@@ -31,8 +31,9 @@ class CreateChatChannelFirebase {
         }
     }
 
+    // cuando entro desde listado de usuarios o desde listado de conversaciones !!!!
     fun getConversationChatChannel(otherUserId: String, onComplete: (channelId: String?) -> Unit){
-        firestore.document(miId).collection("channel").document(otherUserId).get().addOnSuccessListener  {
+        firestore.document(miId).collection("channel").document( otherUserId).get().addOnSuccessListener  {
             if(it.exists()) {
                 val idChat = it["id"].toString()
                 onComplete( idChat )
@@ -41,7 +42,6 @@ class CreateChatChannelFirebase {
             }
         }
     }
-
     fun deleteUserConversation(otherUserId: String, onComplete: (res: String) -> Unit){
         //   var idChat: String?  = null
         //   // coger id de la conversacion

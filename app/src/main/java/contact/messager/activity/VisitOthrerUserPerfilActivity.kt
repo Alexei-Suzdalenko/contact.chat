@@ -26,8 +26,7 @@ class VisitOthrerUserPerfilActivity : AppCompatActivity() {
         Glide.with(this).load(userConversation?.backImage).into(backImageConversationUser)
         Glide.with(this).load(userConversation?.image).into(perfilImageConversationUser)
 
-        emailProfileConversationUser.text =
-            userConversation?.name + " " + userConversation?.age.toString()
+        emailProfileConversationUser.text = userConversation?.name
         userNameConversationUser.text = userConversation?.name
         cityVisitUser.text = userConversation?.locality
         textViewTextAge.text = userConversation?.age.toString()

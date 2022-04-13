@@ -28,7 +28,7 @@ class SearchFragment (val fr: FragmentSearchBinding, val context: Context, val a
 
             fr.loaderSearchProgressbar.visibility = View.GONE
             /* listado de usuarios en searched tab */
-            val items = GetSizesPageItems(context)
+            val items = GetSizesPageItems(activity)
             fr.listviewSearch.layoutManager = GridLayoutManager(context, items)
             fr.listviewSearch.setHasFixedSize(true)
             fr.listviewSearch.adapter = SearchedUsersAdapter(context)
